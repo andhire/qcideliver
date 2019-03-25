@@ -12,10 +12,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-    
+        $users = Users::all();
+        return view('users.index',compact('users'));
 
     }
 
@@ -66,6 +67,9 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        $user = Users::find($id);
+        
+        return view('users.show',compact('user'));
     }
 
     /**
@@ -89,6 +93,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
     }
 
     /**
