@@ -23,7 +23,7 @@
 
             <img src="{{$user->foto}}" height="100px",width="100px"/>   
 
-            @if($user->tipo == 1)
+            @if($user->tipo == 2)
                 <img src="img/usuario.png"/>
             @else
                 <img src="img/vendedor.png"/>
