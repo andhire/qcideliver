@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Users;
+use App\Http\Controllers\Controller;
 class UsersController extends Controller
 {
     /**
@@ -16,6 +17,8 @@ class UsersController extends Controller
     {
         //
         $users = Users::all();
+        $users = Users::paginate(3);
+        
         return view('users.index',compact('users'));
 
     }

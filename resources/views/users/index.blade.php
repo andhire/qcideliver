@@ -4,34 +4,69 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Usuarios</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="../../../public/css/user.create.css">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+        
     </head>
     <body>
-        <h1>Usuarios</h1>
+
+
+        <nav class="navbar navbar-dark bg-dark ">
+                <div class="container text-center">
+                        <a class="navbar-brand" href="{{ url('/user')}}">Usuarios</a>
+                        <a class="navbar-brand" href="{{ url('/user/create')}}">Crear Usuario</a>
+                </div>
+        </nav>
+        
+        
+        
+
+        
+        <div class="card-columns text-center">
         @foreach ($users as $user)
-            <h2>{{$user->nombre}} {{$user->apellidoP}} {{$user->apellidoM}}</h2> 
-
-            @if($user->estado == 1)
-                <img src="img/online.png"/>
-            @else
-                <img src="img/offline.png"/>
-            @endif
-
-            <img src="{{$user->foto}}" height="100px",width="100px"/>   
-
-            @if($user->tipo == 1)
-                <img src="img/usuario.png"/>
-            @else
-                <img src="img/vendedor.png"/>
-            @endif
-
             
+
+        <a href="{{ url('/user',[$user->slug]) }}">
+        <div class="card text-center" style="width: 18rem;" action="/user/">
+                    <img class="card-img-top" src="{{$user->foto}}" height="268",width="180px" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">{{$user->nombre}} {{$user->apellidoP}} {{$user->apellidoM}}</h5>
+
+                      
+
+                      
+                      <div class="row">
+                            <div class="col col-lg-5">
+                                    @if($user->estado==1)
+                                    <img src="{{asset('img/online.png')}}" height="16px",width="16px"/>
+                                      @else
+                                      <img src="{{asset('img/offline.png')}}" height="16px",width="16px"/>
+                                      @endif
+                             </div>
+                            <div class="col-md-auto">
+                                    @if($user->tipo==1)
+                                    <p class="card-text">Vendedor</p>
+                                  @else
+                                    <p class="card-text">Comprador</p>
+                                  @endif
+                            </div>
+                           
+                      </div>
+
+
+                    </div>
+                  </div>
+        </a>
         @endforeach
-       
+
+
+        
+    </div>
         </div>
+        <footer class="pagination justify-content-center "style="margin-top:15%">
+            {{ $users->links() }}
+        </footer>
+        
     </body>
 </html>
