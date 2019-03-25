@@ -6,11 +6,26 @@
 
         <title>Error</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="../../../public/css/user.create.css">
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+        
     </head>
-    <body>
-        <p>Opps No es posible acceder a esa ruta D:</p>
+    <body class="bg-secondary">
+
+
+        <nav class="navbar navbar-dark bg-dark ">
+                <div class="container text-center">
+                        <a class="navbar-brand" href="{{ url('/user')}}">Usuarios</a>
+                        <a class="navbar-brand" href="{{ url('/user/create')}}">Crear Usuario</a>
+                </div>
+        </nav>
+        
+       
+        
+        <div class="text-center" style="margin-top:15%" >
+                <img src="{{asset('img/error.png')}}" alt="..." class=" center-block " />
+                <h3 style="color:white">Oops!! Ocurrio algo D:</h3>
+        </div>
+            
+            
     </body>
 </html>
