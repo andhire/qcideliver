@@ -64,10 +64,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
-        $user = Users::find($id);
+        $user = Users::where('slug', $slug)->first();
+
+        if(!$user){
+            return view('error');
+        }
+        
         
         return view('users.show',compact('user'));
     }
