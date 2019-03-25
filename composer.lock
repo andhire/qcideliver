@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f763dbcd50335d2a4dbb1cbd15e333ef",
+    "content-hash": "ea6f37b5fae0b639931aa41fafb30236",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2133,7 +2133,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",

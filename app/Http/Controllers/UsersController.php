@@ -59,6 +59,10 @@ class UsersController extends Controller
         $user->password = $pass;
 
         $user->save();
+
+        $users = Users::all();
+        return view('users.index',compact('users'));
+
     }
 
     /**
