@@ -115,9 +115,22 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+
+        $user = Users::where('slug', $slug)->first();
+        $user->nombre = $request['nombre'];
+        $user->apellidoP = $request['apellidoP'];
+        $user->apellidoM = $request['apellidoM'];
+        $user->tipo = $request['tipo'];
+        $user->estado = $request['estado'];
+        $user->foto = $request['foto'];
+        $user->usuario = $request['usuario'];
+        $pass = $request['password'];
+        $pass = password_hash($pass, PASSWORD_DEFAULT);
+        $user->password = $pass;
+
+        $user->save();
     }
 
     /**

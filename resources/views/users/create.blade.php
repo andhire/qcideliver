@@ -76,14 +76,6 @@
                         </div>
 
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Password</label>
-                                <input class="form-control" name="password" type="password">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-
                         <input type="hidden" value="1" name="estado">
 
 
