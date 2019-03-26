@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Users;
 use App\Http\Controllers\Controller;
+
 class UsersController extends Controller
 {
     /**
@@ -18,9 +19,8 @@ class UsersController extends Controller
         //
         $users = Users::all();
         $users = Users::paginate(3);
-        
-        return view('users.index',compact('users'));
 
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -33,7 +33,6 @@ class UsersController extends Controller
         //
 
         return view('users.create');
-
     }
 
     /**
@@ -46,23 +45,32 @@ class UsersController extends Controller
     {
         //
 
-        $user = new Users;
-        $user->nombre = $request['nombre'];
-        $user->apellidoP = $request['apellidoP'];
-        $user->apellidoM = $request['apellidoM'];
-        $user->tipo = $request['tipo'];
-        $user->estado = $request['estado'];
-        $user->foto = $request['foto'];
-        $user->usuario = $request['usuario'];
-        $pass = $request['password'];
-        $pass = password_hash($pass,PASSWORD_DEFAULT);
-        $user->password = $pass;
 
-        $user->save();
+
+
+        if ($request['nombre'] == '' || $request['apellidoP'] == ''  || $request['foto'] == '' || $request['apellidoM'] == '' || $request['tipo'] == '' || $request['usuario'] == '' || $request['password'] == '') { $user = new Users;
+            return view('error');
+        } else {
+          
+            $user = new Users;
+            $user->nombre = $request['nombre'];
+            $user->apellidoP = $request['apellidoP'];
+            $user->apellidoM = $request['apellidoM'];
+            $user->tipo = $request['tipo'];
+            $user->estado = $request['estado'];
+            $user->foto = $request['foto'];
+            $user->usuario = $request['usuario'];
+            $pass = $request['password'];
+            $pass = password_hash($pass, PASSWORD_DEFAULT);
+            $user->password = $pass;
+
+            $user->save();
+        }
 
         $users = Users::all();
-        return view('users.index',compact('users'));
+        $users = Users::paginate(3);
 
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -76,12 +84,12 @@ class UsersController extends Controller
         //
         $user = Users::where('slug', $slug)->first();
 
-        if(!$user){
+        if (!$user) {
             return view('error');
         }
-        
-        
-        return view('users.show',compact('user'));
+
+
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -105,7 +113,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
-        
+
     }
 
     /**
