@@ -61,7 +61,14 @@ class UsersController extends Controller
         $user->save();
 
         $users = Users::all();
+        $users = Users::paginate(3);
+        
         return view('users.index',compact('users'));
+
+        //$this->index($request);
+
+        /* $users = Users::all();
+        return view('users.index',compact('users')); */
 
     }
 
@@ -80,7 +87,6 @@ class UsersController extends Controller
             return view('error');
         }
         
-        
         return view('users.show',compact('user'));
     }
 
@@ -90,9 +96,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $user = Users::where('slug', $slug)->first();
+
+        if(!$user){
+            return view('error');
+        }
+        
+        return view('users.edit',compact('user'));
     }
 
     /**
