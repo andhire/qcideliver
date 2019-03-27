@@ -131,6 +131,8 @@ class UsersController extends Controller
         $user->password = $pass;
 
         $user->save();
+
+        return redirect('/user');
     }
 
     /**

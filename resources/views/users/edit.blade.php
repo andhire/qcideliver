@@ -16,7 +16,7 @@
 
     <div class="container">
         <div class="signup-form-container">
-            <form method="POST" action="/user" id="register-form" role="form">
+            <form method="POST" action="/user/{{$user->slug}}" id="register-form" role="form">
                 <div class="form-header">
                     <h3 class="form-title"><i class="fa fa-user"></i> Edicion</h3>
 
