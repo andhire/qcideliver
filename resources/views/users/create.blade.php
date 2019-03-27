@@ -101,11 +101,6 @@
                         </div>
 
 
-<<<<<<< HEAD
-                        <input type="hidden" value="1" name="estado">
-
-=======
->>>>>>> master
 
                         <div class="form-group">
                             <div class="input-group">
