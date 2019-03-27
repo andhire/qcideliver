@@ -10,11 +10,11 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/create.css')}}" rel="stylesheet">
 </head>
 
 <body>
-
-    <div class="container">
+    <div class="container content">
         <div class="signup-form-container">
             <form method="POST" action="/user" id="register-form" role="form">
                 <div class="form-header">
@@ -25,59 +25,87 @@
                     </div>
                     @csrf @method('POST')
                     <div class="form-body">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                <label>Nombre</label>
-                                <input class="form-control" name="nombre">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Apellido Paterno</label>
-                                <input class="form-control" name="apellidoP">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Apellido Materno</label>
-                                <input class="form-control" name="apellidoM">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Usuario</label>
-                                <input class="form-control" name="usuario">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                        <label for="inputname">Nombre</label>
+                                        <input class="form-control" name="nombre" id="inputname">
+
+                                    </div>
+                                    <span class="help-block" id="error"></span>
+                                </div>
                             </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
+
+
+                            <div class="form-group col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Apellido Paterno</label>
+                                        <input class="form-control" name="apellidoP">
+                                    </div>
+                                    <span class="help-block" id="error"></span>
+                                </div>
+                            </div>
 
 
 
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Password</label>
-                                <input class="form-control" name="password" type="password">
+                            <div class="form-group col-md-4">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Apellido Materno</label>
+                                        <input class="form-control" name="apellidoM">
+                                    </div>
+                                    <span class="help-block" id="error"></span>
+                                </div>
                             </div>
-                            <span class="help-block" id="error"></span>
+
                         </div>
+
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Usuario</label>
+                                        <input class="form-control" name="usuario">
+                                    </div>
+                                    <span class="help-block" id="error"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Password</label>
+                                        <input class="form-control" name="password" type="password">
+                                    </div>
+                                    <span class="help-block" id="error"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+
 
                         <div class="form-group">
                             <label>Tipo</label>
-                            <select multiple class="form-control" id="Tipo" name="tipo">
+                            <select class="form-control" id="Tipo" name="tipo">
                              <option value="1">Vendedor</option>
                             <option value="2">Comprador</option>
                             </select>
                         </div>
 
 
+<<<<<<< HEAD
                         <input type="hidden" value="1" name="estado">
 
+=======
+>>>>>>> master
 
                         <div class="form-group">
                             <div class="input-group">
@@ -89,7 +117,7 @@
 
                     </div>
                     <div class="form-footer">
-                        <button type="submit" class="btn btn-info">
+                        <button type="submit" class="btn btn-info" id="botonEnviar">
                             <span class="glyphicon glyphicon-log-in"></span> Registrar !
                             </button> {{-- <input type="submit" name="enviar" value="Enviar"> --}}
                     </div>
