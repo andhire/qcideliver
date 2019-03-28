@@ -19,7 +19,7 @@
         <div class="signup-form-container">
             <form method="POST" action="/user" id="register-form" role="form">
                 <div class="form-header">
-                    <h3 class="form-title"><i class="fa fa-user"></i> Registro</h3>
+                    <h3 class="form-title titulo"><i class="fa fa-user"></i> Registro</h3>
 
                     <div class="pull-right">
                         <h3 class="form-title"><span class="glyphicon glyphicon-pencil"></span></h3>

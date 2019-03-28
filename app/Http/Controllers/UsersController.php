@@ -67,16 +67,17 @@ class UsersController extends Controller
         $user->save();
         /* } */
 
-        $users = Users::all();
+        /* $users = Users::all();
         $users = Users::paginate(3);
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact('users')); */
+        return redirect('/user')->with('message', 'Usuario creado!');;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
@@ -95,34 +96,58 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $user = Users::where('slug', $slug)->first();
+
+        if(!$user){
+            return view('error');
+        }
+        
+        return view('users.edit',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+
+        $user = Users::where('slug', $slug)->first();
+        $user->nombre = $request['nombre'];
+        $user->apellidoP = $request['apellidoP'];
+        $user->apellidoM = $request['apellidoM'];
+        $user->tipo = $request['tipo'];
+        $user->estado = $request['estado'];
+        $user->foto = $request['foto'];
+        $user->usuario = $request['usuario'];
+        $pass = $request['password'];
+        $pass = password_hash($pass, PASSWORD_DEFAULT);
+        $user->password = $pass;
+
+        $user->save();
+
+        return redirect('/user');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $user = Users::where('slug', $slug)->first();
+        $user->delete();
+
+        return redirect('/user')->with('message', 'Usuario eliminado!');
     }
 }
