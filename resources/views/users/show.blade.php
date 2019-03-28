@@ -48,20 +48,17 @@
                         <p class="card-text">Comprador</p>
                         @endif
                     </div>
-                    <span>
-                        <!-- Editar -->
+                    <div style="margin: 5px;">
                         <a href="{{ url('/user/'.$user->slug.'/edit') }}"><button type="button" class="btn btn-warning">Editar</button>
-                        <!-- Eliminar -->
+                    </div>
+                    <div style="margin: 5px;">
                         <form action="{{ route('user.destroy', $user->slug) }}" method="POST">
-                        @csrf @method('DELETE')
-
-                        <button type="submit" class="btn btn-danger">Borrar</button>
+                            @csrf @method('DELETE')
+    
+                            <button type="submit" class="btn btn-danger">Borrar</button>
                         </form>
-                    </span>
-
+                    </div>
                 </div>
-
-            </div>
         </div>
 </body>
 

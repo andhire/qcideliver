@@ -42,11 +42,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-
-
-
         if ($request['nombre'] == '' || $request['apellidoP'] == ''  || $request['foto'] == '' || $request['apellidoM'] == '' || $request['tipo'] == '' || $request['usuario'] == '' || $request['password'] == '') { $user = new Users;
             return view('error');
         } else {
@@ -146,6 +141,6 @@ class UsersController extends Controller
         $user = Users::where('slug', $slug)->first();
         $user->delete();
 
-        return redirect('/user');
+        return redirect('/user')->with('message', 'Usuario eliminado!');;
     }
 }
