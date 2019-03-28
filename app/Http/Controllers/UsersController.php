@@ -61,10 +61,7 @@ class UsersController extends Controller
             $user->save();
         }
 
-        $users = Users::all();
-        $users = Users::paginate(3);
-
-        return view('users.index', compact('users'));
+        return redirect('/user')->with('message', 'Usuario registrado!');
     }
 
     /**
@@ -127,7 +124,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect('/user');
+        return redirect('/user')->with('message', 'Edición exitosa!');
     }
 
     /**
@@ -141,6 +138,6 @@ class UsersController extends Controller
         $user = Users::where('slug', $slug)->first();
         $user->delete();
 
-        return redirect('/user')->with('message', 'Usuario eliminado!');;
+        return redirect('/user')->with('message', 'Usuario eliminado!');
     }
 }

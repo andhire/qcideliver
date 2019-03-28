@@ -10,101 +10,91 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/create.css')}}" rel="stylesheet">
 </head>
 
 <body>
+        <nav class="navbar navbar-dark bg-dark ">
+                <div class="container text-center">
+                    <a class="navbar-brand" href="{{ url('/user')}}">Usuarios</a>
+                    <a class="navbar-brand" href="{{ url('/user/create')}}">Crear Usuario</a>
+                </div>
+            </nav>
+        
+            <div class="container content">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                            <form method="POST" action="/user/{{$user->slug}}" id="edit-form" role="form">
+                            <div class="card">
+                                <div class="card-header">Editar Usuario</div>
+                                <div class="card-body">
+                                    @csrf @method('PUT')
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
+                                        <div class="col-md-6">
+                                            <input value="{{$user->nombre}}" type="text" class="form-control" name="nombre">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="apellidoP" class="col-md-4 col-form-label text-md-right">Apellido Paterno</label>
+                                        <div class="col-md-6">
+                                            <input value="{{$user->apellidoP}}" type="text" class="form-control" name="apellidoP">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="apellidoM" class="col-md-4 col-form-label text-md-right">Apellido Materno</label>
+                                        <div class="col-md-6">
+                                            <input value="{{$user->apellidoM}}" type="text" class="form-control" name="apellidoM">
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group row">
+                                        <label for="usuario" class="col-md-4 col-form-label text-md-right">Usuario</label>
+                                        <div class="col-md-6">
+                                            <input value="{{$user->usuario}}" type="text" class="form-control" name="usuario">
+                                        </div>
+                                    </div>
 
-    <div class="container">
-        <div class="signup-form-container">
-            <form method="POST" action="/user/{{$user->slug}}" id="register-form" role="form">
-                <div class="form-header">
-                    <h3 class="form-title"><i class="fa fa-user"></i> Edicion</h3>
-
-                    <div class="pull-right">
-                        <h3 class="form-title"><span class="glyphicon glyphicon-pencil"></span></h3>
+                                     {{--
+                                    <div class="form-group row">
+                                        <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
+                                        <div class="col-md-6">
+                                            <input value="{{$user->password}}" type="password" class="form-control" name="password">
+                                        </div>
+                                    </div>--}}
+                                    
+                                    <div class="form-group row">
+                                        <label for="tipo" class="col-md-4 col-form-label text-md-right">Tipo</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="tipo">
+                                                @if($user->tipo==1)
+                                                    <option selected value="1">Vendedor</option>
+                                                    <option value="2">Comprador</option>
+                                                @else
+                                                    <option value="1">Vendedor</option>
+                                                    <option selected value="2">Comprador</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group row">
+                                        <label for="foto" class="col-md-4 col-form-label text-md-right">Foto</label>
+                                        <div class="col-md-6">
+                                            <input value="{{$user->foto}}" type="text" class="form-control" name="foto">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary" id="botonEnviar">
+                                            Editar!
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    @csrf 
-                    @method('PUT')
-                    <div class="form-body">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                <label>Nombre</label>
-                                <input value="{{$user->nombre}}" class="form-control" name="nombre">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Apellido Paterno</label>
-                                <input value="{{$user->apellidoP}}" class="form-control" name="apellidoP">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Apellido Materno</label>
-                                <input value="{{$user->apellidoM}}" class="form-control" name="apellidoM">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Usuario</label>
-                                <input value="{{$user->usuario}}" class="form-control" name="usuario">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-
-
-
-                        {{--
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Password</label>
-                                <input value="{{$user->password}}" class="form-control" name="password" type="password">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div> --}}
-
-                        <div class="form-group">
-                            <label>Tipo</label>
-                            <select multiple class="form-control" id="Tipo" name="tipo">
-                            @if($user->tipo==1)
-                                <option selected value="1">Vendedor</option>
-                                <option value="2">Comprador</option>
-                            @else
-                                <option value="1">Vendedor</option>
-                                <option selected value="2">Comprador</option>
-                            @endif
-                            </select>
-                        </div>
-
-
-                        <input type="hidden" value="1" name="estado">
-
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Foto</label>
-                                <input value="{{$user->foto}}" class="form-control" type="text" name="foto">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-
-                    </div>
-                    <div class="form-footer">
-                        <button type="submit" class="btn btn-info">
-                            <span class="glyphicon glyphicon-log-in"></span> Editar !
-                            </button> {{-- <input type="submit" name="enviar" value="Enviar"> --}}
-                    </div>
-
-
-            </form>
+                </div>
             </div>
-        </div>
 </body>
 
 </html>
