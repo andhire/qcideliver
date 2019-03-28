@@ -14,113 +14,80 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark ">
+        <div class="container text-center">
+            <a class="navbar-brand" href="{{ url('/user')}}">Usuarios</a>
+            <a class="navbar-brand" href="{{ url('/user/create')}}">Crear Usuario</a>
+        </div>
+    </nav>
+
     <div class="container content">
-        <div class="signup-form-container">
-            <form method="POST" action="/user" id="register-form" role="form">
-                <div class="form-header">
-                    <h3 class="form-title"><i class="fa fa-user"></i> Registro</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form method="POST" action="/user" id="register-form" role="form">
+                    <div class="card">
+                        <div class="card-header">Registro</div>
+                        <div class="card-body">
+                            @csrf @method('POST')
+                            <div class="form-group row">
+                                <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="nombre">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="apellidoP" class="col-md-4 col-form-label text-md-right">Apellido Paterno</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="apellidoP">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="apellidoM" class="col-md-4 col-form-label text-md-right">Apellido Materno</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="apellidoM">
+                                </div>
+                            </div>
 
-                    <div class="pull-right">
-                        <h3 class="form-title"><span class="glyphicon glyphicon-pencil"></span></h3>
+                            <div class="form-group row">
+                                <label for="usuario" class="col-md-4 col-form-label text-md-right">Usuario</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="usuario">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="tipo" class="col-md-4 col-form-label text-md-right">Tipo</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" name="tipo">
+                                        <option value="1">Vendedor</option>
+                                        <option value="2">Comprador</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="foto" class="col-md-4 col-form-label text-md-right">Foto</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="foto">
+                                </div>
+                            </div>
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary" id="botonEnviar">
+                                    Registrar!
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    @csrf @method('POST')
-                    <div class="form-body">
-
-
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                        <label for="inputname">Nombre</label>
-                                        <input class="form-control" name="nombre" id="inputname">
-
-                                    </div>
-                                    <span class="help-block" id="error"></span>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <label>Apellido Paterno</label>
-                                        <input class="form-control" name="apellidoP">
-                                    </div>
-                                    <span class="help-block" id="error"></span>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group col-md-4">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <label>Apellido Materno</label>
-                                        <input class="form-control" name="apellidoM">
-                                    </div>
-                                    <span class="help-block" id="error"></span>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <label>Usuario</label>
-                                        <input class="form-control" name="usuario">
-                                    </div>
-                                    <span class="help-block" id="error"></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <label>Password</label>
-                                        <input class="form-control" name="password" type="password">
-                                    </div>
-                                    <span class="help-block" id="error"></span>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label>Tipo</label>
-                            <select class="form-control" id="Tipo" name="tipo">
-                             <option value="1">Vendedor</option>
-                            <option value="2">Comprador</option>
-                            </select>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <label>Foto</label>
-                                <input class="form-control" type="text" name="foto">
-                            </div>
-                            <span class="help-block" id="error"></span>
-                        </div>
-
-                    </div>
-                    <div class="form-footer">
-                        <button type="submit" class="btn btn-info" id="botonEnviar">
-                            <span class="glyphicon glyphicon-log-in"></span> Registrar !
-                            </button> {{-- <input type="submit" name="enviar" value="Enviar"> --}}
-                    </div>
-
-
-            </form>
+                </form>
             </div>
         </div>
+    </div>
 </body>
-
 </html>

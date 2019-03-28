@@ -21,14 +21,13 @@
     </div>
   </nav>
 
-
-
-
+<div class="jumbotron">
   @if (session('message'))
     <div class="alert alert-success">
         {{ session('message') }}
     </div>
   @endif
+
   <div class="card-columns text-center">
     @foreach ($users as $user)
 
@@ -63,9 +62,7 @@
       </div>
     </a>
     @endforeach
-
-
-
+    </div>
   </div>
   </div>
   <footer class="pagination justify-content-center " style="margin-top:15%">
