@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/create.css')}}" rel="stylesheet">
+    <script type="text/javascript" src="{{asset('js/create.js')}}"></script>
 </head>
 
 <body>
