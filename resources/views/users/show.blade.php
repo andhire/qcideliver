@@ -15,6 +15,8 @@
         <div class="container text-center">
             <a class="navbar-brand" href="{{ url('/user')}}">Usuarios</a>
             <a class="navbar-brand" href="{{ url('/user/create')}}">Crear Usuario</a>
+            <a class="navbar-brand" href={{url('/login')}}>Login</a>
+
         </div>
     </nav>
 

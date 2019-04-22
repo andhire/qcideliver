@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Users;
 use App\Http\Controllers\Controller;
-
+use View;
+use DB;
 class UsersController extends Controller
 {
     /**
@@ -61,7 +62,7 @@ class UsersController extends Controller
         $user->foto = $request['foto'];
         $user->usuario = $request['usuario'];
         $pass = $request['password'];
-        $pass = password_hash($pass, PASSWORD_DEFAULT);
+        $pass = hash('sha256',$pass);
         $user->password = $pass;
 
         $user->save();
@@ -103,11 +104,11 @@ class UsersController extends Controller
     {
         $user = Users::where('slug', $slug)->first();
 
-        if(!$user){
+        if (!$user) {
             return view('error');
         }
-        
-        return view('users.edit',compact('user'));
+
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -149,5 +150,38 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect('/user')->with('message', 'Usuario eliminado!');
+    }
+    /**
+     * 
+     *
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function doLogin()
+    {
+
+        $userdata = array(
+            'usuario'     => Input::get('usuario'),
+            'password'  => Input::get('password')
+        );
+
+        $pass = hash('sha256',$userdata['password']);
+        $userdata['password'] = $pass;
+
+        $result = $result = DB::table('users')->where('usuario', '=', $userdata['usuario'])->where('password','=', $userdata['password'])->first();
+    
+        var_dump($userdata);
+        var_dump($result);
+    }
+
+    /**
+     * 
+     *
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function showLogin()
+    {
+        return View::make('users/login');
     }
 }
