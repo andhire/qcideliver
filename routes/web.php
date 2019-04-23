@@ -17,3 +17,4 @@ Route::get('/', function () {
 Route::resource('/user', 'UsersController');
 Route::post('/login', array('uses' => 'UsersController@doLogin'));
 Route::get('/login', array('uses' => 'UsersController@showLogin'));
+Route::get('/home_vendedor','UsersController@homeVendedor');

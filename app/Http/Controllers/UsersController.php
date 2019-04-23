@@ -8,6 +8,7 @@ use App\Users;
 use App\Http\Controllers\Controller;
 use View;
 use DB;
+
 class UsersController extends Controller
 {
     /**
@@ -62,7 +63,7 @@ class UsersController extends Controller
         $user->foto = $request['foto'];
         $user->usuario = $request['usuario'];
         $pass = $request['password'];
-        $pass = hash('sha256',$pass);
+        $pass = hash('sha256', $pass);
         $user->password = $pass;
 
         $user->save();
@@ -165,13 +166,38 @@ class UsersController extends Controller
             'password'  => Input::get('password')
         );
 
-        $pass = hash('sha256',$userdata['password']);
+        $pass = hash('sha256', $userdata['password']);
         $userdata['password'] = $pass;
 
-        $result = $result = DB::table('users')->where('usuario', '=', $userdata['usuario'])->where('password','=', $userdata['password'])->first();
-    
-        var_dump($userdata);
-        var_dump($result);
+        $result = $result = DB::table('users')->where('usuario', '=', $userdata['usuario'])->where('password', '=', $userdata['password'])->first();
+
+        /*   var_dump($userdata);
+        var_dump($result); */
+
+        if($result == NULL){
+            return redirect('/login')->with('message', 'Usuario o contraseña incorrecta');;
+        }
+        $user = new Users();
+
+        $user->slug = $result->slug;
+
+        $user->nombre = $result->nombre;
+        $user->apellidoP = $result->apellidoP;
+        $user->apellidoM = $result->apellidoM;
+        $user->tipo = $result->tipo;
+        $user->estado = $result->estado;
+        $user->foto = $result->foto;
+        $user->usuario = $result->usuario;
+        $user->password = $result->password;
+        //redirect('/home_vendedor'); quiero cambiar la direccion 
+
+
+        
+
+        if ($user->tipo)
+            return view('users.home_vendedor', compact('user'));
+        else
+            return view('users.home_comprador', compact('user'));
     }
 
     /**
@@ -183,5 +209,9 @@ class UsersController extends Controller
     public function showLogin()
     {
         return View::make('users/login');
+    }
+
+    public function homeVendedor()
+    { 
     }
 }
