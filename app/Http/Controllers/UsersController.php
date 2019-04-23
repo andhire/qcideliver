@@ -130,9 +130,9 @@ class UsersController extends Controller
         $user->estado = $request['estado'];
         $user->foto = $request['foto'];
         $user->usuario = $request['usuario'];
-        $pass = $request['password'];
-        $pass = password_hash($pass, PASSWORD_DEFAULT);
-        $user->password = $pass;
+        /* $pass = $request['password'];
+        $pass = hash('sha256', $pass);
+        $user->password = $pass; */
 
         $user->save();
 
