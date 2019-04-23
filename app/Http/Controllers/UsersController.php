@@ -194,7 +194,7 @@ class UsersController extends Controller
 
         
 
-        if ($user->tipo)
+        if ($user->tipo == 1)
             return view('users.home_vendedor', compact('user'));
         else
             return view('users.home_comprador', compact('user'));
