@@ -73,7 +73,7 @@ class UsersController extends Controller
         $users = Users::paginate(3);
 
         return view('users.index', compact('users')); */
-        return redirect('/user')->with('message', 'Usuario creado!');;
+        return redirect('/user')->with('message', 'Usuario creado!');
     }
 
     /**
