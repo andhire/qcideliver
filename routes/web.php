@@ -19,3 +19,4 @@ Route::resource('/product','ProductsController');
 Route::post('/login', array('uses' => 'UsersController@doLogin'));
 Route::get('/login', array('uses' => 'UsersController@showLogin'));
 Route::get('/home_vendedor','UsersController@homeVendedor');
+Route::get('/agregar/{id}', 'UsersController@addProduct')->name('addProduct');

@@ -8,22 +8,46 @@
     <title>Crear Producto</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/create.css')}}" rel="stylesheet">
-    <script type="text/javascript" src="{{asset('js/create.js')}}"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    
+   
+
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark ">
-        <div class="container text-center">
-            <a class="navbar-brand" href="{{ url('/user')}}">Usuarios</a>
-            <a class="navbar-brand" href="{{ url('/user/create')}}">Crear Usuario</a>
-            <a class="navbar-brand" href={{url('/login')}}>Login</a>
 
+    <div class="navbar navbar-inverse nav">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a> @if ($user->tipo)
+                <a class="brand" href="/user">Qci</a> @endif @if (!$user->tipo)
+                <a class="brand" href="/user">Qci</a> @endif
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="divider-vertical"></li>
+                        <li><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
+                    </ul>
+                    <div class="pull-right">
+                        <ul class="nav pull-right">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{$user->nombre}} <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
+                                    <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/auth/logout"><i class="icon-off"></i> Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-
+    </div>
+    
     <div class="container content">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -43,12 +67,37 @@
                                 <label for="tipo" class="col-md-4 col-form-label text-md-right">Tipo</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="type">
-                                        <option value="1">Electronica</option>
-                                        <option value="2">Comida</option>
+                                        <option value="Electronica">Electronica</option>
+                                        <option value="Comida">Comida</option>
                                     </select>
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="nombre" class="col-md-4 col-form-label text-md-right">Imagen</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="image">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="nombre" class="col-md-4 col-form-label text-md-right">Precio</label>
+                                <div class="col-md-6">
+                                    <input  type="number" min="0.00" max="100000.00"  step="0.1" class="form-control" name="price">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="nombre" class="col-md-4 col-form-label text-md-right">Cantidad</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="amount">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                    <div class="col-md-6">
+                                    <input type="text" class="form-control" name="id" value="{{$user->id}}" style="visibility: hidden;" >
+                                    </div>
+                                </div>
+                            
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary" id="botonEnviar">
                                     Registrar Producto!

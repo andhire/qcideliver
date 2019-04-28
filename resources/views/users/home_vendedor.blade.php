@@ -54,6 +54,9 @@
 
     </div>
 
+    
+    <a href="{{ route('addProduct', $user) }}" class="btn btn-default">Agregar Producto  </a>
+
 </body>
 
 </html>

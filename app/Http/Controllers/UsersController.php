@@ -180,7 +180,7 @@ class UsersController extends Controller
         $user = new Users();
 
         $user->slug = $result->slug;
-
+        $user->id = $result->id;
         $user->nombre = $result->nombre;
         $user->apellidoP = $result->apellidoP;
         $user->apellidoM = $result->apellidoM;
@@ -213,5 +213,13 @@ class UsersController extends Controller
 
     public function homeVendedor()
     { 
+    }
+
+    public function addProduct($id)
+    { 
+        $user = $user = DB::table('users')->where('id', '=', $id)->first();
+
+
+        return view('products.create',compact('user'));
     }
 }
