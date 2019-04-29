@@ -45,15 +45,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nombre' => 'required|max:255',
+            'apellidoP' => 'required|max:255',
+            'apellidoM' => 'required|max:255',
+            'foto' => 'required|max:255',
+            'usuario' => 'required|max:255',
+            'password' => 'required|max:255',
+        ]);
 
-
-
-
-        /*  if ($request['nombre'] == '' || $request['apellidoP'] == ''  || $request['foto'] == '' || $request['apellidoM'] == '' || $request['tipo'] == '' || $request['usuario'] == '' || $request['password'] == '') { $user = new Users;
-            return view('error');
-        } else {
-           */
         $user = new Users;
         $user->nombre = $request['nombre'];
         $user->apellidoP = $request['apellidoP'];
@@ -67,12 +67,7 @@ class UsersController extends Controller
         $user->password = $pass;
 
         $user->save();
-        /* } */
 
-        /* $users = Users::all();
-        $users = Users::paginate(3);
-
-        return view('users.index', compact('users')); */
         return redirect('/user')->with('message', 'Usuario creado!');
     }
 
