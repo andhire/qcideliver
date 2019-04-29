@@ -15,7 +15,8 @@
 </head>
 
 <body>
-
+    @php $user = $data[0]; $productos = $data[1]; 
+    @endphp
     <div class="navbar navbar-inverse nav">
         <div class="navbar-inner">
             <div class="container">

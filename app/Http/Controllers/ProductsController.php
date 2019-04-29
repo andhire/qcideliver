@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use App\Products;
 use App\UserProducts;
 use App\Users;
+
 use App\Http\Controllers\Controller;
 use View;
 use DB;
@@ -59,7 +60,7 @@ class ProductsController extends Controller
         
         
         $user = new Users();
-
+        
         $user->slug = $result->slug;
         $user->id = $result->id;
         $user->nombre = $result->nombre;
@@ -70,7 +71,13 @@ class ProductsController extends Controller
         $user->foto = $result->foto;
         $user->usuario = $result->usuario;
         $user->password = $result->password;
-        return view('users.home_vendedor', compact('user'));
+
+        $productosReales = app('App\Http\Controllers\UsersController')->returnProducts($user->id);
+        $data = array();
+        
+        array_push($data, $user);
+        array_push($data, $productosReales);
+        return view('users.home_vendedor', compact('data'));
         
         
     }

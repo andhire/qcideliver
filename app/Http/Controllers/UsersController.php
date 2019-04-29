@@ -11,6 +11,19 @@ use DB;
 
 class UsersController extends Controller
 {
+    function returnProducts($id){
+        $productsUser = DB::table('user_products')->where('id_user' ,'=', $id)->get();
+        
+        $productosReales = array();
+        foreach ($productsUser as $value) {
+            $tmp = DB::table('products')->where('id', '=', $value->id_product)->first();
+            $tmp->amount = $value->amount;
+            $tmp->price = $value->price;
+            array_push($productosReales,$tmp); 
+        }
+
+        return $productosReales;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -187,19 +200,11 @@ class UsersController extends Controller
         //redirect('/home_vendedor'); quiero cambiar la direccion 
 
        
-        
-        $productsUser = DB::table('user_products')->where('id_user' ,'=', $user->id)->get();
-        $productosReales = array();
-        foreach ($productsUser as $value) {
-            $tmp = DB::table('products')->where('id', '=', $value->id_product)->first();
-            $tmp->amount = $value->amount;
-            $tmp->price = $value->price;
-            array_push($productosReales,$tmp); 
-        }
+       
 
 
         $data = array();
-
+        $productosReales = $this->returnProducts($user->id);
         array_push($data, $user);
         array_push($data, $productosReales);
         
@@ -228,17 +233,18 @@ class UsersController extends Controller
         return View::make('users/login');
     }
 
-    public function homeVendedor()
-    { 
-    }
 
     public function addProduct($id)
     { 
+        $data = array();
         $user = $user = DB::table('users')->where('id', '=', $id)->first();
 
-
-        return view('products.create',compact('user'));
+        $productosReales = $this->returnProducts($user->id);
+        array_push($data, $user);
+        array_push($data, $productosReales);
+        
+        return view('products.create',compact('data'));
     }
 
-    
+  
 }
