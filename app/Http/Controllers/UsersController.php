@@ -186,11 +186,33 @@ class UsersController extends Controller
         $user->password = $result->password;
         //redirect('/home_vendedor'); quiero cambiar la direccion 
 
+       
+        
+        $productsUser = DB::table('user_products')->where('id_user' ,'=', $user->id)->get();
+        $productosReales = array();
+        foreach ($productsUser as $value) {
+            $tmp = DB::table('products')->where('id', '=', $value->id_product)->first();
+            $tmp->amount = $value->amount;
+            $tmp->price = $value->price;
+            array_push($productosReales,$tmp); 
+        }
 
+
+        $data = array();
+
+        array_push($data, $user);
+        array_push($data, $productosReales);
         
 
-        if ($user->tipo == 1)
-            return view('users.home_vendedor', compact('user'));
+
+        /* var_dump($data); */
+
+        if ($user->tipo == 1){
+        
+            
+            return view('users.home_vendedor', compact('data'));
+        
+        }
         else
             return view('users.home_comprador', compact('user'));
     }
@@ -217,4 +239,6 @@ class UsersController extends Controller
 
         return view('products.create',compact('user'));
     }
+
+    
 }

@@ -9,11 +9,44 @@
 
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
-   
+
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .price {
+            color: grey;
+            font-size: 22px;
+        }
+
+        .card button {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+    </style>
 
 </head>
 
 <body>
+    @php $user = $data[0]; $productos = $data[1]; 
+@endphp
+
 
     <div class="navbar navbar-inverse nav">
         <div class="navbar-inner">
@@ -50,12 +83,22 @@
 
     <div class="container">
         <img src="{{$user->foto}}" class="img-thumbnail" style="width: 100px;" />
-        
+
 
     </div>
 
-    
-    <a href="{{ route('addProduct', $user) }}" class="btn btn-default">Agregar Producto  </a>
+
+    <a href="{{ route('addProduct', $user) }}" class="btn btn-default">Agregar Producto  </a> 
+    @foreach ($productos as $producto)
+    <div class="card">
+        <img src={{$producto->image}} style="width:100%">
+        <h1>{{$producto->name}}</h1>
+        <p class="price">${{$producto->price}}</p>
+    </div>
+
+    @endforeach
+
+
 
 </body>
 
