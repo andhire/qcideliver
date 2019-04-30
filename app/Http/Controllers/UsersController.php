@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 use View;
 use DB;
 
+//Archivos pa usar el dropbox 
+use App\File;
+use Spatie\Dropbox\Client;
+use Illuminate\Support\Facades\Storage;
 class UsersController extends Controller
 {
     function returnProducts($id){
@@ -38,6 +42,13 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
+    public function __construct()
+    {
+        // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos
+        // que serán necesarios.
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();   
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -58,11 +69,25 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        Storage::disk('dropbox')->putFileAs(
+            '/', 
+            $request->file('file'), 
+            $request->file('file')->getClientOriginalName()
+        );
+ 
+        // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
+        // definida en el constructor de la clase y almacenamos la respuesta.
+        $response = $this->dropbox->createSharedLinkWithSettings(
+            $request->file('file')->getClientOriginalName(), 
+            ["requested_visibility" => "public"]
+        );
+        
+        $url =str_replace("www.dropbox.com","dl.dropboxusercontent.com",$response['url']);
+
         $validatedData = $request->validate([
             'nombre' => 'required|max:255',
             'apellidoP' => 'required|max:255',
             'apellidoM' => 'required|max:255',
-            'foto' => 'required|max:255',
             'usuario' => 'required|max:255',
             'password' => 'required|max:255',
         ]);
@@ -73,7 +98,7 @@ class UsersController extends Controller
         $user->apellidoM = $request['apellidoM'];
         $user->tipo = $request['tipo'];
         $user->estado = $request['estado'];
-        $user->foto = $request['foto'];
+        $user->foto = $url;
         $user->usuario = $request['usuario'];
         $pass = $request['password'];
         $pass = hash('sha256', $pass);

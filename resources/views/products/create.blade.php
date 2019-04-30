@@ -52,11 +52,11 @@
     <div class="container content">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form method="POST" action="/product" id="register-form" role="form">
+                <form method="POST" action="/product" id="register-form" role="form" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-header">Registrar Producto</div>
                         <div class="card-body">
-                            @csrf @method('POST')
+                            @csrf @method('POST') 
                             <div class="form-group row">
                                 <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
                                 <div class="col-md-6">
@@ -77,9 +77,11 @@
                             <div class="form-group row">
                                 <label for="nombre" class="col-md-4 col-form-label text-md-right">Imagen</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="image">
+                                    <input type="file" name="file" required>    
                                 </div>
                             </div>
+
+                            
                             
                             <div class="form-group row">
                                 <label for="nombre" class="col-md-4 col-form-label text-md-right">Precio</label>
@@ -99,7 +101,7 @@
                                     </div>
                                 </div>
                             
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-4" >
                                 <button type="submit" class="btn btn-primary" id="botonEnviar">
                                     Registrar Producto!
                                 </button>

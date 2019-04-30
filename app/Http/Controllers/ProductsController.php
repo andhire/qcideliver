@@ -11,6 +11,11 @@ use App\Users;
 use App\Http\Controllers\Controller;
 use View;
 use DB;
+//Archivos pa usar el dropbox 
+use App\File;
+use Spatie\Dropbox\Client;
+use Illuminate\Support\Facades\Storage;
+
 class ProductsController extends Controller
 {
     /**
@@ -23,6 +28,12 @@ class ProductsController extends Controller
         //
     }
 
+    public function __construct()
+    {
+        // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos
+        // que serán necesarios.
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();   
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -42,13 +53,30 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        // Guardamos el archivo indicando el driver y el método putFileAs el cual recibe
+        // el directorio donde será almacenado, el archivo y el nombre.
+        // ¡No olvides validar todos estos datos antes de guardar el archivo!
+        Storage::disk('dropbox')->putFileAs(
+            '/', 
+            $request->file('file'), 
+            $request->file('file')->getClientOriginalName()
+        );
+ 
+        // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
+        // definida en el constructor de la clase y almacenamos la respuesta.
+        $response = $this->dropbox->createSharedLinkWithSettings(
+            $request->file('file')->getClientOriginalName(), 
+            ["requested_visibility" => "public"]
+        );
+        
+        $url =str_replace("www.dropbox.com","dl.dropboxusercontent.com",$response['url']);
         $product = new Products;
         $product->name = $request['name'];
         $product->type = $request['type'];
-        $product->image = $request['image'];
         $product->slug = $request['name'];
-        $product->save();
+        $product->image = $url;
 
+        $product->save();
         $userproduct = new UserProducts;
         $userproduct->id_user = $request['id'];
         $userproduct->id_product = $product->id;

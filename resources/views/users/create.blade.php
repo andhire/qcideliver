@@ -75,7 +75,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <form method="POST" action="/user" id="register-form" role="form">
+                    <form method="POST" action="/user" id="register-form" role="form" enctype="multipart/form-data">
                         <div class="card">
                             <div class="card-header">Registro</div>
                                 <div class="card-body">
@@ -121,11 +121,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="foto" class="col-md-4 col-form-label text-md-right">Foto</label>
+                                        <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name="foto">
+                                            <input type="file" name="file" >    
                                         </div>
                                     </div>
+        
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary" id="botonEnviar">
                                             Registrar!

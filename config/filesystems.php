@@ -40,7 +40,8 @@ return [
     | Supported Drivers: "local", "ftp", "sftp", "s3", "rackspace"
     |
     */
-
+    
+    
     'disks' => [
 
         'local' => [
@@ -63,7 +64,17 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'authorizationToken' => env('DROPBOX_TOKEN'),
+            
+        ],
 
     ],
 
+
+    
 ];
+
+
+
