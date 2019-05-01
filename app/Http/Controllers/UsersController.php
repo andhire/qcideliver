@@ -15,8 +15,12 @@ use Spatie\Dropbox\Client;
 use Illuminate\Support\Facades\Storage;
 class UsersController extends Controller
 {
-    function returnProducts($id){
-        $productsUser = DB::table('user_products')->where('id_user' ,'=', $id)->get();
+    function returnProducts($id = null){
+        if($id != null){
+            $productsUser = DB::table('user_products')->where('id_user' ,'=', $id)->get();
+        }else{
+            $productsUser = DB::table('user_products')->get();
+        }
         
         $productosReales = array();
         foreach ($productsUser as $value) {
@@ -229,22 +233,24 @@ class UsersController extends Controller
 
 
         $data = array();
-        $productosReales = $this->returnProducts($user->id);
+        if ($user->tipo == 1){
+            $productosReales = $this->returnProducts($user->id);
+        }else{
+            $productosReales = $this->returnProducts();
+        }
         array_push($data, $user);
         array_push($data, $productosReales);
-        
+
 
 
         /* var_dump($data); */
 
         if ($user->tipo == 1){
-        
-            
             return view('users.home_vendedor', compact('data'));
-        
         }
-        else
-            return view('users.home_comprador', compact('user'));
+        else{
+            return view('users.home_comprador', compact('data'));
+        }
     }
 
     /**
