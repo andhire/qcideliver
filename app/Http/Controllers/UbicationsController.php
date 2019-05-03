@@ -22,7 +22,7 @@ class UbicationsController extends Controller
         /* $ubications = Users::where('id', 9)->get()[0]->userUbication; */
 
 
-        return view('ubications.index', compact('ubications'));
+        return view('ubications.index');
     }
 
     /**
