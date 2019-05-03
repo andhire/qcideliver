@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 Route::resource('/user', 'UsersController');
 Route::resource('/product','ProductsController');
+Route::resource('/ubication', 'UbicationsController');
 Route::post('/login', array('uses' => 'UsersController@doLogin'));
 Route::get('/login', array('uses' => 'UsersController@showLogin'));
 Route::get('/home_vendedor','UsersController@homeVendedor');

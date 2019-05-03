@@ -23,4 +23,11 @@ class Users extends Model
             ]
         ];
     }
+
+    //Belong to many
+    //one to one    // works
+    public function userUbication() {
+        return $this->hasOne('App\UserUbication', 'id_user');
+    }
+
 }

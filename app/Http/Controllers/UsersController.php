@@ -101,13 +101,20 @@ class UsersController extends Controller
         $user->apellidoP = $request['apellidoP'];
         $user->apellidoM = $request['apellidoM'];
         $user->tipo = $request['tipo'];
-        $user->estado = $request['estado'];
         $user->foto = $url;
         $user->usuario = $request['usuario'];
         $pass = $request['password'];
         $pass = hash('sha256', $pass);
         $user->password = $pass;
 
+        if($request['tipo'] == 2 || $request['tipo'] == 0){// es admin o comprador
+            $user->estado = true; //activo
+        }else if($request['tipo'] == 1){ // es vendedor
+            $user->estado = false; //inactivo
+        }else{ //alguna otra madre no contemplada
+            $user->estado = null; 
+        }
+        
         $user->save();
 
         return redirect('/user')->with('message', 'Usuario creado!');
@@ -228,28 +235,27 @@ class UsersController extends Controller
         $user->password = $result->password;
         //redirect('/home_vendedor'); quiero cambiar la direccion 
 
-       
-       
-
 
         $data = array();
-        if ($user->tipo == 1){
+        if ($user->tipo == 1){ // es vendedor
             $productosReales = $this->returnProducts($user->id);
-        }else{
+        }else{                  // es comprador
             $productosReales = $this->returnProducts();
         }
         array_push($data, $user);
         array_push($data, $productosReales);
 
 
-
         /* var_dump($data); */
-
-        if ($user->tipo == 1){
-            return view('users.home_vendedor', compact('data'));
-        }
-        else{
-            return view('users.home_comprador', compact('data'));
+        if($user->tipo == 0) { //es administrador
+            return view('users.home_admin', compact('user'));
+        }else { // no es admin
+            if ($user->tipo == 1){ // es vendedor
+                return view('users.home_vendedor', compact('data'));
+            }
+            else{   // es comprador
+                return view('users.home_comprador', compact('data'));
+            }
         }
     }
 
