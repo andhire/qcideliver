@@ -107,6 +107,9 @@ class UsersController extends Controller
         $pass = hash('sha256', $pass);
         $user->password = $pass;
 
+        $user->mail = $request['mail'];
+        $user->phone = $request['phone'];
+
         if($request['tipo'] == 2 || $request['tipo'] == 0){// es admin o comprador
             $user->estado = true; //activo
         }else if($request['tipo'] == 1){ // es vendedor
@@ -177,6 +180,8 @@ class UsersController extends Controller
         /* $pass = $request['password'];
         $pass = hash('sha256', $pass);
         $user->password = $pass; */
+        $user->mail = $request['mail'];
+        $user->phone = $request['phone'];
 
         $user->save();
 

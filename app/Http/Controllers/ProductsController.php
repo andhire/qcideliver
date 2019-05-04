@@ -76,6 +76,8 @@ class ProductsController extends Controller
         $product->slug = $request['name'];
         $product->image = $url;
 
+        $product->aprobado = false;
+
         $product->save();
         $userproduct = new UserProducts;
         $userproduct->id_user = $request['id'];
