@@ -13,21 +13,24 @@ use DB;
 use App\File;
 use Spatie\Dropbox\Client;
 use Illuminate\Support\Facades\Storage;
+use App\Products;
+
 class UsersController extends Controller
 {
-    function returnProducts($id = null){
-        if($id != null){
-            $productsUser = DB::table('user_products')->where('id_user' ,'=', $id)->get();
-        }else{
+    function returnProducts($id = null)
+    {
+        if ($id != null) {
+            $productsUser = DB::table('user_products')->where('id_user', '=', $id)->get();
+        } else {
             $productsUser = DB::table('user_products')->get();
         }
-        
+
         $productosReales = array();
         foreach ($productsUser as $value) {
             $tmp = DB::table('products')->where('id', '=', $value->id_product)->first();
             $tmp->amount = $value->amount;
             $tmp->price = $value->price;
-            array_push($productosReales,$tmp); 
+            array_push($productosReales, $tmp);
         }
 
         return $productosReales;
@@ -50,7 +53,7 @@ class UsersController extends Controller
     {
         // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos
         // que serán necesarios.
-        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();   
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
 
     /**
@@ -74,19 +77,19 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         Storage::disk('dropbox')->putFileAs(
-            '/', 
-            $request->file('file'), 
+            '/',
+            $request->file('file'),
             $request->file('file')->getClientOriginalName()
         );
- 
+
         // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
         // definida en el constructor de la clase y almacenamos la respuesta.
         $response = $this->dropbox->createSharedLinkWithSettings(
-            $request->file('file')->getClientOriginalName(), 
+            $request->file('file')->getClientOriginalName(),
             ["requested_visibility" => "public"]
         );
-        
-        $url =str_replace("www.dropbox.com","dl.dropboxusercontent.com",$response['url']);
+
+        $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
 
         $validatedData = $request->validate([
             'nombre' => 'required|max:255',
@@ -110,14 +113,14 @@ class UsersController extends Controller
         $user->mail = $request['mail'];
         $user->phone = $request['phone'];
 
-        if($request['tipo'] == 2 || $request['tipo'] == 0){// es admin o comprador
+        if ($request['tipo'] == 2 || $request['tipo'] == 0) { // es admin o comprador
             $user->estado = true; //activo
-        }else if($request['tipo'] == 1){ // es vendedor
+        } else if ($request['tipo'] == 1) { // es vendedor
             $user->estado = false; //inactivo
-        }else{ //alguna otra madre no contemplada
-            $user->estado = null; 
+        } else { //alguna otra madre no contemplada
+            $user->estado = null;
         }
-        
+
         $user->save();
 
         return redirect('/user')->with('message', 'Usuario creado!');
@@ -223,7 +226,7 @@ class UsersController extends Controller
         /*   var_dump($userdata);
         var_dump($result); */
 
-        if($result == NULL){
+        if ($result == NULL) {
             return redirect('/login')->with('message', 'Usuario o contraseña incorrecta');;
         }
         $user = new Users();
@@ -242,23 +245,30 @@ class UsersController extends Controller
 
 
         $data = array();
-        if ($user->tipo == 1){ // es vendedor
-            $productosReales = $this->returnProducts($user->id);
-        }else{                  // es comprador
-            $productosReales = $this->returnProducts();
-        }
         array_push($data, $user);
-        array_push($data, $productosReales);
 
+        if ($user->tipo == 0) { //es admin
+            $vendedores = Users::where('estado', '=', false)->get();
+            $productosNoAprobados = Products::where('aprobado', '=', false)->get();
+            array_push($data, $vendedores);
+            array_push($data, $productosNoAprobados);
+
+        } else {
+            if ($user->tipo == 1) { // es vendedor
+                $productosReales = $this->returnProducts($user->id);
+            } else {                  // es comprador
+                $productosReales = $this->returnProducts();
+            }            
+            array_push($data, $productosReales);
+        }
 
         /* var_dump($data); */
-        if($user->tipo == 0) { //es administrador
-            return view('users.home_admin', compact('user'));
-        }else { // no es admin
-            if ($user->tipo == 1){ // es vendedor
+        if ($user->tipo == 0) { //es administrador
+            return view('users.home_admin', compact('data'));
+        } else { // no es admin
+            if ($user->tipo == 1) { // es vendedor
                 return view('users.home_vendedor', compact('data'));
-            }
-            else{   // es comprador
+            } else {   // es comprador
                 return view('users.home_comprador', compact('data'));
             }
         }
@@ -277,16 +287,14 @@ class UsersController extends Controller
 
 
     public function addProduct($id)
-    { 
+    {
         $data = array();
         $user = $user = DB::table('users')->where('id', '=', $id)->first();
 
         $productosReales = $this->returnProducts($user->id);
         array_push($data, $user);
         array_push($data, $productosReales);
-        
-        return view('products.create',compact('data'));
-    }
 
-  
+        return view('products.create', compact('data'));
+    }
 }
