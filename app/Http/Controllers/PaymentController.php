@@ -128,7 +128,8 @@ class PaymentController extends Controller
 
 	    
 
-	    print_r($executePayment);
+		return redirect()->route('donate')->with('message',"El cobro fue exitoso");
+
 
 	}
 
@@ -137,7 +138,7 @@ class PaymentController extends Controller
 
 	{
 
-	    return redirect()->route('donate');
+	    return redirect()->route('donate')->with('message',"El cobro no fue exitoso");
 
 	}
 }
