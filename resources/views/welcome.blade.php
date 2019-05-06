@@ -33,7 +33,7 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="{{asset('img/icon.svg')}}" width="30" height="30" class="d-inline-block align-top" alt="QciDeliver">
                 QciDeliver
         </a>
@@ -58,13 +58,14 @@
         </div>
     </nav>
     
+    
     <!-- Banner -->
     <div class="jumbotron jumbotron-fluid bg-info text-white text-center">
         <div class="container">
             <h1 class="display-1">Bienvenido a QciDeliver</h1>
             <p class="lead">Un punto de encuentro para el comercio en tu centro universitario</p>
             <a href="/user/create">
-                <button type="button" class="btn btn-success">Comienza ahora!</button>
+                <button type="button" class="btn btn-success btn-lg">Comienza ahora!</button>
             </a>
         </div>
     </div>

@@ -13,8 +13,35 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/">
+        <img src="{{asset('img/icon.svg')}}" width="30" height="30" class="d-inline-block align-top" alt="QciDeliver">
+            QciDeliver
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navLinks" aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navLinks">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/product">Productos</a>
+            </li> 
+            <li class="nav-item">
+                <a href="/login">
+                    <button type="button" class="btn btn-link">Inciar Sesión</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+    
 
-  <div class="album py-5 bg-light">
+
+  <div class="album py-5 bg-light" style="margin-top: 10px">
     <div class="container">
       <div class="row">
 

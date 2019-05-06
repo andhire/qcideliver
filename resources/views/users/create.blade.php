@@ -36,7 +36,7 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src="{{asset('img/icon.svg')}}" width="30" height="30" class="d-inline-block align-top" alt="QciDeliver">
       QciDeliver
     </a>
