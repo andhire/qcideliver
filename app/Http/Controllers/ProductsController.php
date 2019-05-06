@@ -158,4 +158,22 @@ class ProductsController extends Controller
     {
         //
     }
+
+    public function aprobar(Request $request, $id)
+    {
+        $product = Products::where('id', $id)->first();
+        $product['aprobado'] = true;
+        $product->save();
+
+        return back();
+    }
+
+    public function bloquear(Request $request, $id)
+    {
+        $product = Products::where('id', $id)->first();
+        $product['aprobado'] = null;
+        $product->save();
+
+        return back();
+    }
 }

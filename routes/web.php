@@ -21,6 +21,15 @@ Route::post('/login', array('uses' => 'UsersController@doLogin'));
 Route::get('/login', array('uses' => 'UsersController@showLogin'));
 Route::get('/home_vendedor','UsersController@homeVendedor');
 Route::get('/agregar/{id}', 'UsersController@addProduct')->name('addProduct');
+
+Route::post('/user/{id}/aprobar', 'UsersController@aprobar');
+Route::post('/user/{id}/bloquear', 'UsersController@bloquear');
+Route::post('/user/{id}/hacer-admin', 'UsersController@hacerAdmin');
+Route::post('/user/{id}/quitar-admin', 'UsersController@quitarAdmin');
+
+Route::post('/product/{id}/aprobar', 'ProductsController@aprobar');
+Route::post('/product/{id}/bloquear', 'ProductsController@bloquear');
+
  
 
  

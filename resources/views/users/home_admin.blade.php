@@ -40,8 +40,14 @@
                 {{$v->phone}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">Aprobar</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Bloquear</button>
+                  <form action="{{ url('/user/'.$v->id.'/aprobar')}}" method="POST">
+                    @csrf @method('POST')
+                    <button type="submit" class="btn btn-sm btn-outline-primary">Aprobar</button>
+                  </form>
+                  <form action="{{ url('/user/'.$v->id.'/bloquear')}}" method="POST">
+                    @csrf @method('POST')
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Bloquear</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -68,8 +74,14 @@
                 {{$p->type}} </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-primary">Aprobar</button>
-                  <button type="button" class="btn btn-sm btn-outline-danger">Descartar</button>
+                  <form action="{{ url('/product/'.$p->id.'/aprobar')}}" method="POST">
+                    @csrf @method('POST')
+                    <button type="submit" class="btn btn-sm btn-outline-primary">Aprobar</button>
+                  </form>
+                  <form action="{{ url('/product/'.$p->id.'/bloquear')}}" method="POST">
+                    @csrf @method('POST')
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Bloquear</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -80,10 +92,6 @@
       </div>
     </div>
   </div>
-
-  <a class="btn btn-secondary" href={{ url('/user/create') }} role="button">
-      Conceder permiso Admin
-  </a>
 
 </body>
 
