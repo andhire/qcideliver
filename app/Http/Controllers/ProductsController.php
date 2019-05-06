@@ -74,6 +74,7 @@ class ProductsController extends Controller
         $url =str_replace("www.dropbox.com","dl.dropboxusercontent.com",$response['url']);
         $product = new Products;
         $product->name = $request['name'];
+        $product->id_category = $request['type'];
         $product->type = $request['type'];
         $product->slug = $request['name'];
         $product->image = $url;
