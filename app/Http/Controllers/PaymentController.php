@@ -137,7 +137,7 @@ class PaymentController extends Controller
 
 	{
 
-	    return redirect()->route('payPremium');
+	    return redirect()->route('donate');
 
 	}
 }
