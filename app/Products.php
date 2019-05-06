@@ -9,7 +9,7 @@ class Products extends Model
 {
     //
     use Sluggable;
-
+    public $table = 'products';
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -24,6 +24,10 @@ class Products extends Model
         ];
     }
 
-    
+     //Belong to many
+    //one to one    // works
+    public function category() {
+        return $this->hasOne('App\CategoryProduct', 'id_product');
+    }
 }
 

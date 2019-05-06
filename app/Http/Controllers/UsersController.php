@@ -80,8 +80,9 @@ class UsersController extends Controller
             '/',
             $request->file('file'),
             $request->file('file')->getClientOriginalName()
+            
         );
-
+        Storage::move('old/file.jpg', 'new/file.jpg');
         // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
         // definida en el constructor de la clase y almacenamos la respuesta.
         $response = $this->dropbox->createSharedLinkWithSettings(
@@ -272,6 +273,7 @@ class UsersController extends Controller
                 return view('users.home_comprador', compact('data'));
             }
         }
+
     }
 
     /**

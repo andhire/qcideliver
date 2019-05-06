@@ -10,22 +10,15 @@ class PaymentController extends Controller
 {
 	//    private $_apiContext;
 
-
 	private $_apiContext;
-
-
 	public function __construct()
-
 	{
-
 		$this->_apiContext = PayPal::ApiContext(
 
 			config('services.paypal.client_id'),
 
 			config('services.paypal.secret')
 		);
-
-
 		$this->_apiContext->setConfig(array(
 
 			'mode' => 'sandbox',
@@ -42,12 +35,8 @@ class PaymentController extends Controller
 
 		));
 	}
-
-
 	public function donate()
-
 	{
-
 		return view('donate');
 	}
 
@@ -60,13 +49,11 @@ class PaymentController extends Controller
 
 		$payer->setPaymentMethod('paypal');
 
-
 		$amount = PayPal::Amount();
 
 		$amount->setCurrency('USD');
 
 		$amount->setTotal($request->input('pay'));
-
 
 		$transaction = PayPal::Transaction();
 
@@ -74,13 +61,11 @@ class PaymentController extends Controller
 
 		$transaction->setDescription(' Donacion para Qcideliver ' . $request->input('pay'));
 
-
 		$redirectUrls = PayPal::RedirectUrls();
 
 		$redirectUrls->setReturnUrl(route('getDone'));
 
 		$redirectUrls->setCancelUrl(route('getCancel'));
-
 
 		$payment = PayPal::Payment();
 
@@ -92,11 +77,9 @@ class PaymentController extends Controller
 
 		$payment->setTransactions(array($transaction));
 
-
 		$response = $payment->create($this->_apiContext);
 
 		$redirectUrl = $response->links[1]->href;
-
 
 		return redirect()->to($redirectUrl);
 	}
@@ -112,28 +95,18 @@ class PaymentController extends Controller
 
 		$payer_id = $request->get('PayerID');
 
-
 		$payment = PayPal::getById($id, $this->_apiContext);
 
-
 		$paymentExecution = PayPal::PaymentExecution();
-
 
 		$paymentExecution->setPayerId($payer_id);
 
 		$executePayment = $payment->execute($paymentExecution, $this->_apiContext);
-
-
-
-
 		return redirect('/donate')->with('message', "El cobro fue exitoso");
 	}
 
-
 	public function getCancel()
-
 	{
-
 		return redirect('/donate')->with('message', "El cobro no fue exitoso");
 	}
 }

@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-
+@php
+@endphp
 <head>
     <title>Look at me Login</title>
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">

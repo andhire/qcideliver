@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+@php
+    $categorias = App\CategoryProduct::all();
+@endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,8 +70,12 @@
                                 <label for="tipo" class="col-md-4 col-form-label text-md-right">Tipo</label>
                                 <div class="col-md-6">
                                     <select class="form-control" name="type">
-                                        <option value="Electronica">Electronica</option>
-                                        <option value="Comida">Comida</option>
+
+                                        @foreach ($categorias as $nombre)         
+                                        
+                                    <option value="{{$nombre->id}}"> {{$nombre->name}}</option>
+                                        @endforeach
+                                        
                                     </select>
                                 </div>
                             </div>
