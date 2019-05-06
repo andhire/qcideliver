@@ -252,13 +252,12 @@ class UsersController extends Controller
             $productosNoAprobados = Products::where('aprobado', '=', false)->get();
             array_push($data, $vendedores);
             array_push($data, $productosNoAprobados);
-
         } else {
             if ($user->tipo == 1) { // es vendedor
                 $productosReales = $this->returnProducts($user->id);
             } else {                  // es comprador
                 $productosReales = $this->returnProducts();
-            }            
+            }
             array_push($data, $productosReales);
         }
 
@@ -296,5 +295,48 @@ class UsersController extends Controller
         array_push($data, $productosReales);
 
         return view('products.create', compact('data'));
+    }
+
+    /**
+     * Aprobar the specified user.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function aprobar(Request $request, $id)
+    {
+        $user = Users::where('id', $id)->first();
+        $user['estado'] = true;
+        $user->save();
+
+        return back();
+    }
+
+    public function bloquear(Request $request, $id)
+    {
+        $user = Users::where('id', $id)->first();
+        $user['estado'] = null;
+        $user->save();
+
+        return back();
+    }
+
+    public function hacerAdmin(Request $request, $id)
+    {
+        $user = Users::where('id', $id)->first();
+        $user['tipo'] = 0;
+        $user->save();
+
+        return back();
+    }
+
+    public function quitarAdmin(Request $request, $id)
+    {
+        $user = Users::where('id', $id)->first();
+        $user['tipo'] = 2;
+        $user->save();
+
+        return back();
     }
 }
