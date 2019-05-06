@@ -5,102 +5,100 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 #use PayPal;
 use Netshell\Paypal\Facades\Paypal;
+
 class PaymentController extends Controller
 {
-    //    private $_apiContext;
-
-  
-    private $_apiContext;
+	//    private $_apiContext;
 
 
-    public function __construct()
-
-    {
-
-        $this->_apiContext = PayPal::ApiContext(
-
-            config('services.paypal.client_id'),
-
-            config('services.paypal.secret'));
+	private $_apiContext;
 
 
-        $this->_apiContext->setConfig(array(
-
-            'mode' => 'sandbox',
-
-            'service.EndPoint' => 'https://api.sandbox.paypal.com',
-
-            'http.ConnectionTimeOut' => 30,
-
-            'log.LogEnabled' => true,
-
-            'log.FileName' => storage_path('logs/paypal.log'),
-
-            'log.LogLevel' => 'FINE'
-
-        ));
-
-
-    }
-
-
-    public function donate()
-
-    {
-
-    	return view('donate');
-
-    }
-
-
-    public function getCheckout(Request $request)
+	public function __construct()
 
 	{
 
-	    $payer = PayPal::Payer();
+		$this->_apiContext = PayPal::ApiContext(
 
-	    $payer->setPaymentMethod('paypal');
+			config('services.paypal.client_id'),
 
-
-	    $amount = PayPal:: Amount();
-
-	    $amount->setCurrency('USD');
-
-	    $amount->setTotal($request->input('pay'));
+			config('services.paypal.secret')
+		);
 
 
-	    $transaction = PayPal::Transaction();
+		$this->_apiContext->setConfig(array(
 
-	    $transaction->setAmount($amount);
+			'mode' => 'sandbox',
 
-	    $transaction->setDescription('Buy Premium '.$request->input('type').' Plan on '.$request->input('pay'));
+			'service.EndPoint' => 'https://api.sandbox.paypal.com',
 
+			'http.ConnectionTimeOut' => 30,
 
-	    $redirectUrls = PayPal:: RedirectUrls();
+			'log.LogEnabled' => true,
 
-	    $redirectUrls->setReturnUrl(route('getDone'));
+			'log.FileName' => storage_path('logs/paypal.log'),
 
-	    $redirectUrls->setCancelUrl(route('getCancel'));
+			'log.LogLevel' => 'FINE'
 
-
-	    $payment = PayPal::Payment();
-
-	    $payment->setIntent('sale');
-
-	    $payment->setPayer($payer);
-
-	    $payment->setRedirectUrls($redirectUrls);
-
-	    $payment->setTransactions(array($transaction));
+		));
+	}
 
 
-	    $response = $payment->create($this->_apiContext);
+	public function donate()
 
-	    $redirectUrl = $response->links[1]->href;
+	{
+
+		return view('donate');
+	}
 
 
-	    return redirect()->to( $redirectUrl );
+	public function getCheckout(Request $request)
 
+	{
+
+		$payer = PayPal::Payer();
+
+		$payer->setPaymentMethod('paypal');
+
+
+		$amount = PayPal::Amount();
+
+		$amount->setCurrency('USD');
+
+		$amount->setTotal($request->input('pay'));
+
+
+		$transaction = PayPal::Transaction();
+
+		$transaction->setAmount($amount);
+
+		$transaction->setDescription(' Donacion para Qcideliver ' . $request->input('pay'));
+
+
+		$redirectUrls = PayPal::RedirectUrls();
+
+		$redirectUrls->setReturnUrl(route('getDone'));
+
+		$redirectUrls->setCancelUrl(route('getCancel'));
+
+
+		$payment = PayPal::Payment();
+
+		$payment->setIntent('sale');
+
+		$payment->setPayer($payer);
+
+		$payment->setRedirectUrls($redirectUrls);
+
+		$payment->setTransactions(array($transaction));
+
+
+		$response = $payment->create($this->_apiContext);
+
+		$redirectUrl = $response->links[1]->href;
+
+
+		return redirect()->to($redirectUrl);
 	}
 
 
@@ -108,29 +106,27 @@ class PaymentController extends Controller
 
 	{
 
-	    $id = $request->get('paymentId');
+		$id = $request->get('paymentId');
 
-	    $token = $request->get('token');
+		$token = $request->get('token');
 
-	    $payer_id = $request->get('PayerID');
-
-
-	    $payment = PayPal::getById($id, $this->_apiContext);
+		$payer_id = $request->get('PayerID');
 
 
-	    $paymentExecution = PayPal::PaymentExecution();
+		$payment = PayPal::getById($id, $this->_apiContext);
 
 
-	    $paymentExecution->setPayerId($payer_id);
-
-	    $executePayment = $payment->execute($paymentExecution, $this->_apiContext);
+		$paymentExecution = PayPal::PaymentExecution();
 
 
-	    
+		$paymentExecution->setPayerId($payer_id);
 
-		return redirect()->route('donate')->with('message',"El cobro fue exitoso");
+		$executePayment = $payment->execute($paymentExecution, $this->_apiContext);
 
 
+
+
+		return redirect('/donate')->with('message', "El cobro fue exitoso");
 	}
 
 
@@ -138,7 +134,6 @@ class PaymentController extends Controller
 
 	{
 
-	    return redirect()->route('donate')->with('message',"El cobro no fue exitoso");
-
+		return redirect('/donate')->with('message', "El cobro no fue exitoso");
 	}
 }

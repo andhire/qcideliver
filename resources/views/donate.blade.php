@@ -177,15 +177,14 @@
 
         <div class="db-wrapper">
             @php
-                $amount = 5;
+            $amount = 5;
             @endphp
             {!! Form::open(array('route' => 'getCheckout')) !!}
 
-            {!! Form::hidden('type','small') !!}
-
             {{-- {!! Form::hidden('pay',$amount) !!} --}}
             {!! Form::label('donacion', 'Donacion') !!}
-            {!! Form::number('pay', null, ['placeholder' => empty($amount) ? 'default value' : $amount, 'required' ]) !!}
+            {!! Form::number('pay', null, ['placeholder' => empty($amount) ? 'default value' : $amount, 'required' ])
+            !!}
 
             <button class="btn db-button-color-square btn-lg">Pagar</button>
             {!! Form::close() !!}
