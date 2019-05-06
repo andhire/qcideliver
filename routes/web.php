@@ -21,7 +21,13 @@ Route::post('/login', array('uses' => 'UsersController@doLogin'));
 Route::get('/login', array('uses' => 'UsersController@showLogin'));
 Route::get('/home_vendedor','UsersController@homeVendedor');
 Route::get('/agregar/{id}', 'UsersController@addProduct')->name('addProduct');
- 
 
+Route::get('/donate', ['as'=>'donate','uses'=>'PaymentController@donate']);
+
+Route::post('getCheckout', ['as'=>'getCheckout','uses'=>'PaymentController@getCheckout']);
+
+Route::get('getDone', ['as'=>'getDone','uses'=>'PaymentController@getDone']);
+
+Route::get('getCancel', ['as'=>'getCancel','uses'=>'PaymentController@getCancel']);
  
 

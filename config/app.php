@@ -135,7 +135,7 @@ return [
     */
 
     'providers' => [
-
+        'Netshell\Paypal\PaypalServiceProvider',
         /*
          * Laravel Framework Service Providers...
          */
@@ -190,7 +190,7 @@ return [
     */
 
     'aliases' => [
-
+        'Paypal' => 'Netshell\Paypal\Facades\Paypal',
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

@@ -43,5 +43,9 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'paypal' => [
+        'client_id' => 'Client_ID',
+        'secret' => 'Your_secret'
+    ],
 
 ];
