@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/user', 'UsersController');
-Route::resource('/product','ProductsController');
+Route::resource('/product','ProductsController',  array_merge(['except' => ['index']]));
+Route::get('/product', 'ProductsController@index');
 Route::resource('/ubication', 'UbicationsController');
 Route::post('/login', array('uses' => 'UsersController@doLogin'));
 Route::get('/login', array('uses' => 'UsersController@showLogin'));
