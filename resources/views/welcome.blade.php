@@ -54,6 +54,12 @@
                         <button type="button" class="btn btn-link">Inciar Sesión</button>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="/donate">
+                        <button type="button" class="btn btn-link">Donar</button>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
