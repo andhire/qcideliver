@@ -23,14 +23,20 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
-     
+
+        if($id == null){
             $productos = Products::all();
-      
+        }else{
+            $productos = Products::where('id_category',$id.'')->get();
+            
+                    /* $ubications = Users::where('id', 9)->get()[0]->userUbication; */
+
+        }
+
         return view('products.index', compact('productos'));
     }
-
     public function __construct()
     {
         // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos

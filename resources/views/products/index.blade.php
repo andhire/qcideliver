@@ -86,10 +86,9 @@ $productos = App\CategoryProduct::all();
     <br>
     <br>
     <p style="color: white; text-align:center;">Filtros</p>
-   
-    @foreach ($productos as $producto)
 
-    <button class='button'>{{$producto->name }}</button>
+    @foreach ($productos as $producto)
+  <a href = "/product/{{$producto->id}}" class='button'>{{ $producto->name }}</a>
     @endforeach
   </div>
 
@@ -123,7 +122,10 @@ $productos = App\CategoryProduct::all();
 
 
   <div class="main">
-
+    <br><br><br>
+      @php
+      echo $productos;
+  @endphp
     <div class="album py-5 bg-light" style="margin-top: 10px">
       <div class="container">
         <div class="row">
