@@ -12,6 +12,7 @@
 */
 Route::get('/product/{id}', 'ProductsController@index');
 Route::get('/product', 'ProductsController@index');
+
 Route::get('/', function () {
     return view('welcome');
 });

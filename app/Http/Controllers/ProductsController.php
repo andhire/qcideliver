@@ -15,6 +15,7 @@ use DB;
 use App\File;
 use Spatie\Dropbox\Client;
 use Illuminate\Support\Facades\Storage;
+use App\CategoryProduct;
 
 class ProductsController extends Controller
 {
@@ -25,14 +26,13 @@ class ProductsController extends Controller
      */
     public function index($id = null)
     {
-
+        
         if($id == null){
             $productos = Products::all();
         }else{
-            $productos = Products::where('id_category',$id.'')->get();
+            #$productos = Products::where('id_category',$id.'')->get();
             
-                    /* $ubications = Users::where('id', 9)->get()[0]->userUbication; */
-
+            $productos = CategoryProduct::where('id',$id)->get()[0]->products;    
         }
 
         return view('products.index', compact('productos'));
