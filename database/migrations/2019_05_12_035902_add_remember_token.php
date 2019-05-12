@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RenameUsersColumn extends Migration
+class AddRememberToken extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,12 @@ class RenameUsersColumn extends Migration
     public function up()
     {
         //
-        Schema::table('users', function(Blueprint $table) {
-            $table->renameColumn('nombre', 'name');
-            $table->renameColumn('mail', 'email');
-        });
-
         
+        Schema::table('users', function(Blueprint $table) {
+            $table->string('remember_token', 100);
+        });
     }
 
-    
     /**
      * Reverse the migrations.
      *
@@ -31,9 +28,5 @@ class RenameUsersColumn extends Migration
     public function down()
     {
         //
-        Schema::table('stnk', function(Blueprint $table) {
-            $table->renameColumn('name', 'nombre');
-            $table->renameColumn('email', 'mail');
-        });
     }
 }
