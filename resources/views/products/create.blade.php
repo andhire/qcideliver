@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    @php $user = $data[0]; $productos = $data[1]; 
+    @php $user = $data[0]; 
     @endphp
     <div class="navbar navbar-inverse nav">
         <div class="navbar-inner">
@@ -36,7 +36,7 @@
                     </ul>
                     <div class="pull-right">
                         <ul class="nav pull-right">
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{$user->nombre}} <b class="caret"></b></a>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, {{$user->name}} <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
                                     <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
