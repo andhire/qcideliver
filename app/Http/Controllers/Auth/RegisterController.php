@@ -82,11 +82,8 @@ class RegisterController extends Controller
         $slug = $data['email'] . ".jpg";
         Storage::disk('dropbox')->putFileAs(
             '/',
-            $data['file'],
+            $data['foto'],
             $slug
-            
-            
-            
         );
         //Storage::move('old/file.jpg', 'new/file.jpg');
         // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
