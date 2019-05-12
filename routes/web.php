@@ -42,3 +42,9 @@ Route::get('getDone', ['as'=>'getDone','uses'=>'PaymentController@getDone']);
 Route::get('getCancel', ['as'=>'getCancel','uses'=>'PaymentController@getCancel']);
  
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+

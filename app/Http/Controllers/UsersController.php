@@ -79,7 +79,7 @@ class UsersController extends Controller
         Storage::disk('dropbox')->putFileAs(
             '/',
             $request->file('file'),
-            $request->file('file')->getClientOriginalName()
+            $request->file('file')
             
         );
         //Storage::move('old/file.jpg', 'new/file.jpg');

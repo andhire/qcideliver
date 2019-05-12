@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-
-class Users extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Users extends Authenticatable
 {
     //
     use Sluggable;
@@ -30,4 +31,6 @@ class Users extends Model
         return $this->hasOne('App\UserUbication', 'id_user');
     }
 
+    protected $fillable = ['name','apellidoP','apellidoM', 'tipo','estado','foto','usuario', 'password','email','phone','slug'];
+    
 }

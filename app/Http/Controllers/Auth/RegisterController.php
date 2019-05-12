@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+//Archivos pa usar el dropbox 
+use App\File;
+use Spatie\Dropbox\Client;
+use Illuminate\Support\Facades\Storage;
+use App\Products;
 class RegisterController extends Controller
 {
     /*
@@ -38,6 +42,9 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos
+        // que serán necesarios.
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
 
     /**
@@ -52,6 +59,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
         ]);
     }
 
@@ -63,10 +71,49 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        //dd($data);
+        $slug = $data['email'] . ".jpg";
+        Storage::disk('dropbox')->putFileAs(
+            '/',
+            $data['file'],
+            $slug
+            
+            
+            
+        );
+        //Storage::move('old/file.jpg', 'new/file.jpg');
+        // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
+        // definida en el constructor de la clase y almacenamos la respuesta.
+        $response = $this->dropbox->createSharedLinkWithSettings(
+            $slug,
+            ["requested_visibility" => "public"]
+        );
+
+        $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
+
+        $estado;
+        if ($data['tipo'] == 2 || $data['tipo'] == 0) { // es admin o comprador
+            $estado = true; //activo
+        } else if ($data['tipo'] == 1) { // es vendedor
+            $estado = false; //inactivo
+        } else { //alguna otra madre no contemplada
+            $estado = null;
+        }
+
+        return Users::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'foto' => $url,
+            'tipo' => $data['tipo'],
+            'usuario' => $data['usuario'],
+            'apellidoM' => $data['apellidoM'],
+            'apellidoP' => $data['apellidoP'],
+            'phone' => $data['phone'],
+            'user' =>$estado,
+            'slug'=>str_slug($data['name'])
         ]);
+
+
     }
 }

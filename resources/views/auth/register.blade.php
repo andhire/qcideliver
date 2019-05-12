@@ -8,25 +8,13 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('register') }}" id="register-form" role="form" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
@@ -39,7 +27,63 @@
                             </div>
                         </div>
 
+                        
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <label for="apellidoP" class="col-md-4 col-form-label text-md-right">Apellido Paterno</label>
+                            <div class="col-md-6">
+                              <input type="text" class="form-control" name="apellidoP">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="apellidoM" class="col-md-4 col-form-label text-md-right">Apellido Materno</label>
+                            <div class="col-md-6">
+                              <input type="text" class="form-control" name="apellidoM">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="usuario" class="col-md-4 col-form-label text-md-right">Usuario</label>
+                            <div class="col-md-6">
+                              <input type="text" class="form-control" name="usuario">
+                            </div>
+                          </div>
+                        
+                          <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Numero Telefonico</label>
+                            <div class="col-md-6">
+                              <input type="text" class="form-control" name="phone">
+                            </div>
+                          </div>
+    
+          
+                          <div class="form-group row">
+                            <label for="tipo" class="col-md-4 col-form-label text-md-right">Tipo</label>
+                            <div class="col-md-6">
+                              <select class="form-control" name="tipo">
+                                <option value="1">Vendedor</option>
+                                <option value="2">Comprador</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
+                            <div class="col-md-6">
+                              <input type="file" name="file">
+                            </div>
+                          </div>
+                          <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -52,9 +96,8 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
