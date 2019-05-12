@@ -44,26 +44,52 @@
                           <div class="form-group row">
                             <label for="apellidoP" class="col-md-4 col-form-label text-md-right">Apellido Paterno</label>
                             <div class="col-md-6">
-                              <input type="text" class="form-control" name="apellidoP">
+                                <input id="apellidoP" type="text" class="form-control{{ $errors->has('apellidoP') ? ' is-invalid' : '' }}" name="apellidoP" value="{{ old('apellidoP') }}" required autofocus>
+
+                                @if ($errors->has('apellidoP'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('apellidoP') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="apellidoM" class="col-md-4 col-form-label text-md-right">Apellido Materno</label>
                             <div class="col-md-6">
-                              <input type="text" class="form-control" name="apellidoM">
+                                <input id="apellidoM" type="text" class="form-control{{ $errors->has('apellidoM') ? ' is-invalid' : '' }}" name="apellidoM" required>
+
+                                @if ($errors->has('apellidoM'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('apellidoM') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="usuario" class="col-md-4 col-form-label text-md-right">Usuario</label>
                             <div class="col-md-6">
-                              <input type="text" class="form-control" name="usuario">
+                                <input id="usuario" type="text" class="form-control{{ $errors->has('usuario') ? ' is-invalid' : '' }}" name="usuario" required>
+
+                                @if ($errors->has('usuario'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('usuario') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                           </div>
                         
                           <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">Numero Telefonico</label>
                             <div class="col-md-6">
-                              <input type="text" class="form-control" name="phone">
+                                <div class="col-md-6">
+                                    <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" required>
+    
+                                    @if ($errors->has('phone'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                           </div>
     
@@ -80,7 +106,13 @@
                           <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
                             <div class="col-md-6">
-                              <input type="file" name="file">
+                                <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}" name="foto" required accept="image/*">
+
+                                @if ($errors->has('foto'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('foto') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                           </div>
                           <div class="form-group row">
