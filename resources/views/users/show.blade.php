@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -11,18 +12,6 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-dark ">
-    <div class="container text-center">
-      <a class="navbar-brand" href="{{ url('/user')}}">Usuarios</a>
-      <a class="navbar-brand" href="{{ url('/user/create')}}">Crear Usuario</a>
-      <a class="navbar-brand" href={{url('/login')}}>Login</a>
-
-    </div>
-  </nav>
-
-
-
-
 
   <div class="container mt-5">
 

@@ -80,7 +80,7 @@ $products = App\CategoryProduct::all();
 
 <body>
 
-  
+
 
   <div class="sidenav">
     <br>
@@ -88,7 +88,7 @@ $products = App\CategoryProduct::all();
     <p style="color: white; text-align:center;">Filtros</p>
 
     @foreach ($products as $producto)
-  <a href = "/product/{{$producto->id}}" class='button'>{{ $producto->name }}</a>
+    <a href="/product/filtro/{{$producto->id}}" class='button'>{{ $producto->name }}</a>
     @endforeach
   </div>
 
@@ -129,20 +129,21 @@ $products = App\CategoryProduct::all();
 
           @foreach ($productos as $p)
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img src={{$p->image}} width="100%" height="200">
-              <div class="card-body">
-                <p class="card-text">
-                  {{$p->name}}<br>
-                  {{$p->type}} </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  {{-- <div class="btn-group">
+            <a href="{{ url('/product',[$p->id]) }}">
+              <div class="card mb-4 shadow-sm">
+                <img src={{$p->image}} width="100%" height="200">
+                <div class="card-body">
+                  <p class="card-text">
+                    {{$p->name}}<br>
+                    {{$p->type}} </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{-- <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-primary">Aprobar</button>
                         <button type="button" class="btn btn-sm btn-outline-danger">Descartar</button>
                       </div> --}}
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
           @endforeach
 

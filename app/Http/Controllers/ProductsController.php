@@ -24,16 +24,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id = null)
+    public function index()
     {
-        
-        if($id == null){
-            $productos = Products::all();
-        }else{
-            #$productos = Products::where('id_category',$id.'')->get();
-            
-            $productos = CategoryProduct::where('id',$id)->get()[0]->products;    
-        }
+
+        $productos = Products::all();
+
 
         return view('products.index', compact('productos'));
     }
@@ -41,7 +36,7 @@ class ProductsController extends Controller
     {
         // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos
         // que serán necesarios.
-        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();   
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
     }
     /**
      * Show the form for creating a new resource.
@@ -66,19 +61,19 @@ class ProductsController extends Controller
         // el directorio donde será almacenado, el archivo y el nombre.
         // ¡No olvides validar todos estos datos antes de guardar el archivo!
         Storage::disk('dropbox')->putFileAs(
-            '/', 
-            $request->file('file'), 
+            '/',
+            $request->file('file'),
             $request->file('file')->getClientOriginalName()
         );
- 
+
         // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
         // definida en el constructor de la clase y almacenamos la respuesta.
         $response = $this->dropbox->createSharedLinkWithSettings(
-            $request->file('file')->getClientOriginalName(), 
+            $request->file('file')->getClientOriginalName(),
             ["requested_visibility" => "public"]
         );
-        
-        $url =str_replace("www.dropbox.com","dl.dropboxusercontent.com",$response['url']);
+
+        $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
         $product = new Products;
         $product->name = $request['name'];
         $product->id_category = $request['type'];
@@ -97,10 +92,10 @@ class ProductsController extends Controller
         $userproduct->save();
 
         $result = $result = DB::table('users')->where('id', '=', $request['id'])->first();
-        
-        
+
+
         $user = new Users();
-        
+
         $user->slug = $result->slug;
         $user->id = $result->id;
         $user->name = $result->name;
@@ -114,12 +109,10 @@ class ProductsController extends Controller
 
         $productosReales = app('App\Http\Controllers\UsersController')->returnProducts($user->id);
         $data = array();
-        
+
         array_push($data, $user);
         array_push($data, $productosReales);
         return view('users.home_vendedor', compact('data'));
-        
-        
     }
 
     /**
@@ -131,6 +124,9 @@ class ProductsController extends Controller
     public function show($id)
     {
         //
+        $product = Products::where('id', $id)->first();
+
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -183,5 +179,10 @@ class ProductsController extends Controller
         $product->save();
 
         return back();
+    }
+    public function filtro($id)
+    {
+        $productos = CategoryProduct::where('id', $id)->get()[0]->products;
+        return view('products.index', compact('productos'));
     }
 }
