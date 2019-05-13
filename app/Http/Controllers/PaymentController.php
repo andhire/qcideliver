@@ -102,11 +102,11 @@ class PaymentController extends Controller
 		$paymentExecution->setPayerId($payer_id);
 
 		$executePayment = $payment->execute($paymentExecution, $this->_apiContext);
-		return redirect('/donate')->with('message', "El cobro fue exitoso");
+		return redirect('/donate')->with('success', "El cobro fue exitoso");
 	}
 
 	public function getCancel()
 	{
-		return redirect('/donate')->with('message', "El cobro no fue exitoso");
+		return redirect('/donate')->with('error', "El cobro no fue exitoso");
 	}
 }

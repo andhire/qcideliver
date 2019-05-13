@@ -103,7 +103,7 @@ class ProductsController extends Controller
         
         $user->slug = $result->slug;
         $user->id = $result->id;
-        $user->nombre = $result->nombre;
+        $user->name = $result->name;
         $user->apellidoP = $result->apellidoP;
         $user->apellidoM = $result->apellidoM;
         $user->tipo = $result->tipo;
