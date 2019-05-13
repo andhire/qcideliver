@@ -70,7 +70,7 @@
         <div class="container">
             <h1 class="display-1">Bienvenido a QciDeliver</h1>
             <p class="lead">Un punto de encuentro para el comercio en tu centro universitario</p>
-            <a href="/user/create">
+            <a href="/register">
                 <button type="button" class="btn btn-success btn-lg">Comienza ahora!</button>
             </a>
         </div>
