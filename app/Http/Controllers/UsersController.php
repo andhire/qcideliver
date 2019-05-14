@@ -8,6 +8,7 @@ use App\Users;
 use App\Http\Controllers\Controller;
 use View;
 use DB;
+use Auth;
 
 //Archivos pa usar el dropbox 
 use App\File;
@@ -80,7 +81,7 @@ class UsersController extends Controller
             '/',
             $request->file('file'),
             $request->file('file')
-            
+
         );
         //Storage::move('old/file.jpg', 'new/file.jpg');
         // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
@@ -205,86 +206,6 @@ class UsersController extends Controller
 
         return redirect('/user')->with('message', 'Usuario eliminado!');
     }
-    /**
-     * 
-     *
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function doLogin()
-    {
-
-        $userdata = array(
-            'usuario'     => Input::get('usuario'),
-            'password'  => Input::get('password')
-        );
-
-        $pass = hash('sha256', $userdata['password']);
-        $userdata['password'] = $pass;
-
-        $result = $result = DB::table('users')->where('usuario', '=', $userdata['usuario'])->where('password', '=', $userdata['password'])->first();
-
-        /*   var_dump($userdata);
-        var_dump($result); */
-
-        if ($result == NULL) {
-            return redirect('/login')->with('message', 'Usuario o contraseña incorrecta');;
-        }
-        $user = new Users();
-
-        $user->slug = $result->slug;
-        $user->id = $result->id;
-        $user->nombre = $result->nombre;
-        $user->apellidoP = $result->apellidoP;
-        $user->apellidoM = $result->apellidoM;
-        $user->tipo = $result->tipo;
-        $user->estado = $result->estado;
-        $user->foto = $result->foto;
-        $user->usuario = $result->usuario;
-        $user->password = $result->password;
-        //redirect('/home_vendedor'); quiero cambiar la direccion 
-
-
-        $data = array();
-        array_push($data, $user);
-
-        if ($user->tipo == 0) { //es admin
-            $vendedores = Users::where('estado', '=', false)->get();
-            $productosNoAprobados = Products::where('aprobado', '=', false)->get();
-            array_push($data, $vendedores);
-            array_push($data, $productosNoAprobados);
-        } else {
-            if ($user->tipo == 1) { // es vendedor
-                $productosReales = $this->returnProducts($user->id);
-            } else {                  // es comprador
-                $productosReales = $this->returnProducts();
-            }
-            array_push($data, $productosReales);
-        }
-
-        /* var_dump($data); */
-        if ($user->tipo == 0) { //es administrador
-            return view('users.home_admin', compact('data'));
-        } else { // no es admin
-            if ($user->tipo == 1) { // es vendedor
-                return view('users.home_vendedor', compact('data'));
-            } else {   // es comprador
-                return view('users.home_comprador', compact('data'));
-            }
-        }
-
-    }
-
-    /**
-     * 
-     *
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function showLogin()
-    {
-        return View::make('users/login');
-    }
 
 
     public function addProduct($id)
@@ -341,4 +262,37 @@ class UsersController extends Controller
 
         return back();
     }
+
+    public function showHome()
+    {
+        $user = Auth::user();
+        $data = array();
+        array_push($data, $user);
+
+        if ($user->tipo == 0) { //es admin
+            $vendedores = Users::where('estado', '=', false)->get();
+            $productosNoAprobados = Products::where('aprobado', '=', false)->get();
+            array_push($data, $vendedores);
+            array_push($data, $productosNoAprobados);
+        } else {
+            if ($user->tipo == 1) { // es vendedor
+                $productosReales = $this->returnProducts($user->id);
+            } else {                  // es comprador
+                $productosReales = $this->returnProducts();
+            }
+            array_push($data, $productosReales);
+        }
+
+        /* var_dump($data); */
+        if ($user->tipo == 0) { //es administrador
+            return view('users.home_admin', compact('data'));
+        } else { // no es admin
+            if ($user->tipo == 1) { // es vendedor
+                return view('users.home_vendedor', compact('data'));
+            } else {   // es comprador
+                return view('users.home_comprador', compact('data'));
+            }
+        }
+    }
+
 }

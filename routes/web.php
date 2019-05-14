@@ -17,12 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/user', 'UsersController');
+Route::get('/home','UsersController@showHome');
 Route::resource('/product','ProductsController');
 
 Route::resource('/ubication', 'UbicationsController');
-Route::post('/login', array('uses' => 'UsersController@doLogin'));
-Route::get('/login', array('uses' => 'UsersController@showLogin'));
-Route::get('/home_vendedor','UsersController@homeVendedor');
+// Route::post('/login', array('uses' => 'UsersController@doLogin'));
+// Route::get('/login', array('uses' => 'UsersController@showLogin'));
 Route::get('/agregar/{id}', 'UsersController@addProduct')->name('addProduct');
 
 //Rutas de aprobar y bloquear usuarios y productos
@@ -42,9 +42,8 @@ Route::get('getDone', ['as'=>'getDone','uses'=>'PaymentController@getDone']);
 Route::get('getCancel', ['as'=>'getCancel','uses'=>'PaymentController@getCancel']);
  
 
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 

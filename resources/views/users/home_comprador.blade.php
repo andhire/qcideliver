@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Usuario Vendedor</title>
+  <title>Usuario Comprador</title>
 
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
     id="bootstrap-css">
@@ -46,7 +46,7 @@
 
 <body>
   @php
-    $user = $data[0]; $productos = $data[1];
+  $user = $data[0]; $productos = $data[1];
   @endphp
 
   <div class="navbar navbar-inverse nav">
@@ -89,7 +89,7 @@
 
   </div>
 
-  <a href="{{ route('addProduct', $user) }}" class="btn btn-default">Agregar Producto </a>
+  {{-- <a href="{{ route('addProduct', $user) }}" class="btn btn-default">Agregar Producto </a> --}}
   @foreach ($productos as $producto)
   <div class="card">
     <img src={{$producto->image}} style="width:100%">
@@ -97,6 +97,13 @@
     <p class="price">${{$producto->price}}</p>
   </div>
   @endforeach
+
+  <form id="logout-form" action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-primary" id="botonEnviar">
+      Log out
+    </button>
+  </form>
 
 </body>
 
