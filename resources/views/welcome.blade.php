@@ -49,6 +49,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/product">Productos</a>
                 </li> 
+                
                 <li class="nav-item">
                     <a href="/login">
                         <button type="button" class="btn btn-link">Inciar Sesión</button>
