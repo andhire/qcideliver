@@ -18,6 +18,12 @@ class AddInfoToProductsTable extends Migration
             $table->decimal('price',8,2);
             $table->integer('amount');
         });
+
+        Schema::dropIfExists('user_products');
+        Schema::table('category_products', function (Blueprint $table) {
+            $table->dropColumn('id_product');
+        });
+        
     }
 
     /**
@@ -27,9 +33,6 @@ class AddInfoToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_products');
-        Schema::table('category_products', function (Blueprint $table) {
-            $table->dropColumn('id_product');
-        });
+        
     }
 }
