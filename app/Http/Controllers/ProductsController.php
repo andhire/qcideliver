@@ -220,9 +220,9 @@ class ProductsController extends Controller
 
         return back();
     }
-    public function filtro($id)
+    public function filtro($slug)
     {
-        $productos = CategoryProduct::where('id', $id)->get()[0]->products;
+        $productos = CategoryProduct::where('slug', $slug)->get()[0]->products;
         return view('products.index', compact('productos'));
     }
 }

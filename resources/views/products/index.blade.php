@@ -3,7 +3,7 @@
 
 @php
 
-$products = App\CategoryProduct::all();
+$categories = App\CategoryProduct::all();
 
 @endphp
 
@@ -87,8 +87,8 @@ $products = App\CategoryProduct::all();
     <br>
     <p style="color: white; text-align:center;">Filtros</p>
 
-    @foreach ($products as $producto)
-    <a href="/product/filtro/{{$producto->id}}" class='button'>{{ $producto->name }}</a>
+    @foreach ($categories as $category)
+    <a href="/product/filtro/{{$category->slug}}" class='button'>{{ $category->name }}</a>
     @endforeach
   </div>
 
