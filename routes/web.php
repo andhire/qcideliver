@@ -21,8 +21,8 @@ Route::get('/home','UsersController@showHome');
 Route::resource('/product','ProductsController');
 
 Route::resource('/ubication', 'UbicationsController');
-// Route::post('/login', array('uses' => 'UsersController@doLogin'));
-// Route::get('/login', array('uses' => 'UsersController@showLogin'));
+Route::resource('/category', 'CategoryProductController');
+
 Route::get('/agregar/{id}', 'UsersController@addProduct')->name('addProduct');
 
 //Rutas de aprobar y bloquear usuarios y productos

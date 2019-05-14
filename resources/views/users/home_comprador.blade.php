@@ -90,13 +90,7 @@
   </div>
 
   {{-- <a href="{{ route('addProduct', $user) }}" class="btn btn-default">Agregar Producto </a> --}}
-  @foreach ($productos as $producto)
-  <div class="card">
-    <img src={{$producto->image}} style="width:100%">
-    <h1>{{$producto->name}}</h1>
-    <p class="price">${{$producto->price}}</p>
-  </div>
-  @endforeach
+  Mostrar informacion del Usuario (Pagina personal)
 
   <form id="logout-form" action="{{ route('logout') }}" method="POST">
     @csrf

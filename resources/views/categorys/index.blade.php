@@ -1,0 +1,1 @@
+index de categorias, solo para ver las categorias creadas
