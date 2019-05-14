@@ -1,16 +1,13 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
 
-  <title>Ubicaciones</title>
+@if (session('message'))
+<div class="alert alert-success">
+    {{ session('message') }}
+</div>
+@endif
 
-  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+index de Ubicaciones
 
-</head>
-
-<body>
-    index de Ubicaciones
-</body>
+@endsection

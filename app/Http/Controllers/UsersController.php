@@ -43,11 +43,16 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        $users = Users::all();
-        $users = Users::paginate(3);
 
-        return view('users.index', compact('users'));
+        if (Auth::check() && Auth::user()['tipo'] == 0) {
+
+            $users = Users::all();
+            $users = Users::paginate(3);
+
+            return view('users.index', compact('users'));
+        }else {
+            return redirect('/');
+        }
     }
 
     public function __construct()
@@ -64,9 +69,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
-
-        return view('users.create');
+        return redirect('register');
     }
 
     /**
@@ -75,7 +78,7 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    /* public function store(Request $request)
     {
         Storage::disk('dropbox')->putFileAs(
             '/',
@@ -126,7 +129,7 @@ class UsersController extends Controller
         $user->save();
 
         return redirect('/user')->with('message', 'Usuario creado!');
-    }
+    } */
 
     /**
      * Display the specified resource.
@@ -175,7 +178,7 @@ class UsersController extends Controller
     {
 
         $user = Users::where('slug', $slug)->first();
-        $user->nombre = $request['nombre'];
+        $user->name = $request['name'];
         $user->apellidoP = $request['apellidoP'];
         $user->apellidoM = $request['apellidoM'];
         $user->tipo = $request['tipo'];
@@ -185,7 +188,7 @@ class UsersController extends Controller
         /* $pass = $request['password'];
         $pass = hash('sha256', $pass);
         $user->password = $pass; */
-        $user->mail = $request['mail'];
+        $user->email = $request['email'];
         $user->phone = $request['phone'];
 
         $user->save();
@@ -294,5 +297,4 @@ class UsersController extends Controller
             }
         }
     }
-
 }

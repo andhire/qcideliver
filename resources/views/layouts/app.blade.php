@@ -27,91 +27,85 @@
 
   <!-- Bootstrap CSS -->
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+  {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
+
+
+  {{-- Bootstrap js requires --}}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
 
   <!-- Custom CSS -->
   <link href="{{asset('css/create.css')}}" rel="stylesheet">
 </head>
 
 <body>
-  <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-      <div class="container">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav mr-auto">
-
-          </ul>
-
-          <!-- Right Side Of Navbar -->
-          <ul class="navbar-nav ml-auto">
-            <!-- Authentication Links -->
-            @guest
-
-            @if (Route::has('register'))
-            <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-              <a class="navbar-brand" href="/">
-                <img src="{{asset('img/icon.svg')}}" width="30" height="30" class="d-inline-block align-top"
-                  alt="QciDeliver">
-                QciDeliver
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navLinks"
-                aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-
-              <div class="collapse navbar-collapse" id="navLinks">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/">Inicio</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/product">Productos</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/login">
-                      <button type="button" class="btn btn-link">Inciar Sesión</button>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-
-            @endif
-            @else
 
 
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
+    {{-- <a class="navbar-brand" href="#">QciDeliver</a> --}}
+    <a class="navbar-brand" href="/">
+      <img src="{{asset('img/icon.svg')}}" width="30" height="30" class="d-inline-block align-top" alt="QciDeliver">
+      QciDeliver
+    </a>
 
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-            </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              @csrf
-            </form>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Inicio</a>
         </li>
-        @endguest
-        </ul>
-      </div>
-  </div>
+        <li class="nav-item">
+          <a class="nav-link" href="/product">Productos</a>
+        </li>
+        <li class="nav-item" style="margin:auto">
+          <a href="/donate">
+            <button type="button" class="btn btn-outline-primary btn-sm">
+              Donar
+            </button>
+          </a>
+        </li>
+
+        @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
+        <li class="nav-item" style="margin:auto">
+          <a href="/login">
+            <button type="button" class="btn btn-primary btn-sm">
+              Log in
+            </button>
+          </a>
+        </li>
+        @else
+        <form id="logout-form" action="{{ route('logout') }}" method="POST"  style="margin:auto">
+          @csrf
+          <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
+            Log out
+          </button>
+        </form>
+        @endif
+
+      </ul>
+      {{-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> --}}
+    </div>
   </nav>
 
-  <main class="py-4">
+
+  <main>
     @yield('content')
   </main>
-  </div>
 </body>
 
 </html>

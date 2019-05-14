@@ -44,10 +44,11 @@ class UbicationsController extends Controller
     {
         $ubication = new Ubication;
         $ubication->nombre = $request['nombre'];
+        // $ubication->foto = $url;
 
         $ubication->save();
 
-        // redireccionar pendiente
+        return redirect('/ubication')->with('message', 'Ubicacion creada');
     }
 
     /**

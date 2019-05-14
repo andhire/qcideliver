@@ -24,6 +24,6 @@ class CategoryProductController extends Controller
         $category->name = $request['name'];
         $category->save();
 
-        return redirect('category');
+        return redirect('/category')->with('message', 'Categoria creada');
     }
 }
