@@ -138,10 +138,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         //
-        $product = Products::where('id', $id)->first();
+        $product = Products::where('slug', $slug)->first();
         if (!$product) {
 
 
