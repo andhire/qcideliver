@@ -1,7 +1,8 @@
+@extends('layouts.app')
+
+@section('content')
 Pagina para crear categorias
 Solo para admin
-
-<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
 <div class="container">
   <div class="row justify-content-center">
@@ -33,3 +34,5 @@ Solo para admin
   </div>
 </div>
 </div>
+
+@endsection
