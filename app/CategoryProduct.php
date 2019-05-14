@@ -10,12 +10,12 @@ class CategoryProduct extends Model
     public $table = 'category_products';
     //
 
-
+    use Sluggable; 
     public function sluggable()
     {
         return [
             'slug' => [
-                'source' => 'nombre'
+                'source' => 'name'
             ]
         ];
     }
@@ -24,4 +24,6 @@ class CategoryProduct extends Model
     public function products() {
         return $this->hasMany('App\Products', 'id_category');
     }
+    protected $guarded = ['name', 'slug'];
+
 }
