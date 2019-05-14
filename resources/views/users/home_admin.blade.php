@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('content')
+
 @php
 $user = $data[0];
 $vendedores = $data[1];
@@ -87,3 +89,5 @@ $productos = $data[2];
     Log out
   </button>
 </form>
+
+@endsection

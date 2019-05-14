@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('content')
+
 <div class="jumbotron">
   @if (session('message'))
   <div class="alert alert-success">
@@ -47,3 +49,5 @@
 <footer class="pagination justify-content-center " style="margin-top:15%">
   {{ $users->links() }}
 </footer>
+
+@endsection

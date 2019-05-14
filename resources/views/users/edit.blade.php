@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('content')
 
 <div class="container content">
   <div class="row justify-content-center">
@@ -12,7 +13,7 @@
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
-                <input value="{{$user->nombre}}" type="text" class="form-control" name="nombre">
+                <input value="{{$user->name}}" type="text" class="form-control" name="name">
               </div>
             </div>
             <div class="form-group row">
@@ -38,7 +39,7 @@
             <div class="form-group row">
               <label for="mail" class="col-md-4 col-form-label text-md-right">Correo</label>
               <div class="col-md-6">
-                <input value="{{$user->mail}}" type="text" class="form-control" name="mail">
+                <input value="{{$user->email}}" type="text" class="form-control" name="email">
               </div>
             </div>
             <div class="form-group row">
@@ -81,3 +82,5 @@
     </div>
   </div>
 </div>
+
+@endsection
