@@ -21,18 +21,18 @@ class UsersController extends Controller
     function returnProducts($id = null)
     {
         if ($id != null) {
-            $productsUser = DB::table('user_products')->where('id_user', '=', $id)->get();
+            $productosReales = DB::table('products')->where('id_user', '=', $id)->get();
         } else {
-            $productsUser = DB::table('user_products')->get();
+            $productosReales = DB::table('products')->get();
         }
 
-        $productosReales = array();
+        /* $productosReales = array();
         foreach ($productsUser as $value) {
             $tmp = DB::table('products')->where('id', '=', $value->id_product)->first();
             $tmp->amount = $value->amount;
             $tmp->price = $value->price;
             array_push($productosReales, $tmp);
-        }
+        } */
 
         return $productosReales;
     }
