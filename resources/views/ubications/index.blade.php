@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    index de Ubicaciones
+
+@if (session('message'))
+<div class="alert alert-success">
+    {{ session('message') }}
+</div>
+@endif
+
+index de Ubicaciones
 
 @endsection
