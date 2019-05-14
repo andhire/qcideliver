@@ -7,40 +7,9 @@
 
   <title>Usuario Comprador</title>
 
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
-    id="bootstrap-css">
-  <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <style>
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      max-width: 300px;
-      margin: auto;
-      text-align: center;
-      font-family: arial;
-    }
-
-    .price {
-      color: grey;
-      font-size: 22px;
-    }
-
-    .card button {
-      border: none;
-      outline: 0;
-      padding: 12px;
-      color: white;
-      background-color: #000;
-      text-align: center;
-      cursor: pointer;
-      width: 100%;
-      font-size: 18px;
-    }
-
-    .card button:hover {
-      opacity: 0.7;
-    }
-  </style>
 
 </head>
 
@@ -90,13 +59,38 @@
   </div>
 
   {{-- <a href="{{ route('addProduct', $user) }}" class="btn btn-default">Agregar Producto </a> --}}
-  @foreach ($productos as $producto)
-  <div class="card">
-    <img src={{$producto->image}} style="width:100%">
-    <h1>{{$producto->name}}</h1>
-    <p class="price">${{$producto->price}}</p>
+  <div class="main">
+
+    <div class="album py-5 bg-light" style="margin-top: 10px">
+      <div class="container">
+        <div class="row">
+
+          @foreach ($productos as $p)
+          <div class="col-md-4">
+            <a href="{{ url('/product',[$p->id]) }}">
+              <div class="card mb-4 shadow-sm">
+                <img src={{$p->image}} width="100%" height="200">
+                <div class="card-body">
+                  <p class="card-text">
+                    {{$p->name}}<br>
+                    {{$p->type}} </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    {{-- <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-primary">Aprobar</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger">Descartar</button>
+                      </div> --}}
+                  </div>
+                </div>
+              </div>
+          </div>
+          @endforeach
+
+        </div>
+      </div>
+    </div>
+
+
   </div>
-  @endforeach
 
   <form id="logout-form" action="{{ route('logout') }}" method="POST">
     @csrf

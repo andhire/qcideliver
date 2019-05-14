@@ -141,6 +141,15 @@ class ProductsController extends Controller
     public function edit($id)
     {
         //
+        $product = Products::where('id', $id)->first();
+        if (!$product) {
+
+
+            return view('error');
+        }
+
+        return view('products.edit', compact('product'));
+
     }
 
     /**
@@ -153,6 +162,34 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        /* Storage::disk('dropbox')->putFileAs(
+            '/',
+            $request->file('file'),
+            $request->file('file')
+
+        );
+        //Storage::move('old/file.jpg', 'new/file.jpg');
+        // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
+        // definida en el constructor de la clase y almacenamos la respuesta.
+        $response = $this->dropbox->createSharedLinkWithSettings(
+            $request->file('file')->getClientOriginalName(),
+            ["requested_visibility" => "public"]
+        ); */
+
+        /* $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']); */
+        $product =  Products::where('id', $id)->first();
+        $product->name = $request['name'];
+        $product->id_category = $request['category'];
+/*         $product->image = $url;
+ */        $product->price = $request['price'];
+        $product->amount = $request['amount'];
+
+
+        $product->save();
+
+        return redirect('/home')->with('message', 'Edición exitosa!');
+
+
     }
 
     /**

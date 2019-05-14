@@ -63,6 +63,11 @@
                     <h2>{{$product->name}}</h2>
                 </div>
             </div>
+            <div style="margin: 5px;">
+                <a href="{{ url('/product/'.$product->id.'/edit') }}"><button type="button"
+                    class="btn btn-warning">Editar</button>
+              </div>
+    
         </div>
     </div>
 </body>
