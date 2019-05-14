@@ -43,11 +43,16 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        $users = Users::all();
-        $users = Users::paginate(3);
 
-        return view('users.index', compact('users'));
+        if (Auth::check() && Auth::user()['tipo'] == 0) {
+
+            $users = Users::all();
+            $users = Users::paginate(3);
+
+            return view('users.index', compact('users'));
+        }else {
+            return redirect('/');
+        }
     }
 
     public function __construct()
@@ -292,5 +297,4 @@ class UsersController extends Controller
             }
         }
     }
-
 }

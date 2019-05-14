@@ -69,16 +69,31 @@
         <li class="nav-item">
           <a class="nav-link" href="/product">Productos</a>
         </li>
-        <li class="nav-item">
-          <a href="/login">
-            <button type="button" class="btn btn-link">Inciar Sesión</button>
-          </a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" style="margin:auto">
           <a href="/donate">
-            <button type="button" class="btn btn-link">Donar</button>
+            <button type="button" class="btn btn-outline-primary btn-sm">
+              Donar
+            </button>
           </a>
         </li>
+
+        @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
+        <li class="nav-item" style="margin:auto">
+          <a href="/login">
+            <button type="button" class="btn btn-primary btn-sm">
+              Log in
+            </button>
+          </a>
+        </li>
+        @else
+        <form id="logout-form" action="{{ route('logout') }}" method="POST"  style="margin:auto">
+          @csrf
+          <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
+            Log out
+          </button>
+        </form>
+        @endif
+
       </ul>
       {{-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
