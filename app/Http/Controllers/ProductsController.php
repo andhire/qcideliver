@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -32,6 +31,11 @@ class ProductsController extends Controller
 
         return view('products.index', compact('productos'));
     }
+    /**
+     * Inicializa el dropbox
+     *
+     * @return void
+     */
     public function __construct()
     {
         // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos
@@ -198,9 +202,13 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         //
+        $product = Products::where('slug', $slug)->first();
+        $product->delete();
+
+        return redirect('/home')->with('message', 'producto eliminado!');
     }
 
     public function aprobar(Request $request, $id)
