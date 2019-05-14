@@ -124,10 +124,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
-        $product = Products::where('id', $id)->first();
+        $product = Products::where('slug', $slug)->first();
 
         return view('products.show', compact('product'));
     }
@@ -176,12 +176,12 @@ class ProductsController extends Controller
             ["requested_visibility" => "public"]
         ); */
 
-        /* $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']); */
+        $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
         $product =  Products::where('id', $id)->first();
         $product->name = $request['name'];
         $product->id_category = $request['category'];
-/*         $product->image = $url;
- */        $product->price = $request['price'];
+        $product->image = $url;
+        $product->price = $request['price'];
         $product->amount = $request['amount'];
 
 

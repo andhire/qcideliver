@@ -129,7 +129,7 @@ $products = App\CategoryProduct::all();
 
           @foreach ($productos as $p)
           <div class="col-md-4">
-            <a href="{{ url('/product',[$p->id]) }}">
+            <a href="{{ url('/product',[$p->slug]) }}">
               <div class="card mb-4 shadow-sm">
                 <img src={{$p->image}} width="100%" height="200">
                 <div class="card-body">
