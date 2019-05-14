@@ -81,7 +81,6 @@ class ProductsController extends Controller
         $product = new Products;
         $product->name = $request['name'];
         $product->id_category = $request['type'];
-        $product->type = $request['type'];
         $product->slug = $request['name'];
         $product->image = $url;
         $product->id_user = $request['id'];

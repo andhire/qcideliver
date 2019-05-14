@@ -56,13 +56,13 @@
 
         @foreach ($productos as $p)
         <div class="col-md-4">
-          <a href="{{ url('/product',[$p->id]) }}">
+          <a href="{{ url('/product',[$p->slug]) }}">
             <div class="card mb-4 shadow-sm">
               <img src={{$p->image}} width="100%" height="200">
               <div class="card-body">
                 <p class="card-text">
                   {{$p->name}}<br>
-                  {{$p->type}} </p>
+                  {{$p->id_category}} </p>
                 <div class="d-flex justify-content-between align-items-center">
                   {{-- <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-primary">Aprobar</button>
