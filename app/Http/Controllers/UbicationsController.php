@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Ubication;
 use App\Users;
 use App\UserUbication;
+use Illuminate\Support\Facades\Auth;
 
 class UbicationsController extends Controller
 {
@@ -15,14 +16,17 @@ class UbicationsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        /* $ubications = UserUbication::where('id_user', 9)->get()[0]->user; */
 
-        /* $ubications = Users::where('id', 9)->get()[0]->userUbication; */
+        if (Auth::check() && Auth::user()['tipo'] == 0) {
 
+            $ubications = Ubication::paginate(9);
 
-        return view('ubications.index');
+            return view('ubications.index', compact('ubications'));
+        }else {
+            return redirect('/');
+        }
     }
 
     /**

@@ -66,6 +66,22 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Inicio</a>
         </li>
+        @if (Auth::check())
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home</a>
+        </li>
+        @if (Auth::user()['tipo'] == 0)
+        <li class="nav-item active">
+          <a class="nav-link" href="/user">Usuarios</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/ubication">Ubicaciones</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/category">Categorias</a>
+        </li>
+        @endif
+        @endif
         <li class="nav-item">
           <a class="nav-link" href="/product">Productos</a>
         </li>
@@ -86,7 +102,7 @@
           </a>
         </li>
         @else
-        <form id="logout-form" action="{{ route('logout') }}" method="POST"  style="margin:auto">
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="margin:auto">
           @csrf
           <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
             Log out

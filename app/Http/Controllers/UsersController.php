@@ -46,8 +46,7 @@ class UsersController extends Controller
 
         if (Auth::check() && Auth::user()['tipo'] == 0) {
 
-            $users = Users::all();
-            $users = Users::paginate(3);
+            $users = Users::paginate(5);
 
             return view('users.index', compact('users'));
         }else {

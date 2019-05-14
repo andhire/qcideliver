@@ -27,7 +27,7 @@ class Products extends Model
      //Belong to many
     //one to one    // works
     public function category() {
-        return $this->hasOne('App\CategoryProduct', 'id_product');
+        return $this->belongsTo('App\CategoryProduct', 'id_category');
     }
 }
 

@@ -3,7 +3,7 @@
 @section('content')
 
 @php 
-$user = $data[0];
+$user = Auth::user();
 $categorias = App\CategoryProduct::all();
 @endphp
 
