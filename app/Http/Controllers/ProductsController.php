@@ -15,6 +15,7 @@ use App\File;
 use Spatie\Dropbox\Client;
 use Illuminate\Support\Facades\Storage;
 use App\CategoryProduct;
+use Carbon\Carbon;
 
 class ProductsController extends Controller
 {
@@ -64,24 +65,28 @@ class ProductsController extends Controller
         // Guardamos el archivo indicando el driver y el método putFileAs el cual recibe
         // el directorio donde será almacenado, el archivo y el nombre.
         // ¡No olvides validar todos estos datos antes de guardar el archivo!
+        $product = new Products;
+        $product->slug = $request['name'];
+        
+        $slug = $product->slug .Carbon::now(). ".jpg";
         Storage::disk('dropbox')->putFileAs(
             '/',
-            $request->file('file'),
-            $request->file('file')->getClientOriginalName()
+            $request['foto'],
+            $slug
         );
-
+        //Storage::move('old/file.jpg', 'new/file.jpg');
         // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
         // definida en el constructor de la clase y almacenamos la respuesta.
         $response = $this->dropbox->createSharedLinkWithSettings(
-            $request->file('file')->getClientOriginalName(),
+            $slug,
             ["requested_visibility" => "public"]
         );
 
         $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
-        $product = new Products;
+       
         $product->name = $request['name'];
         $product->id_category = $request['type'];
-        $product->slug = $request['name'];
+        
         $product->image = $url;
         $product->id_user = $request['id'];
         $product->price = $request['price'];
@@ -165,19 +170,21 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        /* Storage::disk('dropbox')->putFileAs(
+        // ¡No olvides validar todos estos datos antes de guardar el archivo!
+        $product =  Products::where('id', $id)->first();
+        $slug = $product->slug .Carbon::now(). ".jpg";
+        Storage::disk('dropbox')->putFileAs(
             '/',
-            $request->file('file'),
-            $request->file('file')
-
+            $request['foto'],
+            $slug
         );
         //Storage::move('old/file.jpg', 'new/file.jpg');
         // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
         // definida en el constructor de la clase y almacenamos la respuesta.
         $response = $this->dropbox->createSharedLinkWithSettings(
-            $request->file('file')->getClientOriginalName(),
+            $slug,
             ["requested_visibility" => "public"]
-        ); */
+        );
 
         $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
         $product =  Products::where('id', $id)->first();

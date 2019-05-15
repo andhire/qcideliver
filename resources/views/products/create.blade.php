@@ -10,7 +10,7 @@ $categorias = App\CategoryProduct::all();
 <div class="container content">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <form method="POST" action="/product" id="register-form" role="form" enctype="multipart/form-data">
+      <form method="POST" action="/product" id="register-form" role="form" enctype="multipart/form-data" >
         <div class="card">
           <div class="card-header">Registrar Producto</div>
           <div class="card-body">
@@ -37,9 +37,16 @@ $categorias = App\CategoryProduct::all();
             </div>
 
             <div class="form-group row">
-              <label for="nombre" class="col-md-4 col-form-label text-md-right">Imagen</label>
+              <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
               <div class="col-md-6">
-                <input type="file" name="file" required>
+                <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}"
+                  name="foto" required accept="image/*">
+
+                @if ($errors->has('foto'))
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('foto') }}</strong>
+                </span>
+                @endif
               </div>
             </div>
 

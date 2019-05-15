@@ -12,6 +12,9 @@ use App\File;
 use Spatie\Dropbox\Client;
 use Illuminate\Support\Facades\Storage;
 use App\Products;
+
+use Carbon\Carbon;
+
 class RegisterController extends Controller
 {
     /*
@@ -79,7 +82,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         //dd($data);
-        $slug = $data['email'] . ".jpg";
+        $slug = $data['email'] .Carbon::now(). ".jpg";
         Storage::disk('dropbox')->putFileAs(
             '/',
             $data['foto'],

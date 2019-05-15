@@ -5,7 +5,7 @@
 <div class="container content">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <form method="POST" action="/product/{{$product->id}}" id="edit-form" role="form">
+      <form method="POST" action="/product/{{$product->id}}" id="edit-form" role="form" enctype="multipart/form-data" >
         <div class="card">
           <div class="card-header">Editar producto</div>
           <div class="card-body">
@@ -38,11 +38,19 @@
 
 
             <div class="form-group row">
-              <label for="file" class="col-md-4 col-form-label text-md-right">Foto</label>
+              <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
               <div class="col-md-6">
-                <input value="{{$product->image}}" type="file" class="form-control" name="file">
+                <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}"
+                  name="foto" required accept="image/*">
+
+                @if ($errors->has('foto'))
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('foto') }}</strong>
+                </span>
+                @endif
               </div>
             </div>
+            
             <div class="col-md-6 offset-md-4">
               <button type="submit" class="btn btn-primary" id="botonEnviar">
                 Editar!

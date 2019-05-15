@@ -87,7 +87,7 @@
         </li>
         <li class="nav-item" style="margin:auto">
           <a href="/donate">
-            <button type="button" class="btn btn-outline-primary btn-sm">
+            <button type="button" class="btn btn-outline-primary btn-sm" style="margin-right: 5px" >
               Donar
             </button>
           </a>

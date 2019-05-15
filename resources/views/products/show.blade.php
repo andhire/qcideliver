@@ -21,6 +21,12 @@
                 <div class="row">
                     <h2>{{$product->name}}</h2>
                 </div>
+                <div class="row">
+                  <h5>Precio: ${{$product->price}}</h5>
+              </div>
+              <div class="row">
+                <h5>Cantidad: {{$product->amount}}</h5>
+            </div>
             </div>
             <div style="margin: 5px;">
                 <a href="{{ url('/product/'.$product->slug.'/edit') }}"><button type="button"
