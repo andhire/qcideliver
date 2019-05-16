@@ -23,7 +23,7 @@ Route::resource('/product','ProductsController');
 Route::resource('/ubication', 'UbicationsController');
 Route::resource('/category', 'CategoryProductController');
 
-Route::get('/agregar/{id}', 'UsersController@addProduct')->name('addProduct');
+// Route::get('/agregar/{id}', 'UsersController@addProduct')->name('addProduct');
 
 //Rutas de aprobar y bloquear usuarios y productos
 Route::post('/user/{id}/aprobar', 'UsersController@aprobar');

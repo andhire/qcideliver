@@ -16,6 +16,7 @@ use Spatie\Dropbox\Client;
 use Illuminate\Support\Facades\Storage;
 use App\CategoryProduct;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -51,7 +52,11 @@ class ProductsController extends Controller
     public function create()
     {
         //
-        return view('products.create');
+        if (Auth::check() && Auth::user()['tipo'] == 1) {
+            return view('products.create');
+        }else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -96,34 +101,7 @@ class ProductsController extends Controller
 
         $product->save();
 
-        /* $userproduct = new UserProducts;
-        $userproduct->id_user = $request['id'];
-        $userproduct->id_product = $product->id;
-        $userproduct->price = $request['price'];
-        $userproduct->amount = $request['amount'];
-        $userproduct->save(); */
-
-        $result = $result = DB::table('users')->where('id', '=', $request['id'])->first();
-
-        $user = new Users();
-
-        $user->slug = $result->slug;
-        $user->id = $result->id;
-        $user->name = $result->name;
-        $user->apellidoP = $result->apellidoP;
-        $user->apellidoM = $result->apellidoM;
-        $user->tipo = $result->tipo;
-        $user->estado = $result->estado;
-        $user->foto = $result->foto;
-        $user->usuario = $result->usuario;
-        $user->password = $result->password;
-
-        $productosReales = app('App\Http\Controllers\UsersController')->returnProducts($user->id);
-        $data = array();
-
-        array_push($data, $user);
-        array_push($data, $productosReales);
-        return view('users.home_vendedor', compact('data'));
+        redirect('/home');
     }
 
     /**

@@ -26,14 +26,6 @@ class UsersController extends Controller
             $productosReales = DB::table('products')->get();
         }
 
-        /* $productosReales = array();
-        foreach ($productsUser as $value) {
-            $tmp = DB::table('products')->where('id', '=', $value->id_product)->first();
-            $tmp->amount = $value->amount;
-            $tmp->price = $value->price;
-            array_push($productosReales, $tmp);
-        } */
-
         return $productosReales;
     }
     /**
@@ -208,7 +200,7 @@ class UsersController extends Controller
 
         return redirect('/user')->with('message', 'Usuario eliminado!');
     }
-
+/* 
 
     public function addProduct($id)
     {
@@ -220,7 +212,7 @@ class UsersController extends Controller
         array_push($data, $productosReales);
 
         return view('products.create', compact('data'));
-    }
+    } */
 
     /**
      * Aprobar the specified user.
@@ -278,11 +270,11 @@ class UsersController extends Controller
             array_push($data, $productosNoAprobados);
         } else {
             if ($user->tipo == 1) { // es vendedor
-                $productosReales = $this->returnProducts($user->id);
-            } else {                  // es comprador
-                $productosReales = $this->returnProducts();
+                $productosAprobados = Products::where('id_user', $user->id)->where('aprobado', true)->get();
+                $productosNoAprobados = Products::where('id_user', $user->id)->where('aprobado', false)->get();
+                array_push($data, $productosAprobados);
+                array_push($data, $productosNoAprobados);
             }
-            array_push($data, $productosReales);
         }
 
         /* var_dump($data); */

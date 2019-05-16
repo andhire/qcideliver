@@ -127,7 +127,7 @@
 
   <!-- Footer -->
   <footer class="navbar" style="position: absolute; bottom: 0; width: 100%; text-align: center">
-    
+
     <!-- Social -->
     <div class="" style="margin: auto">
       <a class="fb-ic">
@@ -151,5 +151,13 @@
   </footer>
 
 </body>
+
+<script>
+  // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 
 </html>
