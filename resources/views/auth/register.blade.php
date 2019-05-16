@@ -5,7 +5,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">{{ __('Register') }}</div>
+        <div class="card-header">{{ 'Registro' }}</div>
 
         <div class="card-body">
           <form method="POST" action="{{ route('register') }}" id="register-form" role="form"
@@ -15,7 +15,7 @@
 
 
             <div class="form-group row">
-              <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+              <label for="email" class="col-md-4 col-form-label text-md-right">{{ 'Correo Electronico' }}</label>
 
               <div class="col-md-6">
                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -44,6 +44,7 @@
                 @endif
               </div>
             </div>
+
             <div class="form-group row">
               <label for="apellidoP" class="col-md-4 col-form-label text-md-right">Apellido Paterno</label>
               <div class="col-md-6">
@@ -58,6 +59,7 @@
                 @endif
               </div>
             </div>
+
             <div class="form-group row">
               <label for="apellidoM" class="col-md-4 col-form-label text-md-right">Apellido Materno</label>
               <div class="col-md-6">
@@ -71,6 +73,7 @@
                 @endif
               </div>
             </div>
+
             <div class="form-group row">
               <label for="usuario" class="col-md-4 col-form-label text-md-right">Usuario</label>
               <div class="col-md-6">
@@ -88,16 +91,14 @@
             <div class="form-group row">
               <label for="phone" class="col-md-4 col-form-label text-md-right">Numero Telefonico</label>
               <div class="col-md-6">
-                <div class="col-md-6">
-                  <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                    name="phone" required>
+                <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                  name="phone" required>
 
-                  @if ($errors->has('phone'))
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('phone') }}</strong>
-                  </span>
-                  @endif
-                </div>
+                @if ($errors->has('phone'))
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('phone') }}</strong>
+                </span>
+                @endif
               </div>
             </div>
 
@@ -111,21 +112,9 @@
                 </select>
               </div>
             </div>
-            <div class="form-group row">
-              <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
-              <div class="col-md-6">
-                <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}"
-                  name="foto" required accept="image/*">
 
-                @if ($errors->has('foto'))
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('foto') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
             <div class="form-group row">
-              <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+              <label for="password" class="col-md-4 col-form-label text-md-right">{{ 'Contraseña' }}</label>
 
               <div class="col-md-6">
                 <input id="password" type="password"
@@ -138,26 +127,73 @@
                 @endif
               </div>
             </div>
+
             <div class="form-group row">
-              <label for="password-confirm"
-                class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Password') }}</label>
+              <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ 'Contraseña' }}</label>
 
               <div class="col-md-6">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
               </div>
             </div>
 
-            <div class="form-group row mb-0">
-              <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                  {{ __('Register') }}
-                </button>
+            {{-- <div class="form-group row">
+              <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
+              <div class="col-md-6">
+                <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}"
+                  name="foto" required accept="image/*">
+
+                @if ($errors->has('foto'))
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('foto') }}</strong>
+                </span>
+                @endif
+              </div>
+            </div> --}}
+
+            <div class="form-group row">
+              <label for="foto" class="col-md-4 col-form-label text-md-right">Foto</label>
+              <div class="col-md-6">
+                <div class="custom-file">
+                  <input id="foto" type="file"
+                    class="custom-file-input form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}" name="foto"
+                    required accept="image/*">
+
+                  @if ($errors->has('foto'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('foto') }}</strong>
+                  </span>
+                  @endif
+
+                  <label class="custom-file-label" for="foto">Choose file</label>
+
+                </div>
               </div>
             </div>
+
+              <div class="form-group row mb-0">
+                <div class="col-md-6 offset-md-4">
+                  <button type="submit" class="btn btn-primary">
+                    {{ 'Registrarme!' }}
+                  </button>
+                </div>
+              </div>
+            
+
+
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+<script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+</script>
+
 @endsection

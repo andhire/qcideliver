@@ -4,7 +4,7 @@
 <!-- Banner -->
 <div class="jumbotron jumbotron-fluid bg-info text-white text-center">
   <div class="container">
-    <h1 class="display-1">Bienvenido a QciDeliver</h1>
+    <h1 class="">Bienvenido a QciDeliver</h1>
     <p class="lead">Un punto de encuentro para el comercio en tu centro universitario</p>
     <a href="/register">
       <button type="button" class="btn btn-success btn-lg">Comienza ahora!</button>

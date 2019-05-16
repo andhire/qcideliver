@@ -39,7 +39,7 @@
 <!-- Banner -->
 <div class="jumbotron jumbotron-fluid bg-success text-white text-center">
   <div class="container">
-    <h1 class="display-1">Apoya al desarollo de QciDeliver</h1>
+    <h1 class="">Apoya al desarollo de QciDeliver</h1>
     <p class="lead">Gracias a tu apoyo podemos mantener esta plataforma gratuita y en desarrollo constante</p>
     <a href="/user/create">
     </a>

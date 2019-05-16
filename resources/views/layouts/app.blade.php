@@ -45,7 +45,7 @@
   <link href="{{asset('css/create.css')}}" rel="stylesheet">
 </head>
 
-<body style="min-height: 100vh; position: relative; margin: 0; padding-bottom: 50px;">
+<body style="min-height: 100vh; position: relative; margin: 0; padding-bottom: 75px;">
 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -126,12 +126,10 @@
   </main>
 
   <!-- Footer -->
-  <footer class="navbar navbar-expand-md" style="position: absolute; bottom: 0; width: 100%;">
-    <div class="d-inline-block align-top">© 2019 Copyright:
-      <a href="/#">QciDeliver</a>
-    </div>
+  <footer class="navbar" style="position: absolute; bottom: 0; width: 100%; text-align: center">
+    
     <!-- Social -->
-    <div class="ml-auto">
+    <div class="" style="margin: auto">
       <a class="fb-ic">
         <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
       </a>
@@ -144,6 +142,12 @@
         <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
       </a>
     </div>
+
+    <div class="" style="margin: auto">
+      2019 Copyright:
+      <a href="/#">QciDeliver</a>
+    </div>
+
   </footer>
 
 </body>
