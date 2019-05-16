@@ -45,7 +45,7 @@
   <link href="{{asset('css/create.css')}}" rel="stylesheet">
 </head>
 
-<body>
+<body style="min-height: 100vh; position: relative; margin: 0; padding-bottom: 50px;">
 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -126,7 +126,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="navbar navbar-expand-md">
+  <footer class="navbar navbar-expand-md" style="position: absolute; bottom: 0; width: 100%;">
     <div class="d-inline-block align-top">© 2019 Copyright:
       <a href="/#">QciDeliver</a>
     </div>
