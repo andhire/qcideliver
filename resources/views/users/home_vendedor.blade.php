@@ -61,8 +61,12 @@
               <img src={{$p->image}} width="100%" height="200">
               <div class="card-body">
                 <p class="card-text">
+                 
                   {{$p->name}}<br>
-                  {{$p->id_category}} </p>
+                  Cantidad: {{$p->amount}}<br>
+                  Precio: ${{$p->price}}
+                 </p>
+
                 <div class="d-flex justify-content-between align-items-center">
                   {{-- <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-primary">Aprobar</button>
