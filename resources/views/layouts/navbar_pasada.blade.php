@@ -83,9 +83,9 @@
                   <button type="button" class="btn btn-link">Inciar Sesión</button>
                 </a>
               </li>
-              <li class="nav-item">
+              <i class="nav-item" >
                 <a href="/donate">
-                  <button type="button" class="btn btn-link">Donar</button>
+                  <button style="margin-right: 5px" type="button" class="btn btn-link" >Donar</button>
                 </a>
               </li>
             </ul>

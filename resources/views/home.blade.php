@@ -39,8 +39,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a> @if ($user->tipo)
-        <a class="brand" href="/user">Qci</a> @endif @if (!$user->tipo)
-        <a class="brand" href="/user">Qci</a> @endif
+        <!--<a class="brand" href="/user">Qci</a> @endif @if (!$user->tipo)
+        <a class="brand" href="/user">Qci</a> @endif-->
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li class="divider-vertical"></li>

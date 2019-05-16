@@ -45,7 +45,7 @@
   <link href="{{asset('css/create.css')}}" rel="stylesheet">
 </head>
 
-<body>
+<body style="min-height: 100vh; position: relative; margin: 0; padding-bottom: 75px;">
 
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,6 +55,25 @@
       <img src="{{asset('img/icon.svg')}}" width="30" height="30" class="d-inline-block align-top" alt="QciDeliver">
       QciDeliver
     </a>
+
+    {{-- <button class="btn btn-outline-danger btn-sm ml-auto mr-3 order-lg-last">
+      Log out
+    </button> --}}
+
+    @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
+    <a href="/login" class=" ml-auto mr-3 order-lg-last">
+      <button class="btn btn-primary btn-sm">
+        Log in
+      </button>
+    </a>
+    @else
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ml-auto mr-3 order-lg-last">
+      @csrf
+      <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
+        Log out
+      </button>
+    </form>
+    @endif
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,30 +104,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/product">Productos</a>
         </li>
-        <li class="nav-item" style="margin:auto">
+        <li class="nav-item" style="margin-top: auto; margin-bottom: auto;">
           <a href="/donate">
-            <button type="button" class="btn btn-outline-primary btn-sm">
+            <button type="button" class="btn btn-outline-primary btn-sm" style="margin-right: 5px">
               Donar
             </button>
           </a>
         </li>
-
-        @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
-        <li class="nav-item" style="margin:auto">
-          <a href="/login">
-            <button type="button" class="btn btn-primary btn-sm">
-              Log in
-            </button>
-          </a>
-        </li>
-        @else
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="margin:auto">
-          @csrf
-          <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
-            Log out
-          </button>
-        </form>
-        @endif
 
       </ul>
       {{-- <form class="form-inline my-2 my-lg-0">
@@ -122,6 +124,40 @@
   <main>
     @yield('content')
   </main>
+
+  <!-- Footer -->
+  <footer class="navbar" style="position: absolute; bottom: 0; width: 100%; text-align: center">
+
+    <!-- Social -->
+    <div class="" style="margin: auto">
+      <a class="fb-ic">
+        <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+
+      <a class="tw-ic">
+        <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+
+      <a class="ins-ic">
+        <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+      </a>
+    </div>
+
+    <div class="" style="margin: auto">
+      2019 Copyright:
+      <a href="/#">QciDeliver</a>
+    </div>
+
+  </footer>
+
 </body>
+
+<script>
+  // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 
 </html>

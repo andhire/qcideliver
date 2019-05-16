@@ -18,14 +18,15 @@ $categories = App\CategoryProduct::all();
     /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1;
     /* Stay on top */
-    top: 0;
+    /* top: 0; */
     /* Stay at the top */
     left: 0;
     background-color: #111;
     /* Black */
     overflow-x: hidden;
     /* Disable horizontal scroll */
-    padding-top: 20px;
+    /* padding-top: 20px; */
+    margin-top: -10px;
   }
 
   /* The navigation menu links */
@@ -67,8 +68,6 @@ $categories = App\CategoryProduct::all();
 
 
 <div class="sidenav">
-  <br>
-  <br>
   <p style="color: white; text-align:center;">Filtros</p>
 
   @foreach ($categories as $category)
