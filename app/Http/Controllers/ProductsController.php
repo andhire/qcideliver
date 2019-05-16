@@ -27,7 +27,7 @@ class ProductsController extends Controller
     public function index()
     {
 
-        $productos = Products::all();
+        $productos = Products::where('aprobado', 1)->get();
 
 
         return view('products.index', compact('productos'));
@@ -236,7 +236,7 @@ class ProductsController extends Controller
     }
     public function filtro($slug)
     {
-        $productos = CategoryProduct::where('slug', $slug)->get()[0]->products;
+        $productos = CategoryProduct::where('slug', $slug)->get()[0]->products()->where('aprobado', 1)->get();
         return view('products.index', compact('productos'));
     }
 }
