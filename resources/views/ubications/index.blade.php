@@ -2,12 +2,6 @@
 
 @section('content')
 
-@if (session('message'))
-<div class="alert alert-success">
-  {{ session('message') }}
-</div>
-@endif
-
 index de Ubicaciones
 
 <div class="album py-5 bg-light">

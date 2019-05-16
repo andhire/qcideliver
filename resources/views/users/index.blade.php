@@ -3,11 +3,6 @@
 @section('content')
 
 <div class="jumbotron">
-  @if (session('message'))
-  <div class="alert alert-success">
-    {{ session('message') }}
-  </div>
-  @endif
 
   <div class="card-columns text-center">
     @foreach ($users as $user)

@@ -56,10 +56,6 @@
       QciDeliver
     </a>
 
-    {{-- <button class="btn btn-outline-danger btn-sm ml-auto mr-3 order-lg-last">
-      Log out
-    </button> --}}
-
     @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
     <a href="/login" class=" ml-auto mr-3 order-lg-last">
       <button class="btn btn-primary btn-sm">
@@ -113,15 +109,17 @@
         </li>
 
       </ul>
-      {{-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> --}}
     </div>
   </nav>
 
 
   <main>
+    @if (session('message'))
+    <div class="alert alert-success">
+      {{ session('message') }}
+    </div>
+    @endif
+
     @yield('content')
   </main>
 

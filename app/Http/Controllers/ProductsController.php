@@ -52,7 +52,7 @@ class ProductsController extends Controller
     public function create()
     {
         //
-        if (Auth::check() && Auth::user()['tipo'] == 1) {
+        if (Auth::check() && Auth::user()['tipo'] == 1 &&  Auth::user()['estado'] == 1) {
             return view('products.create');
         }else {
             return redirect('/');
@@ -101,7 +101,7 @@ class ProductsController extends Controller
 
         $product->save();
 
-        redirect('/home');
+        return redirect('/home')->with('message', 'Producto Creado!');;
     }
 
     /**
