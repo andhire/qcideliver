@@ -1,13 +1,13 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+// Font Awesome
+@import url("https://use.fontawesome.com/releases/v5.6.1/css/all.css");
 
-// Variables
-@import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-body {
-  background-color: black;
-}
+// Variables
+@import 'variables';
+@import 'sidebar';

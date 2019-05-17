@@ -16,7 +16,7 @@ $productosNoAprobados = $data[2];
 <a href="{{ route('product.create') }}" class="btn btn-default">Agregar Producto </a>
 @endif
 
-<div class="main">
+<div class="">
   Aprobados
   <div class="album py-5 bg-light" style="margin-top: 10px">
     <div class="container">
