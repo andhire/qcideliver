@@ -15,6 +15,7 @@ use App\File;
 use Spatie\Dropbox\Client;
 use Illuminate\Support\Facades\Storage;
 use App\Products;
+use App\UserUbication;
 
 class UsersController extends Controller
 {
@@ -41,7 +42,7 @@ class UsersController extends Controller
             $users = Users::paginate(5);
 
             return view('users.index', compact('users'));
-        }else {
+        } else {
             return redirect('/');
         }
     }
@@ -200,7 +201,7 @@ class UsersController extends Controller
 
         return redirect('/user')->with('message', 'Usuario eliminado!');
     }
-/* 
+    /* 
 
     public function addProduct($id)
     {
@@ -271,9 +272,11 @@ class UsersController extends Controller
         } else {
             if ($user->tipo == 1) { // es vendedor
                 $productosAprobados = Products::where('id_user', $user->id)->where('aprobado', true)->get();
-                $productosNoAprobados = Products::where('id_user', $user->id)->where('aprobado', false)->get();
                 array_push($data, $productosAprobados);
+                $productosNoAprobados = Products::where('id_user', $user->id)->where('aprobado', false)->get();
                 array_push($data, $productosNoAprobados);
+                $ubicacion =(int) ($user->userUbication['id_ubication']);
+                array_push($data, $ubicacion);
             }
         }
 
@@ -287,5 +290,24 @@ class UsersController extends Controller
                 return view('users.home_comprador', compact('data'));
             }
         }
+    }
+
+    public function setubication(Request $request, $id)
+    {
+        $user_ubication = UserUbication::where('id_user', $id)->first();
+
+        if($user_ubication == null)
+            $user_ubication = new UserUbication;
+
+        $user_ubication['id_user'] = $id;
+        $user_ubication['id_ubication'] = $request['ubication'];
+        $user_ubication['descripcion'] = $request['descripcion'];
+
+        if($user_ubication['descripcion'] == null)
+            $user_ubication['descripcion'] = '';
+
+        $user_ubication->save();
+
+        return back();
     }
 }

@@ -8,6 +8,8 @@ class UserUbication extends Model
 {
 
     public $table = 'user_ubication';
+    public $timestamps = false;
+    protected $primaryKey = 'id_user';
 
     //one to one    //works
     public function user() {
