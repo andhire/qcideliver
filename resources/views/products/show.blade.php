@@ -27,6 +27,15 @@
           <div class="row">
             <h5>Cantidad: {{$product->amount}}</h5>
           </div>
+          <div class="row">
+            <h5>Vendedor: {{$product->user->name}}</h5>
+          </div>
+          <div class="row">
+            <h5>Ubicacion: {{$product->user->userUbication->ubication->nombre ?? 'No hay ubicacion'}}</h5>
+          </div>
+          <div class="row">
+            <h5>Telefono: {{$product->user->phone}}</h5>
+          </div>
         </div>
 
         @if(Auth::check() && Auth::user()['tipo'] == 0)

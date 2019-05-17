@@ -23,17 +23,17 @@ $categories = App\CategoryProduct::all();
 
         @foreach ($productos as $p)
         <div class="col-md-4">
-          <a href="{{ url('/product',[$p->slug]) }}">
-            <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm">
+            <a href="{{ url('/product',[$p->slug]) }}">
               <img src={{$p->image}} width="100%" height="200">
-              <div class="card-body">
-                <p class="card-text">
-                  {{$p->name}}<br>
-                  {{$p->type}} </p>
-                <div class="d-flex justify-content-between align-items-center">
-                </div>
-              </div>
+            </a>
+            <div class="card-body">
+              <p class="card-text">
+                {{$p->name}}<br>
+                {{$p->price}} <br>
+                {{$p->user->userUbication->ubication->nombre ?? 'No hay ubicacion'}} </p>
             </div>
+          </div>
         </div>
         @endforeach
 

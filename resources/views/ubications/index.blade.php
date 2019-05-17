@@ -14,10 +14,7 @@ index de Ubicaciones
           <img src={{$u->foto}} width="100%" height="200">
           <div class="card-body">
             <p class="card-text">
-              {{$u->nombre}}
-            <div class="d-flex justify-content-between align-items-center">
-
-            </div>
+              {{$u->nombre}}{{--  --}}
           </div>
         </div>
       </div>

@@ -8,9 +8,18 @@ use App\Ubication;
 use App\Users;
 use App\UserUbication;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class UbicationsController extends Controller
 {
+    public function __construct()
+    {
+        // Necesitamos obtener una instancia de la clase Client la cual tiene algunos métodos
+        // que serán necesarios.
+        $this->dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,14 +28,9 @@ class UbicationsController extends Controller
     public function index(Request $request)
     {
 
-        if (Auth::check() && Auth::user()['tipo'] == 0) {
+        $ubications = Ubication::paginate(9);
 
-            $ubications = Ubication::paginate(9);
-
-            return view('ubications.index', compact('ubications'));
-        }else {
-            return redirect('/');
-        }
+        return view('ubications.index', compact('ubications'));
     }
 
     /**
@@ -38,7 +42,7 @@ class UbicationsController extends Controller
     {
         if (Auth::check() && Auth::user()['tipo'] == 0) {
             return view('ubications.create');
-        }else {
+        } else {
             return redirect('/');
         }
     }
@@ -50,9 +54,22 @@ class UbicationsController extends Controller
      */
     public function store(Request $request)
     {
+        $name = $request['nombre'] .Carbon::now(). ".jpg";
+        Storage::disk('dropbox')->putFileAs(
+            '/',
+            $request['foto'],
+            $name
+        );
+        $response = $this->dropbox->createSharedLinkWithSettings(
+            $name,
+            ["requested_visibility" => "public"]
+        );
+
+        $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);   
+
         $ubication = new Ubication;
         $ubication->nombre = $request['nombre'];
-        // $ubication->foto = $url;
+        $ubication->foto = $url;
 
         $ubication->save();
 

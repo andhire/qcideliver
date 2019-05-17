@@ -19,6 +19,8 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -55,9 +57,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
+        {{-- <li class="nav-item active">
           <a class="nav-link" href="/">Inicio</a>
-        </li>
+        </li> --}}
         @if (Auth::check())
         <li class="nav-item active">
           <a class="nav-link" href="/home">Home</a>
@@ -67,15 +69,15 @@
           <a class="nav-link" href="/user">Usuarios</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/ubication">Ubicaciones</a>
-        </li>
-        <li class="nav-item active">
           <a class="nav-link" href="/category">Categorias</a>
         </li>
         @endif
         @endif
         <li class="nav-item">
           <a class="nav-link" href="/product">Productos</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/ubication">Ubicaciones</a>
         </li>
         <li class="nav-item donate">
           <a href="/donate">
@@ -98,6 +100,7 @@
     @endif
 
     @yield('content')
+
   </main>
 
   <!-- Footer -->
@@ -127,12 +130,5 @@
 
 </body>
 
-<script>
-  // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
-      var fileName = $(this).val().split("\\").pop();
-      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
-</script>
 
 </html>

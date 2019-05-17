@@ -29,7 +29,7 @@ $ubicacion = $data[3];
           @else
           <option value="{{$u->id}}"> {{$u->nombre}}</option>
           @endif
-          
+
           @endforeach
 
         </select>
@@ -55,19 +55,20 @@ $ubicacion = $data[3];
 
         @foreach ($productosAprobados as $p)
         <div class="col-md-4">
-          <a href="{{ url('/product',[$p->slug]) }}">
-            <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm">
+            <a href="{{ url('/product',[$p->slug]) }}">
               <img src={{$p->image}} width="100%" height="200">
-              <div class="card-body">
-                <p class="card-text" style="color: black">
+            </a>
+            <div class="card-body">
+              <p class="card-text">
 
-                  {{$p->name}}<br>
-                  $ {{$p->price}} <br>
-                  Cantidad:{{$p->amount}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                </div>
+                {{$p->name}}<br>
+                $ {{$p->price}} <br>
+                Cantidad:{{$p->amount}}</p>
+              <div class="d-flex justify-content-between align-items-center">
               </div>
             </div>
+          </div>
           </a>
         </div>
         @endforeach
@@ -83,18 +84,19 @@ $ubicacion = $data[3];
 
         @foreach ($productosNoAprobados as $p)
         <div class="col-md-4">
-          <a href="{{ url('/product',[$p->slug]) }}">
-            <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm">
+            <a href="{{ url('/product',[$p->slug]) }}">
               <img src={{$p->image}} width="100%" height="200">
-              <div class="card-body">
-                <p class="card-text">
-                  {{$p->name}}<br>
-                  $ {{$p->price}} <br>
-                  Cantidad:{{$p->amount}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                </div>
+            </a>
+            <div class="card-body">
+              <p class="card-text">
+                {{$p->name}}<br>
+                $ {{$p->price}} <br>
+                Cantidad:{{$p->amount}}</p>
+              <div class="d-flex justify-content-between align-items-center">
               </div>
             </div>
+          </div>
           </a>
         </div>
         @endforeach

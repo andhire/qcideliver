@@ -29,5 +29,9 @@ class Products extends Model
     public function category() {
         return $this->belongsTo('App\CategoryProduct', 'id_category');
     }
+
+    public function user() {
+        return $this->belongsTo('App\Users', 'id_user');
+    }
 }
 

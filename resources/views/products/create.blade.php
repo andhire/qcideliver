@@ -15,6 +15,7 @@ $categorias = App\CategoryProduct::all();
           <div class="card-header">Registrar Producto</div>
           <div class="card-body">
             @csrf @method('POST')
+            
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
