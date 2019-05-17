@@ -18,13 +18,13 @@ index de categorias, solo para ver las categorias creadas
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
           {{-- <img src={{$u->foto}} width="100%" height="200"> --}}
-          <div class="card-body">
-            <p class="card-text">
-              {{$c->name}}
-              <div class="d-flex justify-content-between align-items-center">
-
-              </div>
-          </div>
+          <a href={{"product/categoria/".$c->name}}>
+            <div class="card-body">
+              <p class="card-text">
+                {{$c->name}}
+              </p>
+            </div>
+          </a>
         </div>
       </div>
       @endforeach

@@ -275,7 +275,7 @@ class UsersController extends Controller
                 array_push($data, $productosAprobados);
                 $productosNoAprobados = Products::where('id_user', $user->id)->where('aprobado', false)->get();
                 array_push($data, $productosNoAprobados);
-                $ubicacion =(int) ($user->userUbication['id_ubication']);
+                $ubicacion = (int)($user->userUbication['id_ubication']);
                 array_push($data, $ubicacion);
             }
         }
@@ -292,22 +292,28 @@ class UsersController extends Controller
         }
     }
 
-    public function setubication(Request $request, $id)
+    public function setubication(Request $request, $id_user)
     {
-        $user_ubication = UserUbication::where('id_user', $id)->first();
+        $user_ubication = UserUbication::where('id_user', $id_user)->first();
 
-        if($user_ubication == null)
-            $user_ubication = new UserUbication;
+        if ($request['ubication'] == 0 && $user_ubication != null) {// Eligio sin ubicacion
+            $user_ubication->delete();
 
-        $user_ubication['id_user'] = $id;
-        $user_ubication['id_ubication'] = $request['ubication'];
-        $user_ubication['descripcion'] = $request['descripcion'];
+        } else {
+            if ($user_ubication == null) // Si no tenia ubicacion
+                $user_ubication = new UserUbication;
 
-        if($user_ubication['descripcion'] == null)
-            $user_ubication['descripcion'] = '';
+            $user_ubication['id_user'] = $id_user;
+            $user_ubication['id_ubication'] = $request['ubication'];
+            $user_ubication['descripcion'] = $request['descripcion'];
 
-        $user_ubication->save();
+            if ($user_ubication['descripcion'] == null)
+                $user_ubication['descripcion'] = '';
+
+            $user_ubication->save();
+        }
 
         return back();
     }
+
 }

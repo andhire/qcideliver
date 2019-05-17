@@ -4,14 +4,24 @@
 
 @php
 $categories = App\CategoryProduct::all();
+$ubicactions = App\Ubication::all();
 @endphp
 
 <div class="sidenav">
-  <p style="color: white; text-align:center;">Filtros</p>
+  <div style="color: white; text-align:center;">Categorias</div>
 
   @foreach ($categories as $category)
-  <a href="/product/filtro/{{$category->slug}}" class='button'>{{ $category->name }}</a>
+  <a href="/product/categoria/{{$category->slug}}" class='button'>{{ $category->name }}</a>
   @endforeach
+
+  <br>
+
+  <div style="color: white; text-align:center;">Ubicaciones</div>
+
+  @foreach ($ubicactions as $ubication)
+  <a href="/product/ubicacion/{{$ubication->id}}" class='button'>{{ $ubication->nombre }}</a>
+  @endforeach
+
 </div>
 
 

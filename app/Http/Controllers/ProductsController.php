@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use App\CategoryProduct;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Ubication;
 
 class ProductsController extends Controller
 {
@@ -212,9 +213,22 @@ class ProductsController extends Controller
 
         return back();
     }
-    public function filtro($slug)
+
+    public function filtroCategoria($slug)
     {
         $productos = CategoryProduct::where('slug', $slug)->get()[0]->products()->where('aprobado', 1)->get();
+        return view('products.index', compact('productos'));
+    }
+
+    public function filtroUbicacion($id)
+    {
+        $productos = array();
+        $usersInUbication = Ubication::where('id', $id)->first()->userUbications;
+        foreach ($usersInUbication as $userUbication) {
+            foreach ($userUbication->user->products as $product) {
+                array_push($productos, $product);
+            }
+        }
         return view('products.index', compact('productos'));
     }
 }

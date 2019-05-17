@@ -22,6 +22,8 @@ $ubicacion = $data[3];
       <div class="col-md-2">
         <select class="form-control" name="ubication">
 
+          <option selected value="0">Sin ubicacion</option>
+
           @foreach (App\Ubication::all() as $u)
 
           @if($loop->iteration == $ubicacion)
