@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Oops!')
 @section('content')
 
 <div class="text-center" style="margin-top:15%">

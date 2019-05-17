@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>QciDeliver - @yield('title')</title>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +21,7 @@
 
 </head>
 
-<body style="min-height: 100vh; position: relative; margin: 0; padding-bottom: 75px;">
+<body>
 
   {{-- NAVBAR --}}
 
@@ -77,9 +77,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/product">Productos</a>
         </li>
-        <li class="nav-item" style="margin-top: auto; margin-bottom: auto;">
+        <li class="nav-item donate">
           <a href="/donate">
-            <button type="button" class="btn btn-outline-primary btn-sm" style="margin-right: 5px">
+            <button type="button" class="btn btn-outline-primary btn-sm btn-donate">
               Donar
             </button>
           </a>
@@ -101,26 +101,26 @@
   </main>
 
   <!-- Footer -->
-  <footer class="navbar" style="position: absolute; bottom: 0; width: 100%; text-align: center">
+  <footer class="navbar">
 
     <!-- Social -->
-    <div class="" style="margin: auto">
-      <a class="fb-ic">
+    <div class="social">
+      <a class="fb-ic" href="https://www.facebook.com/qcideliver">
         <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
       </a>
 
-      <a class="tw-ic">
+      <a class="tw-ic" href="https://twitter.com/QciDeliver">
         <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
       </a>
 
-      <a class="ins-ic">
+      <a class="ins-ic" href="https://www.instagram.com/qcideliver/">
         <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
       </a>
     </div>
 
-    <div class="" style="margin: auto">
+    <div class="copyright">
       2019 Copyright:
-      <a href="/#">QciDeliver</a>
+      <a href="/">QciDeliver</a>
     </div>
 
   </footer>

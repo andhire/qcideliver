@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Donación')
 @section('content')
 <!-- Banner -->
 <div class="jumbotron jumbotron-fluid bg-success text-white text-center">

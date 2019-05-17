@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Crear Categoría')
 @section('content')
 Pagina para crear categorias
 Solo para admin

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Perfil: {{$user->nombre}}')
 @section('content')
 
 @php

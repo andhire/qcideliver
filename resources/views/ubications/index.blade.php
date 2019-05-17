@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Ubicaciones')
 @section('content')
 
 index de Ubicaciones

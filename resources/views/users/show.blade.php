@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', '{{$user->nombre}}')
 @section('content')
 
 <div class="container mt-5">
