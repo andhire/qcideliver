@@ -36,7 +36,11 @@ class UbicationsController extends Controller
      */
     public function create()
     {
-        return view('ubications.create');
+        if (Auth::check() && Auth::user()['tipo'] == 0) {
+            return view('ubications.create');
+        }else {
+            return redirect('/');
+        }
     }
 
     /**

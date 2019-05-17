@@ -23,7 +23,11 @@ class CategoryProductController extends Controller
     //
     public function create()
     {
-        return view('categorys.create');
+        if (Auth::check() && Auth::user()['tipo'] == 0) {
+            return view('categorys.create');
+        }else {
+            return redirect('/');
+        }
     }
 
     public function store(Request $request)
