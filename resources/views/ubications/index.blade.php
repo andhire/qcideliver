@@ -24,11 +24,13 @@ index de Ubicaciones
   </div>
 </div>
 
+@if (Auth::check() && Auth::user()['tipo'] == 0)
 <a href="/ubication/create">
   <button type="button" class="btn btn-primary btn-sm">
     Crear Ubicacion
   </button>
 </a>
+@endif
 
 <footer class="pagination justify-content-center " style="margin-top:15%">
   {{ $ubications->links() }}

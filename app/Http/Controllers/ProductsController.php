@@ -55,7 +55,7 @@ class ProductsController extends Controller
         //
         if (Auth::check() && Auth::user()['tipo'] == 1 &&  Auth::user()['estado'] == 1) {
             return view('products.create');
-        }else {
+        } else {
             return redirect('/');
         }
     }
@@ -73,8 +73,8 @@ class ProductsController extends Controller
         // ¡No olvides validar todos estos datos antes de guardar el archivo!
         $product = new Products;
         $product->slug = $request['name'];
-        
-        $slug = $product->slug .Carbon::now(). ".jpg";
+
+        $slug = $product->slug . Carbon::now() . ".jpg";
         Storage::disk('dropbox')->putFileAs(
             '/',
             $request['foto'],
@@ -89,10 +89,10 @@ class ProductsController extends Controller
         );
 
         $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
-       
+
         $product->name = $request['name'];
         $product->id_category = $request['type'];
-        
+
         $product->image = $url;
         $product->id_user = $request['id'];
         $product->price = $request['price'];
@@ -136,7 +136,6 @@ class ProductsController extends Controller
         }
 
         return view('products.edit', compact('product'));
-
     }
 
     /**
@@ -151,7 +150,7 @@ class ProductsController extends Controller
         //
         // ¡No olvides validar todos estos datos antes de guardar el archivo!
         $product =  Products::where('id', $id)->first();
-        $slug = $product->slug .Carbon::now(). ".jpg";
+        $slug = $product->slug . Carbon::now() . ".jpg";
         Storage::disk('dropbox')->putFileAs(
             '/',
             $request['foto'],
@@ -177,8 +176,6 @@ class ProductsController extends Controller
         $product->save();
 
         return redirect('/home')->with('message', 'Edición exitosa!');
-
-
     }
 
     /**
@@ -226,7 +223,9 @@ class ProductsController extends Controller
         $usersInUbication = Ubication::where('id', $id)->first()->userUbications;
         foreach ($usersInUbication as $userUbication) {
             foreach ($userUbication->user->products as $product) {
-                array_push($productos, $product);
+                if ($product->aprobado) {
+                    array_push($productos, $product);
+                }
             }
         }
         return view('products.index', compact('productos'));
