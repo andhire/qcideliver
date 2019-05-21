@@ -1,7 +1,3 @@
-@extends('layouts.app')
-@section('title', 'Perfil: {{$user->nombre}}')
-@section('content')
-
 @php
 $user = $data[0];
 $productosAprobados = $data[1];
@@ -9,9 +5,10 @@ $productosNoAprobados = $data[2];
 $ubicacion = $data[3];
 @endphp
 
-{{-- <div class="container">
-  <img src="{{$user->foto}}" class="img-thumbnail" style="width: 100px;" />
-</div> --}}
+@extends('layouts.app')
+@section('title', ($user->name))
+@section('content')
+
 
 @if($user->estado == 0)
 En espera de aprobacion por un administrador
