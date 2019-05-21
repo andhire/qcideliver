@@ -197,6 +197,10 @@ class UsersController extends Controller
 
     public function showHome()
     {
+        if(!Auth::check()) {
+            return redirect('/login');
+        }
+
         $user = Auth::user();
         $data = array();
         array_push($data, $user);
