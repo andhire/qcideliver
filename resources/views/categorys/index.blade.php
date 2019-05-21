@@ -2,12 +2,6 @@
 @section('title', 'Categorías')
 @section('content')
 
-@if (session('message'))
-<div class="alert alert-success">
-  {{ session('message') }}
-</div>
-@endif
-
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">

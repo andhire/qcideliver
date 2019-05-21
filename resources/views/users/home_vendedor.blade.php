@@ -65,6 +65,18 @@ En espera de aprobacion por un administrador
                 $ {{$p->price}} <br>
                 Cantidad:{{$p->amount}}</p>
               <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div style="margin: 5px;">
+                    <a href="{{ url('/product/'.$p->slug.'/edit') }}"><button type="button"
+                        class="btn btn-warning">Editar</button>
+                  </div>
+                  <div style="margin: 5px;">
+                    <form action="{{ route('product.destroy', $p->slug) }}" method="POST">
+                      @csrf @method('DELETE')
+                      <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -91,8 +103,20 @@ En espera de aprobacion por un administrador
               <p class="card-text">
                 {{$p->name}}<br>
                 $ {{$p->price}} <br>
-                Cantidad:{{$p->amount}}</p>
+                Cantidad: {{$p->amount}}</p>
               <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div style="margin: 5px;">
+                    <a href="{{ url('/product/'.$p->slug.'/edit') }}"><button type="button"
+                        class="btn btn-warning">Editar</button>
+                  </div>
+                  <div style="margin: 5px;">
+                    <form action="{{ route('product.destroy', $p->slug) }}" method="POST">
+                      @csrf @method('DELETE')
+                      <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

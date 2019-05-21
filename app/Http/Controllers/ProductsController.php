@@ -172,6 +172,8 @@ class ProductsController extends Controller
         $product->price = $request['price'];
         $product->amount = $request['amount'];
 
+        $product->aprobado = false;
+
 
         $product->save();
 
@@ -199,7 +201,7 @@ class ProductsController extends Controller
         $product['aprobado'] = true;
         $product->save();
 
-        return back();
+        return back()->with('message', 'producto aprobado!');
     }
 
     public function bloquear(Request $request, $id)
@@ -208,7 +210,7 @@ class ProductsController extends Controller
         $product['aprobado'] = null;
         $product->save();
 
-        return back();
+        return back()->with('message', 'producto bloqueado!');
     }
 
     public function filtroCategoria($slug)

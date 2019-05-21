@@ -31,16 +31,10 @@
       @if(Auth::check() && Auth::user()['tipo'] == 0)
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-          <div style="margin: 5px;">
-            <a href="{{ url('/product/'.$product->slug.'/edit') }}"><button type="button"
-                class="btn btn-warning">Editar</button>
-          </div>
-          <div style="margin: 5px;">
-            <form action="{{ route('product.destroy', $product->slug) }}" method="POST">
-              @csrf @method('DELETE')
-              <button type="submit" class="btn btn-danger">Borrar</button>
+            <form action="{{ url('/product/'.$product->id.'/bloquear')}}" method="POST">
+              @csrf @method('POST')
+              <button type="submit" class="btn btn-sm btn-danger">Bloquear</button>
             </form>
-          </div>
         </div>
       </div>
       @endif
