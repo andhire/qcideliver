@@ -19,16 +19,6 @@ use App\UserUbication;
 
 class UsersController extends Controller
 {
-    function returnProducts($id = null)
-    {
-        if ($id != null) {
-            $productosReales = DB::table('products')->where('id_user', '=', $id)->get();
-        } else {
-            $productosReales = DB::table('products')->get();
-        }
-
-        return $productosReales;
-    }
     /**
      * Display a listing of the resource.
      *
