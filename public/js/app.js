@@ -49031,7 +49031,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 var app = new Vue({
   el: '#app'
-}); // Add the following code if you want the name of the file appear on select
+}); // Codigo para que aparezca el nombre del archivo en input file
 
 $(".custom-file-input").on("change", function () {
   var fileName = $(this).val().split("\\").pop();
@@ -49178,15 +49178,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/sidebar.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/sidebar.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*******************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/sidebar.scss ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/edmundo/Documents/Escuela/Programacion_Web/qcideliver/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/edmundo/Documents/Escuela/Programacion_Web/qcideliver/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/edmundo/Documents/Escuela/Programacion_Web/qcideliver/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/edmundo/Documents/Escuela/Programacion_Web/qcideliver/resources/sass/sidebar.scss */"./resources/sass/sidebar.scss");
 
 
 /***/ })

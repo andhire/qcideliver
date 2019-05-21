@@ -13,7 +13,9 @@ $ubicacion = $data[3];
   <img src="{{$user->foto}}" class="img-thumbnail" style="width: 100px;" />
 </div> --}}
 
-@if($user->estado == 1)
+@if($user->estado == 0)
+En espera de aprobacion por un administrador
+@else
 <div class="card-body">
   <form method="POST" action={{'/user/'.$user->id.'/ubicacion'}}>
     @csrf
@@ -46,8 +48,6 @@ $ubicacion = $data[3];
 </div>
 
 <a href="{{ route('product.create') }}" class="btn btn-primary">Agregar Producto </a>
-
-@endif
 
 <div class="">
   Aprobados
@@ -108,5 +108,6 @@ $ubicacion = $data[3];
   </div>
 
 </div>
+@endif
 
 @endsection

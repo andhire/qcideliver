@@ -250,7 +250,7 @@ class UsersController extends Controller
             $user_ubication->save();
         }
 
-        return back();
+        return back()->with('message', 'Ubicacion actualizada!');
     }
 
 }
