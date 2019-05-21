@@ -64,7 +64,6 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'foto' => ['required'],
             'tipo' => ['required'],
-            'usuario' => ['required', 'string','max:255' ],
             'apellidoM' => ['required', 'string', 'max:255'],
             'apellidoP' => ['required', 'string','max:255' ],
             'phone' => ['required', 'string', 'max:255']
@@ -98,7 +97,6 @@ class RegisterController extends Controller
 
         $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
 
-        $estado;
         if ($data['tipo'] == 2 || $data['tipo'] == 0) { // es admin o comprador
             $estado = true; //activo
         } else if ($data['tipo'] == 1) { // es vendedor
@@ -113,7 +111,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'foto' => $url,
             'tipo' => $data['tipo'],
-            'usuario' => $data['usuario'],
             'apellidoM' => $data['apellidoM'],
             'apellidoP' => $data['apellidoP'],
             'phone' => $data['phone'],

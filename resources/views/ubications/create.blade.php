@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Agregar Ubicacion')
 @section('content')
-Pagina para crear ubicaciones
 
 <div class="container">
   <div class="row justify-content-center">

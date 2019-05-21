@@ -2,8 +2,6 @@
 @section('title', 'Ubicaciones')
 @section('content')
 
-index de Ubicaciones
-
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">

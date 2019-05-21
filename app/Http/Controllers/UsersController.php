@@ -65,65 +65,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    /* public function store(Request $request)
-    {
-        Storage::disk('dropbox')->putFileAs(
-            '/',
-            $request->file('file'),
-            $request->file('file')
-
-        );
-        //Storage::move('old/file.jpg', 'new/file.jpg');
-        // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
-        // definida en el constructor de la clase y almacenamos la respuesta.
-        $response = $this->dropbox->createSharedLinkWithSettings(
-            $request->file('file')->getClientOriginalName(),
-            ["requested_visibility" => "public"]
-        );
-
-        $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
-
-        $validatedData = $request->validate([
-            'nombre' => 'required|max:255',
-            'apellidoP' => 'required|max:255',
-            'apellidoM' => 'required|max:255',
-            'usuario' => 'required|max:255',
-            'password' => 'required|max:255',
-        ]);
-
-        $user = new Users;
-        $user->nombre = $request['nombre'];
-        $user->apellidoP = $request['apellidoP'];
-        $user->apellidoM = $request['apellidoM'];
-        $user->tipo = $request['tipo'];
-        $user->foto = $url;
-        $user->usuario = $request['usuario'];
-        $pass = $request['password'];
-        $pass = hash('sha256', $pass);
-        $user->password = $pass;
-
-        $user->mail = $request['mail'];
-        $user->phone = $request['phone'];
-
-        if ($request['tipo'] == 2 || $request['tipo'] == 0) { // es admin o comprador
-            $user->estado = true; //activo
-        } else if ($request['tipo'] == 1) { // es vendedor
-            $user->estado = false; //inactivo
-        } else { //alguna otra madre no contemplada
-            $user->estado = null;
-        }
-
-        $user->save();
-
-        return redirect('/user')->with('message', 'Usuario creado!');
-    } */
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $slug
@@ -176,10 +117,6 @@ class UsersController extends Controller
         $user->tipo = $request['tipo'];
         $user->estado = $request['estado'];
         $user->foto = $request['foto'];
-        $user->usuario = $request['usuario'];
-        /* $pass = $request['password'];
-        $pass = hash('sha256', $pass);
-        $user->password = $pass; */
         $user->email = $request['email'];
         $user->phone = $request['phone'];
 

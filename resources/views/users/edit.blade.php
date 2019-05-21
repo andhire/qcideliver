@@ -30,13 +30,6 @@
             </div>
 
             <div class="form-group row">
-              <label for="usuario" class="col-md-4 col-form-label text-md-right">Usuario</label>
-              <div class="col-md-6">
-                <input value="{{$user->usuario}}" type="text" class="form-control" name="usuario">
-              </div>
-            </div>
-
-            <div class="form-group row">
               <label for="mail" class="col-md-4 col-form-label text-md-right">Correo</label>
               <div class="col-md-6">
                 <input value="{{$user->email}}" type="text" class="form-control" name="email">

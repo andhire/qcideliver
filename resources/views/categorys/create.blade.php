@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Crear Categoría')
 @section('content')
-Pagina para crear categorias
-Solo para admin
 
 <div class="container">
   <div class="row justify-content-center">

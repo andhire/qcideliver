@@ -15,21 +15,27 @@ $categorias = App\CategoryProduct::all();
           <div class="card-header">Registrar Producto</div>
           <div class="card-body">
             @csrf @method('POST')
-            
+
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="name">
+                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                  name="name" value="{{ old('name') }}" required>
+
+                @if ($errors->has('name'))
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="tipo" class="col-md-4 col-form-label text-md-right">Categoria</label>
               <div class="col-md-6">
-                <select class="form-control" name="type">
-
+                <select class="form-control" name="type" aria-required="true" required>
+                  <option value="">Elije opcion</option>
                   @foreach ($categorias as $nombre)
-
                   <option value="{{$nombre->id}}"> {{$nombre->name}}</option>
                   @endforeach
 
@@ -63,13 +69,13 @@ $categorias = App\CategoryProduct::all();
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Precio</label>
               <div class="col-md-6">
-                <input type="number" min="0.00" max="100000.00" step="0.1" class="form-control" name="price">
+                <input type="number" min="0.00" max="100000.00" step="0.1" class="form-control" name="price" required>
               </div>
             </div>
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Cantidad</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="amount">
+                <input type="number" class="form-control" name="amount" min="1" step="1" required>
               </div>
             </div>
             <div class="form-group row">
@@ -79,18 +85,18 @@ $categorias = App\CategoryProduct::all();
             </div>
 
             <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary">
-                    Registrar Producto!
-                  </button>
-                </div>
+              <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                  Registrar Producto!
+                </button>
               </div>
             </div>
-
           </div>
+
         </div>
-      </form>
     </div>
+    </form>
   </div>
+</div>
 </div>
 @endsection

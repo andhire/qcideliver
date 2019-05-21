@@ -36,6 +36,6 @@ class Users extends Authenticatable
         return $this->hasMany('App\Products', 'id_user');
     }
 
-    protected $fillable = ['name','apellidoP','apellidoM', 'tipo','estado','foto','usuario', 'password','email','phone','slug'];
+    protected $fillable = ['name','apellidoP','apellidoM', 'tipo','estado','foto', 'password','email','phone','slug'];
     
 }
