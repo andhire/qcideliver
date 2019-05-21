@@ -2,45 +2,45 @@
 @section('title', 'Usuarios')
 @section('content')
 
-<div class="jumbotron">
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
 
-  <div class="card-columns text-center">
-    @foreach ($users as $user)
+      @foreach ($users as $user)
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <a href="{{ url('/user',[$user->slug]) }}">
 
+            <img class="card-img-top" src="{{$user->foto}}" height="268" ,width="180px" alt="Card image cap">
 
-    <a href="{{ url('/user',[$user->slug]) }}">
-      <div class="card text-center" style="width: 18rem;" action="/user/">
-        <img class="card-img-top" src="{{$user->foto}}" height="268" ,width="180px" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{$user->nombre}} {{$user->apellidoP}} {{$user->apellidoM}}</h5>
-
-
-
-
-          <div class="row">
-            <div class="col col-lg-5">
-              @if($user->estado==1)
-              <img src="{{asset('img/online.png')}}" height="16px" ,width="16px" /> @else
-              <img src="{{asset('img/offline.png')}}" height="16px" ,width="16px" /> @endif
+            <div class="card-body">
+              <h5 class="card-title">
+                {{$user->name}} {{$user->apellidoP}} {{$user->apellidoM}}
+              </h5>
+              <p class="card-text">
+                @if($user->tipo==0)
+                Admin
+                @elseif($user->tipo==1)
+                Vendedor
+                @else
+                Comprador
+                @endif
+                @if($user->estado==1)
+                <img src="{{asset('img/online.png')}}" height="16px" ,width="16px" />
+                @else
+                <img src="{{asset('img/offline.png')}}" height="16px" ,width="16px" />
+                @endif
+              </p>
             </div>
-            <div class="col-md-auto">
-              @if($user->tipo==1)
-              <p class="card-text">Vendedor</p>
-              @else
-              <p class="card-text">Comprador</p>
-              @endif
-            </div>
-
-          </div>
-
-
+          </a>
         </div>
       </div>
-    </a>
-    @endforeach
+
+      @endforeach
+    </div>
   </div>
 </div>
-</div>
+
 <footer class="pagination justify-content-center " style="margin-top:15%">
   {{ $users->links() }}
 </footer>

@@ -8,8 +8,6 @@
 </div>
 @endif
 
-index de categorias, solo para ver las categorias creadas
-
 <div class="album py-5 bg-light">
   <div class="container">
     <div class="row">
@@ -17,7 +15,6 @@ index de categorias, solo para ver las categorias creadas
       @foreach ($categorys as $c)
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-          {{-- <img src={{$u->foto}} width="100%" height="200"> --}}
           <a href={{"product/categoria/".$c->name}}>
             <div class="card-body">
               <p class="card-text">

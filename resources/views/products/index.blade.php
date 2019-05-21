@@ -28,17 +28,17 @@ $ubicactions = App\Ubication::all();
       @endforeach
     </ul>
 
-      <div class="sidebar-header">
-        <h4>Ubicaciones</h4>
-      </div>
+    <div class="sidebar-header">
+      <h4>Ubicaciones</h4>
+    </div>
 
-      <ul class="list-unstyled components">
-        @foreach ($ubicactions as $ubication)
-        <li>
-          <a href="/product/ubicacion/{{$ubication->id}}" class='button'>{{ $ubication->nombre }}</a>
-        </li>
-        @endforeach
-      </ul>
+    <ul class="list-unstyled components">
+      @foreach ($ubicactions as $ubication)
+      <li>
+        <a href="/product/ubicacion/{{$ubication->id}}" class='button'>{{ $ubication->nombre }}</a>
+      </li>
+      @endforeach
+    </ul>
   </nav>
 
   <!-- Page Content  -->
@@ -47,6 +47,7 @@ $ubicactions = App\Ubication::all();
       <i class="fas fa-align-left"></i>
       <span>Toggle Sidebar</span>
     </button>
+
     <div class="main">
 
       <div class="album py-5 bg-light">
@@ -55,17 +56,22 @@ $ubicactions = App\Ubication::all();
 
             @foreach ($productos as $p)
             <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <a href="{{ url('/product',[$p->slug]) }}">
+              <a href="{{ url('/product',[$p->slug]) }}">
+                <div class="card mb-4 shadow-sm">
+
                   <img src={{$p->image}} width="100%" height="200">
-                </a>
-                <div class="card-body">
-                  <p class="card-text">
-                    {{$p->name}}<br>
-                    {{$p->price}} <br>
-                    {{$p->user->userUbication->ubication->nombre ?? 'No hay ubicacion'}} </p>
+
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      {{$p->name}}
+                    </h5>
+                    <p class="card-text">
+                      {{$p->price}} <br>
+                      {{$p->user->userUbication->ubication->nombre ?? 'No hay ubicacion'}} </p>
+                  </div>
+
                 </div>
-              </div>
+              </a>
             </div>
             @endforeach
 

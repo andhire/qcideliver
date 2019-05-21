@@ -3,31 +3,37 @@ body {
     position: relative;
     margin: 0;
     padding-bottom: 75px;
-  }
-  
-  footer {
+}
+
+footer {
     position: absolute !important;
     bottom: 0;
     width: 100%;
     text-align: center;
-  }
-  
-  a {
+}
+
+a {
     text-decoration: none;
+
     &:hover {
-      text-decoration: none;
+        text-decoration: none;
     }
-  }
-  
-  .donate {
+}
+
+.donate {
     margin-top: auto;
     margin-bottom: auto;
-  }
-  
-  .btn-donate {
+}
+
+.btn-donate {
     margin-right: 5px;
-  }
-  
-  .social, .copyright {
+}
+
+.social,
+.copyright {
     margin: auto;
-  }
+}
+
+.card-body {
+    color: black;
+}
