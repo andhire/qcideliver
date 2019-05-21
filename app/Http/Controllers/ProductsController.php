@@ -26,10 +26,36 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $productos = Products::where('aprobado', 1)->get();
+        $categoria = $request->categoria;
+        $slugUbicacion = $request->ubicacion;
+
+        if ($slugUbicacion != null) {
+            $productos = array();
+            $ubication = Ubication::where('slug', $slugUbicacion)->first();
+            if ($ubication != null) {
+                $usersInUbication = $ubication->userUbications;
+                foreach ($usersInUbication as $userUbication) {
+                    foreach ($userUbication->user->products as $product) {
+                        if ($product->aprobado) {
+                            if ($categoria == null) {
+                                array_push($productos, $product);
+                            } else {
+                                if ($product->category->slug == $categoria) {
+                                    array_push($productos, $product);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if ($categoria != null) {
+            $productos = CategoryProduct::where('slug', $categoria)->get()[0]->products()->where('aprobado', 1)->get();
+        } else {
+            $productos = Products::where('aprobado', 1)->get();
+        }
 
 
         return view('products.index', compact('productos'));
