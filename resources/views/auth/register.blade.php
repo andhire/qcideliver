@@ -138,7 +138,7 @@
                   </span>
                   @endif
 
-                  <label class="custom-file-label" for="foto">Choose file</label>
+                  <label class="custom-file-label" for="foto">Selecciona un archivo</label>
 
                 </div>
               </div>
@@ -146,8 +146,8 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                  {{ 'Registrarme!' }}
+                <button type="submit" class="btn btn-primary btn-block">
+                  {{ 'Completar registro' }}
                 </button>
               </div>
             </div>

@@ -109,7 +109,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/edmundo/Documents/Escuela/Programacion_Web/qcideliver/resources/js/sidebar.js */"./resources/js/sidebar.js");
+module.exports = __webpack_require__(/*! C:\Users\rrios\Documents\Laravel\qcideliver\resources\js\sidebar.js */"./resources/js/sidebar.js");
 
 
 /***/ })

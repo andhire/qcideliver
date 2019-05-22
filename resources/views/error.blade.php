@@ -4,7 +4,7 @@
 
 <div class="text-center" style="margin-top:15%">
   <img src="{{asset('img/error.png')}}" alt="..." class=" center-block " />
-  <h3>Oops!! Ocurrio algo D:</h3>
+  <h3>Oops! Algo salió mal.</h3>
 </div>
 
 @endsection

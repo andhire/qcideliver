@@ -55,7 +55,7 @@
             'required', 'min' => '1'])
             !!}
 
-            <button class="btn btn-primary db btn-block">Pagar</button>
+            <button class="btn btn-primary db btn-block" id="donation-btn">Pagar</button>
             {!! Form::close() !!}
 
           </div>

@@ -28,7 +28,7 @@
                     class="custom-file-input form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}" name="foto"
                     required accept="image/*">
 
-                  <label class="custom-file-label" for="foto">Choose file</label>
+                  <label class="custom-file-label" for="foto">Seleccionar archivo</label>
 
                   @if ($errors->has('foto'))
                   <span class="invalid-feedback" role="alert">
@@ -41,8 +41,8 @@
             </div>
 
             <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-primary" id="botonEnviar">
-                Registrar Ubicacion!
+              <button type="submit" class="btn btn-primary btn-block" id="botonEnviar">
+                {{ 'Registrar' }}
               </button>
             </div>
 

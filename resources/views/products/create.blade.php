@@ -86,8 +86,8 @@ $categorias = App\CategoryProduct::all();
 
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                  Registrar Producto!
+                <button type="submit" class="btn btn-primary btn-block">
+                  Registrar Producto
                 </button>
               </div>
             </div>

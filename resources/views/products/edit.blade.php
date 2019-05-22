@@ -51,15 +51,15 @@
                   </span>
                   @endif
 
-                  <label class="custom-file-label" for="foto">Choose file</label>
+                  <label class="custom-file-label" for="foto">Selecciona un archivo</label>
 
                 </div>
               </div>
             </div>
             
             <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-primary" id="botonEnviar">
-                Editar!
+              <button type="submit" class="btn btn-primary btn-block" id="botonEnviar">
+                Editar
               </button>
             </div>
           </div>
