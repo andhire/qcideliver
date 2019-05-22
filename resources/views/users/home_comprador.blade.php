@@ -13,5 +13,7 @@ $user = $data[0];
 </div>
 
 Mostrar informacion del Usuario (Pagina personal)
+<br>
+<a href="user/{{$user->slug}}/edit" class="btn btn-primary">Editar información de: {{$user->name}}</a>
 
 @endsection

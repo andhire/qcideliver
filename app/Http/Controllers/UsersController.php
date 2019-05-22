@@ -103,14 +103,31 @@ class UsersController extends Controller
      */
     public function update(Request $request, $slug)
     {
-
         $user = Users::where('slug', $slug)->first();
+        if ($request['foto'] != '') {
+            Storage::disk('dropbox')->putFileAs(
+                '/',
+                $request['foto'],
+                $slug
+            );
+            //Storage::move('old/file.jpg', 'new/file.jpg');
+            // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
+            // definida en el constructor de la clase y almacenamos la respuesta.
+            $response = $this->dropbox->createSharedLinkWithSettings(
+                $slug,
+                ["requested_visibility" => "public"]
+            );
+    
+            $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
+            $user->foto = $url;
+        }
+       
         $user->name = $request['name'];
         $user->apellidoP = $request['apellidoP'];
         $user->apellidoM = $request['apellidoM'];
         $user->tipo = $request['tipo'];
         $user->estado = $request['estado'];
-        $user->foto = $request['foto'];
+        
         $user->email = $request['email'];
         $user->phone = $request['phone'];
 

@@ -46,6 +46,8 @@ En espera de aprobacion por un administrador
 
 <a href="{{ route('product.create') }}" class="btn btn-primary">Agregar Producto </a>
 
+<a href="user/{{$user->slug}}/edit" class="btn btn-primary">Editar información de: {{$user->name}}</a>
+
 <div class="">
   Aprobados
   <div class="album py-5 bg-light" style="margin-top: 10px">
