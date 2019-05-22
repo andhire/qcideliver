@@ -38,16 +38,22 @@
 
 
             <div class="form-group row">
-              <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
+              <label for="foto" class="col-md-4 col-form-label text-md-right">Foto (opcional)</label>
               <div class="col-md-6">
-                <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}"
-                  name="foto" accept="image/*">
+                <div class="custom-file">
+                  <input id="foto" type="file"
+                    class="custom-file-input form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}" name="foto"
+                    accept="image/*">
 
-                @if ($errors->has('foto'))
-                <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('foto') }}</strong>
-                </span>
-                @endif
+                  @if ($errors->has('foto'))
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('foto') }}</strong>
+                  </span>
+                  @endif
+
+                  <label class="custom-file-label" for="foto">Choose file</label>
+
+                </div>
               </div>
             </div>
             

@@ -84,10 +84,14 @@ class UsersController extends Controller
         $user = Users::where('slug', $slug)->first();
 
         if (!$user) {
-            return view('error');
+            return redirect('/');
+        } else {
+            if (Auth::check() && Auth::user()->id == $user->id) {
+                return view('users.edit', compact('user'));
+            } else {
+                return redirect('/');
+            }
         }
-
-        return view('users.edit', compact('user'));
     }
 
     /**
@@ -187,7 +191,7 @@ class UsersController extends Controller
 
     public function showHome()
     {
-        if(!Auth::check()) {
+        if (!Auth::check()) {
             return redirect('/login');
         }
 
@@ -227,9 +231,8 @@ class UsersController extends Controller
     {
         $user_ubication = UserUbication::where('id_user', $id_user)->first();
 
-        if ($request['ubication'] == 0 && $user_ubication != null) {// Eligio sin ubicacion
+        if ($request['ubication'] == 0 && $user_ubication != null) { // Eligio sin ubicacion
             $user_ubication->delete();
-
         } else {
             if ($user_ubication == null) // Si no tenia ubicacion
                 $user_ubication = new UserUbication;
@@ -246,5 +249,4 @@ class UsersController extends Controller
 
         return back()->with('message', 'Ubicacion actualizada!');
     }
-
 }
