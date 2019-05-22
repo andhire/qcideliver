@@ -1,0 +1,8 @@
+//Any form with a container
+.container {
+    margin-top: 2%;
+}
+
+.custom-file-label::after {
+    content: "Explorar";
+}

@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/sidebar.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/global.scss', 'public/css')
-   .sass('resources/sass/sidebar.scss', 'public/css');
+   .sass('resources/sass/sidebar.scss', 'public/css')
+   .sass('resources/sass/misc.scss', 'public/css');

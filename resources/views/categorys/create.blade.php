@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Crear Categoría')
+@section('head')
+<link href="{{ asset('css/misc.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
+
 
 <div class="container">
   <div class="row justify-content-center">

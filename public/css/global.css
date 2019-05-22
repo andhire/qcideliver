@@ -38,10 +38,6 @@ a:hover {
   color: black;
 }
 
-.custom-file-label::after {
-  content: "Explorar";
-}
-
 #donation-btn {
   margin-top: 20px;
 }

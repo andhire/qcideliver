@@ -39,7 +39,6 @@
 
 
   <div class="row justify-content-center db-padding-btm db-attached">
-
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
       <div class="card">
         <div class="card-header">Donación</div>

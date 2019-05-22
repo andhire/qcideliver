@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Editar Producto')
+@section('head')
+<link href="{{ asset('css/misc.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 
 <div class="container content">

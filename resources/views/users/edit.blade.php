@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Editar Información')
+@section('head')
+<link href="{{ asset('css/misc.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 
 <div class="container content">
@@ -71,7 +75,7 @@
                   </span>
                   @endif
 
-                  <label class="custom-file-label" for="foto">Choose file</label>
+                  <label class="custom-file-label" for="foto">Selecciona archivo</label>
 
                 </div>
               </div>
@@ -79,8 +83,8 @@
 
             <input type="hidden" value="1" name="estado">
             <div class="col-md-6 offset-md-4">
-              <button type="submit" class="btn btn-primary" id="botonEnviar">
-                Editar!
+              <button type="submit" class="btn btn-primary btn-block" id="botonEnviar">
+                Editar
               </button>
             </div>
           </div>

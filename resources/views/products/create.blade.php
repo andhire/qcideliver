@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Agregar Producto')
+@section('head')
+<link href="{{ asset('css/misc.css') }}" rel="stylesheet">
+@endsection
 @section('content')
 
 @php
@@ -59,7 +62,7 @@ $categorias = App\CategoryProduct::all();
                   </span>
                   @endif
 
-                  <label class="custom-file-label" for="foto">Choose file</label>
+                  <label class="custom-file-label" for="foto">Seleccionar un archivo</label>
 
                 </div>
               </div>
