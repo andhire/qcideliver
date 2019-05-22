@@ -34,10 +34,10 @@ $categorias = App\CategoryProduct::all();
             </div>
 
             <div class="form-group row">
-              <label for="tipo" class="col-md-4 col-form-label text-md-right">Categoria</label>
+              <label for="tipo" class="col-md-4 col-form-label text-md-right">Categoría</label>
               <div class="col-md-6">
                 <select class="form-control" name="type" aria-required="true" required>
-                  <option value="">Elije opcion</option>
+                  <option value="">Selecciona una opción</option>
                   @foreach ($categorias as $nombre)
                   <option value="{{$nombre->id}}"> {{$nombre->name}}</option>
                   @endforeach
@@ -62,7 +62,7 @@ $categorias = App\CategoryProduct::all();
                   </span>
                   @endif
 
-                  <label class="custom-file-label" for="foto">Seleccionar un archivo</label>
+                  <label class="custom-file-label" for="foto">Selecciona un archivo</label>
 
                 </div>
               </div>

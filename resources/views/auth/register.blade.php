@@ -17,7 +17,7 @@
             @csrf
 
             <div class="form-group row">
-              <label for="email" class="col-md-4 col-form-label text-md-right">{{ 'Correo Electronico' }}</label>
+              <label for="email" class="col-md-4 col-form-label text-md-right">{{ 'Correo Electrónico' }}</label>
 
               <div class="col-md-6">
                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -78,7 +78,7 @@
             </div>
 
             <div class="form-group row">
-              <label for="phone" class="col-md-4 col-form-label text-md-right">Numero Telefonico</label>
+              <label for="phone" class="col-md-4 col-form-label text-md-right">Número Telefónico</label>
               <div class="col-md-6">
                 <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
                   name="phone" value="{{ old('phone') }}" required>
@@ -150,7 +150,7 @@
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary btn-block">
-                  {{ 'Completar registro' }}
+                  {{ 'Realizar Registro' }}
                 </button>
               </div>
             </div>

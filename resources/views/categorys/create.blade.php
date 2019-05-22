@@ -3,7 +3,6 @@
 @section('head')
 <link href="{{ asset('css/misc.css') }}" rel="stylesheet">
 @endsection
-
 @section('content')
 
 
@@ -11,7 +10,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">{{ __('Registrar Categoria') }}</div>
+        <div class="card-header">{{ __('Registrar Categoría') }}</div>
 
         <div class="card-body">
           <form method="POST" action="/category">
@@ -26,7 +25,7 @@
             </div>
             <div class="col-md-6 offset-md-4">
               <button type="submit" class="btn btn-primary" id="botonEnviar">
-                Registrar Categoria!
+                Registrar Categoría
               </button>
             </div>
 

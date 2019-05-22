@@ -21,20 +21,20 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
+              <label for="category" class="col-md-4 col-form-label text-md-right">Categoría</label>
               <div class="col-md-6">
                 <input value="{{$product->id_category}}" type="text" class="form-control" name="category">
               </div>
             </div>
             <div class="form-group row">
-              <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
+              <label for="price" class="col-md-4 col-form-label text-md-right">Precio</label>
               <div class="col-md-6">
                 <input value="{{$product->price}}" type="numeric" class="form-control" name="price">
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="amount" class="col-md-4 col-form-label text-md-right">Amount</label>
+              <label for="amount" class="col-md-4 col-form-label text-md-right">Cantidad</label>
               <div class="col-md-6">
                 <input value="{{$product->amount}}" type="text" class="form-control" name="amount">
               </div>

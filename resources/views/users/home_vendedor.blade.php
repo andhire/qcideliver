@@ -7,11 +7,26 @@ $ubicacion = $data[3];
 
 @extends('layouts.app')
 @section('title', ($user->name))
+@section('head')
+<link href="{{ asset('css/misc.css') }}" rel="stylesheet">
+@endsection
 @section('content')
 
 
 @if($user->estado == 0)
-En espera de aprobacion por un administrador
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Esperando Aprobación</div>
+        <div class="card-body">
+          <p>Tu registro como vendedor esta en proceso de aprobación.</p>
+          <br> 
+          <p>Uno de nuestros administradores se encargará de revisar esta solicitud en las próximas horas.</p>
+    </div>
+  </div>
+</div>
+
 @else
 <div class="card-body">
   <form method="POST" action={{'/user/'.$user->id.'/ubicacion'}}>
@@ -21,7 +36,7 @@ En espera de aprobacion por un administrador
       <div class="col-md-2">
         <select class="form-control" name="ubication">
 
-          <option selected value="0">Sin ubicacion</option>
+          <option selected value="0">Sin ubicación</option>
 
           @foreach (App\Ubication::all() as $u)
 
@@ -37,7 +52,7 @@ En espera de aprobacion por un administrador
       </div>
       <div class="col-md-4">
         <button type="submit" class="btn btn-primary btn-sm">
-          Actualizar ubicacion
+          Actualizar ubicación
         </button>
       </div>
     </div>

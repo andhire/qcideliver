@@ -26,16 +26,15 @@
     <div class="card">
       <img class="card-img-top img-fluid" src="{{asset('img/repartidor.jpg')}}">
       <div class="card-body bg-success text-white">
-        <h3 class="card-title">Entregas cómodas y rápidas</h3>
-        <p class="card-text">No te preocupes por tener que buscar al vendedor o trasladarte muy lejos. Con
-          QciDeliver podrás designar un punto de entrega que te sea comodo y accesible!</p>
+        <h3 class="card-title">Una conexión como nunca antes</h3>
+        <p class="card-text">QciDeliver te brinda una forma rápida e intuitiva de ubicar y contactar a los diferentes vendedores de CUCEI</p>
       </div>
     </div>
     <div class="card">
       <img class="card-img-top img-fluid" src="{{asset('img/dulces.jpg')}}">
       <div class="card-body bg-dark text-white">
         <h3 class="card-title">Tus favoritos están aquí</h3>
-        <p class="card-text">Nuestro catálogo esta en constante crecimiento, estamos seguros de que aquí podrás
+        <p class="card-text">Nuestro catálogo está en constante crecimiento, estamos seguros de que aquí podrás
           encontrar tus productos favoritos, desde un dulce hasta una compuerta lógica.</p>
       </div>
     </div>

@@ -26,7 +26,7 @@
 
 <a href="/category/create">
   <button type="button" class="btn btn-primary btn-sm">
-    Crear Categoria
+    Crear Categoría
   </button>
 </a>
 

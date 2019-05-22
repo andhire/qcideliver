@@ -49,7 +49,7 @@
             @endphp
             {!! Form::open(array('route' => 'getCheckout')) !!}
             {{-- {!! Form::hidden('pay',$amount) !!} --}}
-            {!! Form::label('donacion', 'Donacion') !!}
+            {!! Form::label('donacion', 'Donación') !!}
             {!! Form::number( 'pay', null, ['placeholder' => empty($amount) ? 'default value' : $amount,
             'required', 'min' => '1'])
             !!}

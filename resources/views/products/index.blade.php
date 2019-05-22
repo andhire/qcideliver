@@ -22,7 +22,7 @@ $ubicactions = App\Ubication::all();
 
     <ul class="list-unstyled components">
       <li class="active">
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categorias</a>
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categorías</a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
           @foreach ($categories as $category)
           <li>
@@ -72,7 +72,7 @@ $ubicactions = App\Ubication::all();
                     </h5>
                     <p class="card-text">
                       {{$p->price}} <br>
-                      {{$p->user->userUbication->ubication->nombre ?? 'No hay ubicacion'}} </p>
+                      {{$p->user->userUbication->ubication->nombre ?? 'No hay ubicación'}} </p>
                   </div>
 
                 </div>

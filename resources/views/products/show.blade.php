@@ -21,7 +21,7 @@
           <h5>Vendedor: {{$product->user->name}}</h5>
         </div>
         <div>
-          <h5>Ubicacion: {{$product->user->userUbication->ubication->nombre ?? 'No hay ubicacion'}}</h5>
+          <h5>Ubicacion: {{$product->user->userUbication->ubication->nombre ?? 'No hay ubicación'}}</h5>
         </div>
         <div>
           <h5>Telefono: {{$product->user->phone}}</h5>

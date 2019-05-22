@@ -42,14 +42,14 @@
     @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
     <a href="/login" class=" ml-auto mr-3 order-lg-last">
       <button class="btn btn-primary btn-sm">
-        Iniciar Sesion
+        Iniciar Sesión
       </button>
     </a>
     @else
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ml-auto mr-3 order-lg-last">
       @csrf
       <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
-        Cerrar Sesion
+        Cerrar Sesión
       </button>
     </form>
     @endif
@@ -70,7 +70,7 @@
           <a class="nav-link" href="/user">Usuarios</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/category">Categorias</a>
+          <a class="nav-link" href="/category">Categorías</a>
         </li>
         @endif
         @endif
