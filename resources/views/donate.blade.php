@@ -51,8 +51,8 @@
             {!! Form::open(array('route' => 'getCheckout')) !!}
             {{-- {!! Form::hidden('pay',$amount) !!} --}}
             {!! Form::label('donacion', 'Donacion') !!}
-            {!! Form::number('pay', null, ['placeholder' => empty($amount) ? 'default value' : $amount,
-            'required' ])
+            {!! Form::number( 'pay', null, ['placeholder' => empty($amount) ? 'default value' : $amount,
+            'required', 'min' => '1'])
             !!}
 
             <button class="btn btn-primary db btn-block">Pagar</button>

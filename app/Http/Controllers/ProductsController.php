@@ -177,29 +177,32 @@ class ProductsController extends Controller
         // ¡No olvides validar todos estos datos antes de guardar el archivo!
         $product =  Products::where('id', $id)->first();
         $slug = $product->slug . Carbon::now() . ".jpg";
-        Storage::disk('dropbox')->putFileAs(
-            '/',
-            $request['foto'],
-            $slug
-        );
-        //Storage::move('old/file.jpg', 'new/file.jpg');
-        // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
-        // definida en el constructor de la clase y almacenamos la respuesta.
-        $response = $this->dropbox->createSharedLinkWithSettings(
-            $slug,
-            ["requested_visibility" => "public"]
-        );
+        if ($request['foto'] != '') {
+            Storage::disk('dropbox')->putFileAs(
+                '/',
+                $request['foto'],
+                $slug
+            );
+            //Storage::move('old/file.jpg', 'new/file.jpg');
+            // Creamos el enlace publico en dropbox utilizando la propiedad dropbox
+            // definida en el constructor de la clase y almacenamos la respuesta.
+            $response = $this->dropbox->createSharedLinkWithSettings(
+                $slug,
+                ["requested_visibility" => "public"]
+            );
+    
+            $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
+            $product->image = $url;
 
-        $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
+        }
+        
         $product =  Products::where('id', $id)->first();
         $product->name = $request['name'];
         $product->id_category = $request['category'];
-        $product->image = $url;
         $product->price = $request['price'];
         $product->amount = $request['amount'];
-
+        
         $product->aprobado = false;
-
 
         $product->save();
 

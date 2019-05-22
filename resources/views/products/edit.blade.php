@@ -41,7 +41,7 @@
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Foto</label>
               <div class="col-md-6">
                 <input id="foto" type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}"
-                  name="foto" required accept="image/*">
+                  name="foto" accept="image/*">
 
                 @if ($errors->has('foto'))
                 <span class="invalid-feedback" role="alert">
