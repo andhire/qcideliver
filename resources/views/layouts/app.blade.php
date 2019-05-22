@@ -42,14 +42,14 @@
     @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
     <a href="/login" class=" ml-auto mr-3 order-lg-last">
       <button class="btn btn-primary btn-sm">
-        Log in
+        Iniciar Sesion
       </button>
     </a>
     @else
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ml-auto mr-3 order-lg-last">
       @csrf
       <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
-        Log out
+        Cerrar Sesion
       </button>
     </form>
     @endif
@@ -61,12 +61,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        {{-- <li class="nav-item active">
-          <a class="nav-link" href="/">Inicio</a>
-        </li> --}}
         @if (Auth::check())
         <li class="nav-item active">
-          <a class="nav-link" href="/home">Home</a>
+          <a class="nav-link" href="/home">Inicio</a>
         </li>
         @if (Auth::user()['tipo'] == 0)
         <li class="nav-item active">

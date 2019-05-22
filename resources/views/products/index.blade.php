@@ -17,35 +17,40 @@ $ubicactions = App\Ubication::all();
   <!-- Sidebar  -->
   <nav id="sidebar">
     <div class="sidebar-header">
-      <h4>Categorias</h4>
+      <h4>Filtros</h4>
     </div>
 
     <ul class="list-unstyled components">
-      @foreach ($categories as $category)
-      <li>
-        <a href="/product/categoria/{{$category->slug}}" class='button'>{{ $category->name }}</a>
+      <li class="active">
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categorias</a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          @foreach ($categories as $category)
+          <li>
+            <a href="/product/categoria/{{$category->slug}}" class='button'>{{ $category->name }}</a>
+          </li>
+          @endforeach
+        </ul>
       </li>
-      @endforeach
+
+      <li class="active">
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ubicaciones</a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          @foreach ($ubicactions as $ubication)
+          <li>
+            <a href="/product/ubicacion/{{$ubication->id}}" class='button'>{{ $ubication->nombre }}</a>
+          </li>
+          @endforeach
+        </ul>
+      </li>
     </ul>
 
-    <div class="sidebar-header">
-      <h4>Ubicaciones</h4>
-    </div>
-
-    <ul class="list-unstyled components">
-      @foreach ($ubicactions as $ubication)
-      <li>
-        <a href="/product/ubicacion/{{$ubication->id}}" class='button'>{{ $ubication->nombre }}</a>
-      </li>
-      @endforeach
-    </ul>
   </nav>
 
   <!-- Page Content  -->
   <div id="content">
     <button type="button" id="sidebarCollapse" class="btn btn-info">
       <i class="fas fa-align-left"></i>
-      <span>Toggle Sidebar</span>
+      <span>Filtros</span>
     </button>
 
     <div class="main">
