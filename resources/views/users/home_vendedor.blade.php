@@ -26,9 +26,9 @@ En espera de aprobacion por un administrador
           @foreach (App\Ubication::all() as $u)
 
           @if($loop->iteration == $ubicacion)
-          <option selected value="{{$u->id}}"> {{$u->nombre}}</option>
+          <option selected value="{{$u->id}}"> {{$u->slug}}</option>
           @else
-          <option value="{{$u->id}}"> {{$u->nombre}}</option>
+          <option value="{{$u->id}}"> {{$u->slug}}</option>
           @endif
 
           @endforeach
