@@ -156,12 +156,15 @@ class ProductsController extends Controller
         //
         $product = Products::where('slug', $slug)->first();
         if (!$product) {
-
-
-            return view('error');
+            return redirect('/');
+        } else {
+            $user = $product->user;
+            if (Auth::check() && Auth::user()->id == $user->id) {
+                return view('products.edit', compact('product'));
+            } else {
+                return redirect('/');
+            }
         }
-
-        return view('products.edit', compact('product'));
     }
 
     /**
@@ -190,18 +193,17 @@ class ProductsController extends Controller
                 $slug,
                 ["requested_visibility" => "public"]
             );
-    
+
             $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
             $product->image = $url;
-
         }
-        
+
         $product =  Products::where('id', $id)->first();
         $product->name = $request['name'];
         $product->id_category = $request['category'];
         $product->price = $request['price'];
         $product->amount = $request['amount'];
-        
+
         $product->aprobado = false;
 
         $product->save();
@@ -248,10 +250,10 @@ class ProductsController extends Controller
         return view('products.index', compact('productos'));
     }
 
-    public function filtroUbicacion($id)
+    public function filtroUbicacion($slug)
     {
         $productos = array();
-        $usersInUbication = Ubication::where('id', $id)->first()->userUbications;
+        $usersInUbication = Ubication::where('slug', $slug)->first()->userUbications;
         foreach ($usersInUbication as $userUbication) {
             foreach ($userUbication->user->products as $product) {
                 if ($product->aprobado) {

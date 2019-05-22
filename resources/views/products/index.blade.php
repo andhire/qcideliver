@@ -37,7 +37,7 @@ $ubicactions = App\Ubication::all();
         <ul class="collapse list-unstyled" id="pageSubmenu">
           @foreach ($ubicactions as $ubication)
           <li>
-            <a href="/product/ubicacion/{{$ubication->id}}" class='button'>{{ $ubication->nombre }}</a>
+            <a href="/product/ubicacion/{{$ubication->slug}}" class='button'>{{ $ubication->nombre }}</a>
           </li>
           @endforeach
         </ul>

@@ -9,7 +9,7 @@
       @foreach ($ubications as $u)
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-          <a href="/product/ubicacion/{{$u->id}}">
+          <a href="/product/ubicacion/{{$u->slug}}">
 
             <img src={{$u->foto}} width="100%" height="200">
             <div class="card-body">
