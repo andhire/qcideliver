@@ -84,10 +84,10 @@ class UsersController extends Controller
     {
         $user = Users::where('slug', $slug)->first();
 
-        if (!$user) {
+        if (!$user || $user->estado == null) {
             return redirect('/');
         } else {
-            if (Auth::check() && Auth::user()->id == $user->id) {
+            if ((Auth::check() && Auth::user()->id == $user->id) || (Auth::check() && Auth::user()->tipo == 0)) {
                 return view('users.edit', compact('user'));
             } else {
                 return redirect('/');

@@ -155,7 +155,7 @@ class ProductsController extends Controller
     {
         //
         $product = Products::where('slug', $slug)->first();
-        if (!$product) {
+        if (!$product || $product->aprobado == null) {
             return redirect('/');
         } else {
             $user = $product->user;
