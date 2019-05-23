@@ -52,7 +52,7 @@ class ProductsController extends Controller
                 }
             }
         } else if ($categoria != null) {
-            $productos = CategoryProduct::where('slug', $categoria)->get()[0]->products()->where('aprobado', 1);
+            $productos = CategoryProduct::where('slug', $categoria)->get()[0]->products()->where('aprobado', 1)->get();
         } else {
             $productos = Products::where('aprobado', 1)->paginate(6);
         }
