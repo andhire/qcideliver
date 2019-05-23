@@ -128,7 +128,7 @@ class ProductsController extends Controller
 
         $product->save();
 
-        return redirect('/home')->with('message', 'Producto Creado!');;
+        return redirect('/home')->with('message', 'Producto creado');;
     }
 
     /**
@@ -208,7 +208,7 @@ class ProductsController extends Controller
 
         $product->save();
 
-        return redirect('/home')->with('message', 'Edición exitosa!');
+        return redirect('/home')->with('message', 'Edición exitosa');
     }
 
     /**
@@ -223,7 +223,7 @@ class ProductsController extends Controller
         $product = Products::where('slug', $slug)->first();
         $product->delete();
 
-        return redirect('/home')->with('message', 'producto eliminado!');
+        return redirect('/home')->with('message', 'Producto eliminado');
     }
 
     public function aprobar(Request $request, $id)
@@ -232,7 +232,7 @@ class ProductsController extends Controller
         $product['aprobado'] = true;
         $product->save();
 
-        return back()->with('message', 'producto aprobado!');
+        return back()->with('message', 'Producto aprobado');
     }
 
     public function bloquear(Request $request, $id)
@@ -241,7 +241,7 @@ class ProductsController extends Controller
         $product['aprobado'] = null;
         $product->save();
 
-        return back()->with('message', 'producto bloqueado!');
+        return back()->with('message', 'Producto bloqueado');
     }
 
     public function filtroCategoria($slug)

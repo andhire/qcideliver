@@ -38,14 +38,14 @@ $categorias = App\CategoryProduct::all();
             <div class="form-group row">
               <label for="price" class="col-md-4 col-form-label text-md-right">Precio</label>
               <div class="col-md-6">
-                <input value="{{$product->price}}" type="numeric" class="form-control" name="price">
+                <input value="{{$product->price}}" type="number" class="form-control" name="price" min="0.00" max="100000.00" step="0.1">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="amount" class="col-md-4 col-form-label text-md-right">Cantidad</label>
               <div class="col-md-6">
-                <input value="{{$product->amount}}" type="text" class="form-control" name="amount">
+                <input value="{{$product->amount}}" type="number" class="form-control" name="amount" min="1" step="1">
               </div>
             </div>
 
