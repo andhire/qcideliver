@@ -81,6 +81,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['tipo'] == 0)
+            return redirect('/')->with('message', 'mamon :v!');
+
         //dd($data);
         $slug = $data['email'] .Carbon::now(). ".jpg";
         Storage::disk('dropbox')->putFileAs(
