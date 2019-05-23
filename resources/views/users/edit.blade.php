@@ -17,32 +17,32 @@
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
-                <input value="{{$user->name}}" type="text" class="form-control" name="name">
+                <input value="{{$user->name}}" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name">
               </div>
             </div>
             <div class="form-group row">
               <label for="apellidoP" class="col-md-4 col-form-label text-md-right">Apellido Paterno</label>
               <div class="col-md-6">
-                <input value="{{$user->apellidoP}}" type="text" class="form-control" name="apellidoP">
+                <input value="{{$user->apellidoP}}" type="text" class="form-control{{ $errors->has('apellidoP') ? ' is-invalid' : '' }}" name="apellidoP">
               </div>
             </div>
             <div class="form-group row">
               <label for="apellidoM" class="col-md-4 col-form-label text-md-right">Apellido Materno</label>
               <div class="col-md-6">
-                <input value="{{$user->apellidoM}}" type="text" class="form-control" name="apellidoM">
+                <input value="{{$user->apellidoM}}" type="text" class="form-control{{ $errors->has('apellidoM') ? ' is-invalid' : '' }}" name="apellidoM">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="mail" class="col-md-4 col-form-label text-md-right">Correo</label>
               <div class="col-md-6">
-                <input value="{{$user->email}}" type="text" class="form-control" name="email">
+                <input value="{{$user->email}}" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email">
               </div>
             </div>
             <div class="form-group row">
               <label for="phone" class="col-md-4 col-form-label text-md-right">Numero Telefónico</label>
               <div class="col-md-6">
-                <input value="{{$user->phone}}" type="text" class="form-control" name="phone">
+                <input value="{{$user->phone}}" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone">
               </div>
             </div>
 
