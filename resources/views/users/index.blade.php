@@ -41,8 +41,8 @@
   </div>
 </div>
 
-<footer class="pagination justify-content-center " style="margin-top:15%">
+<div class="pagination justify-content-center " style="margin-top:15%">
   {{ $users->links() }}
-</footer>
+</div>
 
 @endsection

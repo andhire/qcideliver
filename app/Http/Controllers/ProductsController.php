@@ -193,18 +193,21 @@ class ProductsController extends Controller
                 $slug,
                 ["requested_visibility" => "public"]
             );
-
+            $product->aprobado = false;
             $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
             $product->image = $url;
         }
-
-        $product =  Products::where('id', $id)->first();
-        $product->name = $request['name'];
+        if($product->name != $request['name']){
+            $product->name = $request['name'];
+            
+             $product->aprobado = false;
+        }
+       
         $product->id_category = $request['category'];
         $product->price = $request['price'];
         $product->amount = $request['amount'];
 
-        $product->aprobado = false;
+       
 
         $product->save();
 
