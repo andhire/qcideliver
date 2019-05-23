@@ -122,13 +122,21 @@ class UsersController extends Controller
     
             $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
             $user->foto = $url;
+            if($user->tipo == 1){
+                $user->estado = false;
+            }
+           
         }
        
-        $user->name = $request['name'];
+        if($user->name!= $request['name'] && ($user->tipo == 1 )){
+
+            $user->name = $request['name'];
+            $user->estado = false;
+        }
         $user->apellidoP = $request['apellidoP'];
         $user->apellidoM = $request['apellidoM'];
         $user->tipo = $request['tipo'];
-        $user->estado = $request['estado'];
+        
         
         $user->email = $request['email'];
         $user->phone = $request['phone'];

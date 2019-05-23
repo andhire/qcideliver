@@ -49,7 +49,7 @@
             <div class="form-group row">
               <label for="tipo" class="col-md-4 col-form-label text-md-right">Tipo</label>
               <div class="col-md-6">
-                <select class="form-control" name="tipo">
+                <select class="form-control" name="tipo" disabled>
                   @if($user->tipo==1)
                   <option selected value="1">Vendedor</option>
                   <option value="2">Comprador</option>
