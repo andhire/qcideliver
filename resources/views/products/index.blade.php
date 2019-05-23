@@ -64,7 +64,7 @@ $ubicactions = App\Ubication::all();
                 <div class="card mb-4 shadow-sm">
 
                   <img src={{$p->image}} width="100%" height="200">
-
+                  <div class="card-header bg-success text-white"><i class="fab fa-whatsapp"> {{ $p->user->phone }}</i></div>
                   <div class="card-body">
                     <h5 class="card-title">
                       {{$p->name}}

@@ -21,8 +21,8 @@ $user = $data[0];
               <img class="user-img" src={{ $user->foto }}></img>
               <p class="card-text">Nombre: {{ $user->name }} {{ $user->apellidoP }} {{ $user->apellidoM }}</p>
               <div class="user-contact">
-              <i class="fab fa-whatsapp">{{ $user->phone }}</i>
-              <i class="fas fa-at">{{ $user->email }}</i>
+              <i class="fab fa-whatsapp"> {{ $user->phone }}</i>
+              <i class="fa fa-envelope" aria-hidden="true"> {{ $user->email }}</i>
               </div>
               <div class="user-edit">
               <a href="user/{{$user->slug}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"> Editar información</i></a>
