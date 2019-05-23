@@ -128,13 +128,18 @@ class UsersController extends Controller
            
         }
        
-        if($user->name!= $request['name'] && ($user->tipo == 1 )){
+        if(($user->name!= $request['name'] ||$user->apellidoP != $request['apellidoP'] || $user->apellidoM = $request['apellidoM'])&& ($user->tipo == 1 )){
 
             $user->name = $request['name'];
+            $user->apellidoP = $request['apellidoP'];
+            $user->apellidoM = $request['apellidoM'];
             $user->estado = false;
+        }else{
+            $user->name = $request['name'];
+            $user->apellidoP = $request['apellidoP'];
+            $user->apellidoM = $request['apellidoM'];
         }
-        $user->apellidoP = $request['apellidoP'];
-        $user->apellidoM = $request['apellidoM'];
+        
         
         
         
