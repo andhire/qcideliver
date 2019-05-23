@@ -51,7 +51,7 @@
             {{-- {!! Form::hidden('pay',$amount) !!} --}}
             {!! Form::label('donacion', 'Donación') !!}
             {!! Form::number( 'pay', null, ['placeholder' => empty($amount) ? 'default value' : $amount,
-            'required', 'min' => '1'])
+            'required', 'min' => '1', 'max' => '1000'])
             !!}
 
             <button class="btn btn-primary db btn-block" id="donation-btn">Pagar</button>
