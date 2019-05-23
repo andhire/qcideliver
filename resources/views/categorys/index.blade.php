@@ -2,7 +2,7 @@
 @section('title', 'Categorías')
 @section('content')
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
   <div class="container">
     <div class="row">
 
@@ -24,11 +24,15 @@
   </div>
 </div>
 
-<a href="/category/create">
-  <button type="button" class="btn btn-primary btn-sm">
-    Crear categoría
-  </button>
-</a>
+<div class="container">
+  <div class="content-justify-center">
+  <a href="/category/create">
+    <button type="button" class="btn btn-primary btn-block">
+      Crear categoría
+    </button>
+  </a>
+  </div>
+</div>
 
 <footer class="pagination justify-content-center " style="margin-top:15%">
   {{ $categorys->links() }}

@@ -26,7 +26,7 @@ $categorias = App\CategoryProduct::all();
             <div class="form-group row">
                 <label for="tipo" class="col-md-4 col-form-label text-md-right">Categoría</label>
                 <div class="col-md-6">
-                  <select class="form-control" name="type" aria-required="true" required>
+                  <select class="form-control" name="category" aria-required="true" required>
                     <option value="">Selecciona una opción</option>
                     @foreach ($categorias as $nombre)
                     <option value="{{$nombre->id}}"> {{$nombre->name}}</option>

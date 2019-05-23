@@ -19,7 +19,7 @@ $ubicacion = $data[3];
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">Esperando Aprobación</div>
+        <div class="card-header">Esperando aprobación</div>
         <div class="card-body">
           <p>Tu registro como vendedor esta en proceso de aprobación.</p>
           <br> 
