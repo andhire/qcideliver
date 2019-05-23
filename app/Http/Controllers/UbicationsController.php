@@ -73,7 +73,7 @@ class UbicationsController extends Controller
 
         $ubication->save();
 
-        return redirect('/ubication')->with('message', 'Ubicacion creada');
+        return redirect('/ubication')->with('message', 'Ubicación creada');
     }
 
     /**

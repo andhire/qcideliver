@@ -28,7 +28,7 @@
 @if (Auth::check() && Auth::user()['tipo'] == 0)
 <a href="/ubication/create">
   <button type="button" class="btn btn-primary btn-sm">
-    Crear Ubicacion
+    Crear Ubicación
   </button>
 </a>
 @endif

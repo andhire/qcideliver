@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Agregar Ubicacion')
+@section('title', 'Agregar Ubicación')
 @section('head')
 <link href="{{ asset('css/misc.css') }}" rel="stylesheet">
 @endsection
