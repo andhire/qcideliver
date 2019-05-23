@@ -2,7 +2,7 @@
 @section('title', 'Usuarios')
 @section('content')
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
   <div class="container">
     <div class="row">
 

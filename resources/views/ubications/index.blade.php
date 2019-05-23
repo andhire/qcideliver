@@ -2,7 +2,7 @@
 @section('title', 'Ubicaciones')
 @section('content')
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
   <div class="container">
     <div class="row">
 
@@ -25,12 +25,17 @@
   </div>
 </div>
 
+
 @if (Auth::check() && Auth::user()['tipo'] == 0)
-<a href="/ubication/create">
-  <button type="button" class="btn btn-primary btn-sm">
-    Crear Ubicación
-  </button>
-</a>
+<div class="container">
+    <div class="content-justify-center">
+    <a href="/ubication/create">
+      <button type="button" class="btn btn-primary btn-block">
+        Crear Ubicación
+      </button>
+    </a>
+    </div>
+</div>
 @endif
 
 <footer class="pagination justify-content-center " style="margin-top:15%">
