@@ -54,7 +54,6 @@ $ubicactions = App\Ubication::all();
     </button>
 
     <div class="main">
-
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">

@@ -15,7 +15,7 @@ $categorias = App\CategoryProduct::all();
     <div class="col-md-8">
       <form method="POST" action="/product" id="register-form" role="form" enctype="multipart/form-data">
         <div class="card">
-          <div class="card-header">Registrar Producto</div>
+          <div class="card-header">Registrar producto</div>
           <div class="card-body">
             @csrf @method('POST')
 
@@ -90,7 +90,7 @@ $categorias = App\CategoryProduct::all();
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary btn-block">
-                  Registrar Producto
+                  Registrar producto
                 </button>
               </div>
             </div>

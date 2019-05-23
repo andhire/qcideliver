@@ -41,7 +41,7 @@ $ubicacion = $data[3];
             @csrf
             <div class="form-group row">
               <label for="ubication" class="col-md-4 col-form-label text-md-right">Ubicación Actual</label>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <select class="form-control" name="ubication">
         
                   <option selected value="0">Sin ubicación</option>
@@ -59,87 +59,79 @@ $ubicacion = $data[3];
                 </select>
               </div>
               <div class="col-md-4">
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block btn-ubicacion">
                   Actualizar ubicación
                 </button>
               </div>
             </div>
           </form>
-          <div class="user-details">
-            <h6 class="card-subtitle mb-2 text-muted">Datos generales</h6>
-            <img class="user-img" src={{ $user->foto }}></img>
-            <p class="card-text">Nombre: {{ $user->name }} {{ $user->apellidoP }} {{ $user->apellidoM }}</p>
-            <div class="user-contact">
-            <i class="fab fa-whatsapp">{{ $user->phone }}</i>
-            <i class="fas fa-at">{{ $user->email }}</i>
+          <div class="user-data">
+            <div class="user-details">
+              <h6 class="card-subtitle mb-2 text-muted">Datos generales</h6>
+              <img class="user-img" src={{ $user->foto }}></img>
+              <p class="card-text">Nombre: {{ $user->name }} {{ $user->apellidoP }} {{ $user->apellidoM }}</p>
+              <div class="user-contact">
+              <i class="fab fa-whatsapp">{{ $user->phone }}</i>
+              <i class="fas fa-at">{{ $user->email }}</i>
+              </div>
+              <div class="user-edit">
+              <a href="user/{{$user->slug}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"> Editar información</i></a>
+              </div>
             </div>
-            <div class="user-edit">
-            <a href="user/{{$user->slug}}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"> Editar información</i></a>
+            <div class="product-details">
+              <h6 class="card-subtitle mb-2 text-muted">Productos</h6>
+              <a href="{{ route('product.create') }}" class="btn btn-primary">Agregar producto</a>
             </div>
-          </div>
-          <div class="product-details">
-            <h6 class="card-subtitle mb-2 text-muted">Productos</h6>
-            <a href="{{ route('product.create') }}" class="btn btn-primary">Agregar producto</a>
-          </div>
+        </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div>
-    Aprobados
-    <div class="album py-5 bg-light" style="margin-top: 10px">
-      <div class="container">
-        <div class="row">
-  
-          @foreach ($productosAprobados as $p)
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <a href="{{ url('/product',[$p->slug]) }}">
-                <img src={{$p->image}} width="100%" height="200">
-              </a>
-              <div class="card-body">
-                <p class="card-text">
-  
-                  {{$p->name}}<br>
-                  $ {{$p->price}} <br>
-                  Cantidad:{{$p->amount}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <div style="margin: 5px;">
-                      <a href="{{ url('/product/'.$p->slug.'/edit') }}"><button type="button"
-                          class="btn btn-warning">Editar</button>
-                    </div>
-                    <div style="margin: 5px;">
-                      <form action="{{ route('product.destroy', $p->slug) }}" method="POST">
-                        @csrf @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Borrar</button>
-                      </form>
-                    </div>
+  <div class="album py-5">
+    <div class="container">
+      <div class="row">
+        @foreach ($productosAprobados as $p)
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <a href="{{ url('/product',[$p->slug]) }}">
+              <img src={{$p->image}} width="100%" height="200">
+            </a>
+            <div class="card-header bg-success text-white">Producto Aprobado</div>
+            <div class="card-body">
+              <p class="card-text">
+
+                {{$p->name}}<br>
+                $ {{$p->price}} <br>
+                Cantidad:{{$p->amount}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <div class="card-btn">
+                    <a href="{{ url('/product/'.$p->slug.'/edit') }}"><button type="button"
+                        class="btn btn-warning">Editar</button>
+                  </div>
+                  <div class="card-btn">
+                    <form action="{{ route('product.destroy', $p->slug) }}" method="POST">
+                      @csrf @method('DELETE')
+                      <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-            </a>
           </div>
-          @endforeach
-  
+          </a>
         </div>
-      </div>
-    </div>
-  
-    Por aprobar
-    <div class="album py-5 bg-light" style="margin-top: 10px">
-      <div class="container">
-        <div class="row">
-  
-          @foreach ($productosNoAprobados as $p)
-          <div class="col-md-4">
+        @endforeach
+
+        @foreach ($productosNoAprobados as $p)
+        <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
               <a href="{{ url('/product',[$p->slug]) }}">
                 <img src={{$p->image}} width="100%" height="200">
               </a>
+              <div class="card-header bg-danger text-white">Producto pendiente por aprobar</div>
               <div class="card-body">
                 <p class="card-text">
                   {{$p->name}}<br>
@@ -147,11 +139,11 @@ $ubicacion = $data[3];
                   Cantidad: {{$p->amount}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <div style="margin: 5px;">
+                    <div class="card-btn">
                       <a href="{{ url('/product/'.$p->slug.'/edit') }}"><button type="button"
                           class="btn btn-warning">Editar</button>
                     </div>
-                    <div style="margin: 5px;">
+                    <div class="card-btn">
                       <form action="{{ route('product.destroy', $p->slug) }}" method="POST">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-danger">Borrar</button>
@@ -163,13 +155,11 @@ $ubicacion = $data[3];
             </div>
             </a>
           </div>
-          @endforeach
-  
-        </div>
+        @endforeach
       </div>
     </div>
-  
   </div>
+
 @endif
 
 @endsection

@@ -6,6 +6,9 @@
 
 @section('content')
 
+@php
+$categorias = App\CategoryProduct::all();
+@endphp
 <div class="container content">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -21,11 +24,17 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="category" class="col-md-4 col-form-label text-md-right">Categoría</label>
-              <div class="col-md-6">
-                <input value="{{$product->id_category}}" type="text" class="form-control" name="category">
+                <label for="tipo" class="col-md-4 col-form-label text-md-right">Categoría</label>
+                <div class="col-md-6">
+                  <select class="form-control" name="type" aria-required="true" required>
+                    <option value="">Selecciona una opción</option>
+                    @foreach ($categorias as $nombre)
+                    <option value="{{$nombre->id}}"> {{$nombre->name}}</option>
+                    @endforeach
+  
+                  </select>
+                </div>
               </div>
-            </div>
             <div class="form-group row">
               <label for="price" class="col-md-4 col-form-label text-md-right">Precio</label>
               <div class="col-md-6">

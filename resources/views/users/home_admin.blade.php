@@ -8,8 +8,11 @@ $vendedores = $data[1];
 $productos = $data[2];
 @endphp
 
-<h4>Usuarios por aprobar</h4>
-<div class="album py-5 bg-light">
+@section('head')
+<link href="{{ asset('css/user.css') }}" rel="stylesheet">
+@endsection
+
+<div class="album py-5">
   <div class="container">
     <div class="row">
 
@@ -19,7 +22,7 @@ $productos = $data[2];
           <div class="card mb-4 shadow-sm">
 
             <img src={{$v->foto}} width="100%" height="200">
-
+            <div class="card-header bg-primary text-white">Vendedor en espera de aprobación</div>
             <div class="card-body">
               <p class="card-text">
                 {{$v->name}} {{$v->apellidoP}} {{$v->apellidoM}}<br>
@@ -30,11 +33,11 @@ $productos = $data[2];
                 <div class="btn-group">
                   <form action="{{ url('/user/'.$v->id.'/aprobar')}}" method="POST">
                     @csrf @method('POST')
-                    <button type="submit" class="btn btn-sm btn-outline-primary">Aprobar</button>
+                    <button type="submit" class="btn btn-sm btn-outline-primary card-btn">Aprobar</button>
                   </form>
                   <form action="{{ url('/user/'.$v->id.'/bloquear')}}" method="POST">
                     @csrf @method('POST')
-                    <button type="submit" class="btn btn-sm btn-outline-danger">Bloquear</button>
+                    <button type="submit" class="btn btn-sm btn-outline-danger card-btn">Bloquear</button>
                   </form>
                 </div>
               </div>
@@ -49,8 +52,7 @@ $productos = $data[2];
   </div>
 </div>
 
-<h4>Productos por aprobar</h4>
-<div class="album py-5 bg-light">
+<div class="album py-5">
   <div class="container">
     <div class="row">
 
@@ -60,7 +62,7 @@ $productos = $data[2];
           <div class="card mb-4 shadow-sm">
 
             <img src={{$p->image}} width="100%" height="200">
-
+            <div class="card-header bg-warning text-white">Producto en espera de aprobación</div>
             <div class="card-body">
               <p class="card-text">
                 Nombre: {{$p->name}}<br>
@@ -71,11 +73,11 @@ $productos = $data[2];
                 <div class="btn-group">
                   <form action="{{ url('/product/'.$p->id.'/aprobar')}}" method="POST">
                     @csrf @method('POST')
-                    <button type="submit" class="btn btn-sm btn-outline-primary">Aprobar</button>
+                    <button type="submit" class="btn btn-sm btn-outline-primary card-btn">Aprobar</button>
                   </form>
                   <form action="{{ url('/product/'.$p->id.'/bloquear')}}" method="POST">
                     @csrf @method('POST')
-                    <button type="submit" class="btn btn-sm btn-outline-danger">Bloquear</button>
+                    <button type="submit" class="btn btn-sm btn-outline-danger card-btn">Bloquear</button>
                   </form>
                 </div>
               </div>

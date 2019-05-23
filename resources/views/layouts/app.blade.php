@@ -39,17 +39,17 @@
       QciDeliver
     </a>
 
-    @if (!Auth::check()) {{-- Si el usuario no esta logeado --}}
+    @if (!Auth::check()) {{-- Si el usuario no esta loggueado --}}
     <a href="/login" class=" ml-auto mr-3 order-lg-last">
       <button class="btn btn-primary btn-sm">
-        Iniciar Sesión
+        Iniciar sesión
       </button>
     </a>
     @else
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class=" ml-auto mr-3 order-lg-last">
       @csrf
       <button type="submit" class="btn btn-danger btn-sm" id="botonEnviar">
-        Cerrar Sesión
+        Cerrar sesión
       </button>
     </form>
     @endif
