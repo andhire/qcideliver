@@ -9,7 +9,7 @@
 <div class="container content">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <form method="POST" action="/user/{{$user->slug}}" id="edit-form" role="form">
+      <form method="POST" action="/user/{{$user->slug}}" id="edit-form" role="form" enctype="multipart/form-data">
         <div class="card">
           <div class="card-header">Editar Usuario</div>
           <div class="card-body">

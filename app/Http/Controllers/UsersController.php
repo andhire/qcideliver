@@ -105,6 +105,7 @@ class UsersController extends Controller
     {
         $user = Users::where('slug', $slug)->first();
         if ($request['foto'] != '') {
+            $slug = $request['email'] .Carbon::now(). ".jpg";
             Storage::disk('dropbox')->putFileAs(
                 '/',
                 $request['foto'],
