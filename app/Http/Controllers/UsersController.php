@@ -84,13 +84,15 @@ class UsersController extends Controller
     {
         $user = Users::where('slug', $slug)->first();
 
-        if (!$user || $user->estado == null) {
+        if (!$user) {
             return redirect('/');
         } else {
-            if ((Auth::check() && Auth::user()->id == $user->id) || (Auth::check() && Auth::user()->tipo == 0)) {
-                return view('users.edit', compact('user'));
-            } else {
-                return redirect('/');
+            if (Auth::check()) {
+                if ((Auth::user()->id == $user->id && Auth::user()->estado == 1) || Auth::user()->tipo == 0) {
+                    return view('users.edit', compact('user'));
+                } else {
+                    return redirect('/');
+                }
             }
         }
     }
@@ -106,7 +108,7 @@ class UsersController extends Controller
     {
         $user = Users::where('slug', $slug)->first();
         if ($request['foto'] != '') {
-            $slug = $request['email'] .Carbon::now(). ".jpg";
+            $slug = $request['email'] . Carbon::now() . ".jpg";
             Storage::disk('dropbox')->putFileAs(
                 '/',
                 $request['foto'],
@@ -119,30 +121,29 @@ class UsersController extends Controller
                 $slug,
                 ["requested_visibility" => "public"]
             );
-    
+
             $url = str_replace("www.dropbox.com", "dl.dropboxusercontent.com", $response['url']);
             $user->foto = $url;
-            if($user->tipo == 1){
+            if ($user->tipo == 1) {
                 $user->estado = false;
             }
-           
         }
-       
-        if(($user->name!= $request['name'] ||$user->apellidoP != $request['apellidoP'] || $user->apellidoM = $request['apellidoM'])&& ($user->tipo == 1 )){
+
+        if (($user->name != $request['name'] || $user->apellidoP != $request['apellidoP'] || $user->apellidoM != $request['apellidoM']) && ($user->tipo == 1)) {
 
             $user->name = $request['name'];
             $user->apellidoP = $request['apellidoP'];
             $user->apellidoM = $request['apellidoM'];
             $user->estado = false;
-        }else{
+        } else {
             $user->name = $request['name'];
             $user->apellidoP = $request['apellidoP'];
             $user->apellidoM = $request['apellidoM'];
         }
-        
-        
-        
-        
+
+
+
+
         $user->email = $request['email'];
         $user->phone = $request['phone'];
 
@@ -188,7 +189,7 @@ class UsersController extends Controller
     public function aprobar(Request $request, $id)
     {
         $user = Users::where('id', $id)->first();
-        $user['estado'] = true;
+        $user['estado'] = 1;
         $user->save();
 
         return back();

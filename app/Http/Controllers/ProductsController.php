@@ -232,7 +232,7 @@ class ProductsController extends Controller
     public function aprobar(Request $request, $id)
     {
         $product = Products::where('id', $id)->first();
-        $product['aprobado'] = true;
+        $product['aprobado'] = 1;
         $product->save();
 
         return back()->with('message', 'Producto aprobado');
