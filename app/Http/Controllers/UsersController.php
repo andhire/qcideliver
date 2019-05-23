@@ -67,11 +67,14 @@ class UsersController extends Controller
         $user = Users::where('slug', $slug)->first();
 
         if (!$user) {
-            return view('error');
+            return redirect('/');
         }
 
 
-        return view('users.show', compact('user'));
+        if(Auth::check() && Auth::user()->tipo == 0)
+            return view('users.show', compact('user'));
+        else    
+            return redirect('/');
     }
 
     /**
