@@ -98,9 +98,8 @@ class ProductsController extends Controller
         // el directorio donde será almacenado, el archivo y el nombre.
         // ¡No olvides validar todos estos datos antes de guardar el archivo!
         $product = new Products;
-        $product->slug = $request['name'];
 
-        $slug = $product->slug . Carbon::now() . ".jpg";
+        $slug = $request['name'] . Carbon::now() . ".jpg";
         Storage::disk('dropbox')->putFileAs(
             '/',
             $request['foto'],
