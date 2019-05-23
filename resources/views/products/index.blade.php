@@ -88,7 +88,7 @@ $ubicactions = App\Ubication::all();
 </div>
 
 <footer class="pagination justify-content-center " style="margin-top:15%">
-  {{ $products->links() }}
+  {{ $productos->links() }}
 </footer>
 
 @endsection
