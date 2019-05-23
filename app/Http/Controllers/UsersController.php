@@ -135,7 +135,7 @@ class UsersController extends Controller
         }
         $user->apellidoP = $request['apellidoP'];
         $user->apellidoM = $request['apellidoM'];
-        $user->tipo = $request['tipo'];
+        
         
         
         $user->email = $request['email'];
