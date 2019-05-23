@@ -66,7 +66,7 @@ class RegisterController extends Controller
             'tipo' => ['required'],
             'apellidoM' => ['required', 'string', 'max:255'],
             'apellidoP' => ['required', 'string','max:255' ],
-            'phone' => ['required', 'string', 'max:255']
+            'phone' => ['required', 'string', 'size:10']
           
            
         ]);
