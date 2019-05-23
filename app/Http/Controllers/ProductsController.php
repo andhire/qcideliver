@@ -207,7 +207,7 @@ class ProductsController extends Controller
         $product->price = $request['price'];
         $product->amount = $request['amount'];
 
-        $product->aprobado = false;
+       
 
         $product->save();
 
