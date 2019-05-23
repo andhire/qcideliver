@@ -30,7 +30,7 @@ class UsersController extends Controller
 
         if (Auth::check() && Auth::user()['tipo'] == 0) {
 
-            $users = Users::paginate(5);
+            $users = Users::paginate(6);
 
             return view('users.index', compact('users'));
         } else {
