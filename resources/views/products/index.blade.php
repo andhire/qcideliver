@@ -70,8 +70,8 @@ $ubicactions = App\Ubication::all();
                       {{$p->name}}
                     </h5>
                     <p class="card-text">
-                      {{$p->price}} <br>
-                      {{$p->user->userUbication->ubication->nombre ?? 'No hay ubicación'}} </p>
+                      <i class="fas fa-dollar-sign"> {{$p->price}}</i><br>
+                      <i class="fas fa-map-marker-alt"> {{$p->user->userUbication->ubication->nombre ?? 'No hay ubicación'}}</i></p>
                   </div>
 
                 </div>

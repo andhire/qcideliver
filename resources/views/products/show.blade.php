@@ -24,7 +24,7 @@
           <h5>Ubicación: {{$product->user->userUbication->ubication->nombre ?? 'No hay ubicación'}}</h5>
         </div>
         <div>
-          <h5>Telefóno: {{$product->user->phone}}</h5>
+          <h5>Teléfono: {{$product->user->phone}}</h5>
         </div>
       </p>
 
