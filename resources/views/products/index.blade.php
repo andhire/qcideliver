@@ -87,8 +87,10 @@ $ubicactions = App\Ubication::all();
   </div>
 </div>
 
+@if($productos)
 <div class="pagination justify-content-center " style="margin-top:15%">
   {{ $productos->links() }}
 </div>
+@endif
 
 @endsection
