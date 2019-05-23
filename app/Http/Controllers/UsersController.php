@@ -149,7 +149,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect('/user')->with('message', 'Edición exitosa!');
+        return redirect('/home')->with('message', 'Edición exitosa!');
     }
 
     /**

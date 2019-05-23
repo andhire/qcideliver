@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Products;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -105,6 +106,13 @@ class RegisterController extends Controller
             $estado = null;
         }
 
+        $slug = strtolower($data['name']);
+        $slug = str_replace(' ', '-', $slug);
+        $usuariosIguales = Users::where('slug', 'like', $slug.'%')->count();
+        if($usuariosIguales != 0){
+            $slug = $slug.'-'.(string)$usuariosIguales;
+        }
+
         return Users::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -115,7 +123,7 @@ class RegisterController extends Controller
             'apellidoP' => $data['apellidoP'],
             'phone' => $data['phone'],
             'estado' =>$estado,
-            'slug'=>str_slug($data['name'])
+            'slug'=>$slug
         ]);
 
 
